@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b80d855a3454fbba55322a775748a77" Name="Diagram1">
+        <EntityTypeShape EntityType="LOLADBModel.Course_Registration" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Cours" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Donation" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Employee" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event_Registration" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event_Types" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Feedback" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Teacher" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="LOLADBModel.fk_CourseRegistration" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_CourseFeedback" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_TeacherCourses" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_EventIDRegistration" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_EventTypeEvents" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_TeacherFeedback" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

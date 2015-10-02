@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Welcome to LOLA!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+<div class="container">
+    <div class="col-sm-12 largetext">
+        <h2>About LOLA</h2>
+        <p><i>LOLA</i> was created by a group of individuals enthusiastic about all artistic disciplines: painting, music, photography, theater, pottery, 
+        woodcarving, writing, jewelry-making, drawing, sculpture, dance and much, much more.</p>
+        <p>They are dedicated to making sure these arts and their creators grow and flourish in the Northwoods of Wisconsin and the 
+        Western Upper Peninsula of Michigan.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-4 centertext">
+            <h2>Mission</h2>
+            <p>
+                Land O' Lakes Area Artisans, Inc. (LOLA) is dedicated to promoting the Arts in Northern Wisconsin and the Upper 
+                Peninsula of Michigan. LOLA will support Local Artists in fulfilling their artistic potential while also bringing Enrichment, 
+                Arts Education and Beautification to the people of the area, which contributes to the vitality of the larger community.
+            </p>
+        </div>
+        <div class="col-md-4 centertext">
+            <h2>GOALS</h2>
+            <p>To purchase the current rental space to be the permanent home of The LOLA Center for the Arts. The Arts Center will 
+            then be able to provide space for all forms of art programming .</p>
+            <p>To provide quality that offers a variety of classes and events, with the purpose of Enlivening, Entertaining and 
+            Increasing the quality of life in our area.</p>
+            <p>To award Scholarships to selected area High School Seniors & Adults who intend to enroll in Arts related programs</p>
+        </div>
+        <div class="col-md-4 centertext">
+            <h2>Donations</h2>
+            <p>LOLA is a 501(c)(3) Non-Profit organization. All donations are tax deductible.</p>
+            <p>We invite you to join us in working towards achieving these goals, so that you may share in the pleasure 
+            this enrichment promises for our community</p>
+            <p><a class="btn btn-default" @Html.ActionLink("Learn more about Donations", "Donations", "Home")</a></p>
+        </div>
+    </div>
+</div>

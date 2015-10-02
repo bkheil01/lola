@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LOLADBModelStoreContainer" CdmEntityContainer="LOLADBEntities">
+    <EntitySetMapping Name="Course_Registration">
+      <EntityTypeMapping TypeName="LOLADBModel.Course_Registration">
+        <MappingFragment StoreEntitySet="Course_Registration">
+          <ScalarProperty Name="Registration_ID" ColumnName="Registration_ID" />
+          <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="LOLADBModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Course_Type_ID" ColumnName="Course_Type_ID" />
+          <ScalarProperty Name="Course_Description" ColumnName="Course_Description" />
+          <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+          <ScalarProperty Name="Course_Max_Size" ColumnName="Course_Max_Size" />
+          <ScalarProperty Name="Course_Date" ColumnName="Course_Date" />
+          <ScalarProperty Name="Course_Cost" ColumnName="Course_Cost" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donations">
+      <EntityTypeMapping TypeName="LOLADBModel.Donation">
+        <MappingFragment StoreEntitySet="Donation">
+          <ScalarProperty Name="Donation_ID" ColumnName="Donation_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="Donation_Type" ColumnName="Donation_Type" />
+          <ScalarProperty Name="Donation_Amount" ColumnName="Donation_Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="LOLADBModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+          <ScalarProperty Name="Job_Description" ColumnName="Job_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event_Registration">
+      <EntityTypeMapping TypeName="LOLADBModel.Event_Registration">
+        <MappingFragment StoreEntitySet="Event_Registration">
+          <ScalarProperty Name="Event_Registration_ID" ColumnName="Event_Registration_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+          <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event_Types">
+      <EntityTypeMapping TypeName="LOLADBModel.Event_Types">
+        <MappingFragment StoreEntitySet="Event_Types">
+          <ScalarProperty Name="Event_Type_ID" ColumnName="Event_Type_ID" />
+          <ScalarProperty Name="Event_Description" ColumnName="Event_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="LOLADBModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+          <ScalarProperty Name="Event_Type_ID" ColumnName="Event_Type_ID" />
+          <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
+          <ScalarProperty Name="Tickets_Sold" ColumnName="Tickets_Sold" />
+          <ScalarProperty Name="Max_Tickets" ColumnName="Max_Tickets" />
+          <ScalarProperty Name="Event_Cost" ColumnName="Event_Cost" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="LOLADBModel.Feedback">
+        <MappingFragment StoreEntitySet="Feedback">
+          <ScalarProperty Name="Feedback_ID" ColumnName="Feedback_ID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+          <ScalarProperty Name="Course_Marketing" ColumnName="Course_Marketing" />
+          <ScalarProperty Name="Course_Registration_Type" ColumnName="Course_Registration_Type" />
+          <ScalarProperty Name="Course_Rating" ColumnName="Course_Rating" />
+          <ScalarProperty Name="Student_Comment" ColumnName="Student_Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="LOLADBModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+          <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+          <ScalarProperty Name="SSN" ColumnName="SSN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

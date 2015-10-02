@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LOLADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course_Registration">
+    <Key>
+      <PropertyRef Name="Registration_ID" />
+    </Key>
+    <Property Name="Registration_ID" Type="Int32" Nullable="false" />
+    <Property Name="Transaction_ID" Type="Int32" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="User_Code" Type="Int32" />
+    <NavigationProperty Name="Cours" Relationship="Self.fk_CourseRegistration" FromRole="Course_Registration" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_Type_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Course_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Teacher_ID" Type="Int32" />
+    <Property Name="Course_Max_Size" Type="Int32" />
+    <Property Name="Course_Date" Type="DateTime" Precision="0" />
+    <Property Name="Course_Cost" Type="Single" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
+    <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Donation">
+    <Key>
+      <PropertyRef Name="Donation_ID" />
+    </Key>
+    <Property Name="Donation_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_Code" Type="Int32" />
+    <Property Name="Donation_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Donation_Amount" Type="Single" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Code" Type="Int32" />
+    <Property Name="SSN" Type="Int32" />
+    <Property Name="Job_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Event_Registration">
+    <Key>
+      <PropertyRef Name="Event_Registration_ID" />
+    </Key>
+    <Property Name="Event_Registration_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_Code" Type="Int32" />
+    <Property Name="Event_ID" Type="Int32" />
+    <Property Name="Event_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Event" Relationship="Self.fk_EventIDRegistration" FromRole="Event_Registration" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="Event_Types">
+    <Key>
+      <PropertyRef Name="Event_Type_ID" />
+    </Key>
+    <Property Name="Event_Type_ID" Type="Int32" Nullable="false" />
+    <Property Name="Event_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Events" Relationship="Self.fk_EventTypeEvents" FromRole="Event_Types" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Event_ID" />
+    </Key>
+    <Property Name="Event_ID" Type="Int32" Nullable="false" />
+    <Property Name="Event_Type_ID" Type="Int32" />
+    <Property Name="Event_Date" Type="DateTime" Precision="0" />
+    <Property Name="Tickets_Sold" Type="Int32" />
+    <Property Name="Max_Tickets" Type="Int32" />
+    <Property Name="Event_Cost" Type="Single" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
+    <NavigationProperty Name="Event_Types" Relationship="Self.fk_EventTypeEvents" FromRole="Events" ToRole="Event_Types" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="Int32" Nullable="false" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="User_Code" Type="Int32" />
+    <Property Name="Teacher_ID" Type="Int32" />
+    <Property Name="Course_Marketing" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Course_Registration_Type" Type="Boolean" />
+    <Property Name="Course_Rating" Type="Int32" />
+    <Property Name="Student_Comment" Type="Int32" />
+    <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Feedback" ToRole="Courses" />
+    <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Feedback" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Teacher_ID" />
+    </Key>
+    <Property Name="Teacher_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Code" Type="Int32" />
+    <Property Name="SSN" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="Self.fk_TeacherCourses" FromRole="Teacher" ToRole="Courses" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.fk_TeacherFeedback" FromRole="Teacher" ToRole="Feedback" />
+  </EntityType>
+  <Association Name="fk_CourseRegistration">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Course_Registration">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CourseFeedback">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TeacherCourses">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Teacher_ID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Teacher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventIDRegistration">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Event_ID" />
+      </Principal>
+      <Dependent Role="Event_Registration">
+        <PropertyRef Name="Event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventTypeEvents">
+    <End Role="Event_Types" Type="Self.Event_Types" Multiplicity="0..1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event_Types">
+        <PropertyRef Name="Event_Type_ID" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="Event_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TeacherFeedback">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Teacher_ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="Teacher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LOLADBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" />
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="Donations" EntityType="Self.Donation" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" />
+    <EntitySet Name="Event_Types" EntityType="Self.Event_Types" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <AssociationSet Name="fk_CourseRegistration" Association="Self.fk_CourseRegistration">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Course_Registration" EntitySet="Course_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TeacherCourses" Association="Self.fk_TeacherCourses">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventIDRegistration" Association="Self.fk_EventIDRegistration">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Event_Registration" EntitySet="Event_Registration" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventTypeEvents" Association="Self.fk_EventTypeEvents">
+      <End Role="Event_Types" EntitySet="Event_Types" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TeacherFeedback" Association="Self.fk_TeacherFeedback">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
