@@ -5,34 +5,106 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="Course_Registration">
           <Key>
             <PropertyRef Name="Registration_ID" />
           </Key>
-          <Property Name="Registration_ID" Type="int" Nullable="false" />
+          <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Transaction_ID" Type="int" />
           <Property Name="Course_ID" Type="int" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="Course_ID" />
           </Key>
           <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Course_Type_ID" Type="varchar" MaxLength="255" />
-          <Property Name="Course_Description" Type="varchar" MaxLength="255" />
+          <Property Name="Course_Type" Type="varchar" MaxLength="255" />
+          <Property Name="Course_Desc" Type="varchar" MaxLength="255" />
           <Property Name="Teacher_ID" Type="int" />
           <Property Name="Course_Max_Size" Type="int" />
-          <Property Name="Course_Date" Type="date" />
+          <Property Name="Course_Start_Date" Type="date" />
+          <Property Name="Course_End_Date" Type="date" />
+          <Property Name="Course_Time" Type="varchar" MaxLength="255" />
           <Property Name="Course_Cost" Type="real" />
-          <Property Name="Location" Type="varchar" MaxLength="255" />
+          <Property Name="Course_Location" Type="varchar" MaxLength="255" />
+          <Property Name="Course_Notes" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Donation">
           <Key>
             <PropertyRef Name="Donation_ID" />
           </Key>
-          <Property Name="Donation_ID" Type="int" Nullable="false" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Donation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="Donation_Type" Type="varchar" MaxLength="255" />
           <Property Name="Donation_Amount" Type="real" />
         </EntityType>
@@ -41,7 +113,7 @@
             <PropertyRef Name="Employee_ID" />
           </Key>
           <Property Name="Employee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="SSN" Type="int" />
           <Property Name="Job_Description" Type="varchar" MaxLength="255" />
         </EntityType>
@@ -49,37 +121,34 @@
           <Key>
             <PropertyRef Name="Event_Registration_ID" />
           </Key>
-          <Property Name="Event_Registration_ID" Type="int" Nullable="false" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Event_Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="Event_ID" Type="int" />
           <Property Name="Event_Date" Type="date" />
-        </EntityType>
-        <EntityType Name="Event_Types">
-          <Key>
-            <PropertyRef Name="Event_Type_ID" />
-          </Key>
-          <Property Name="Event_Type_ID" Type="int" Nullable="false" />
-          <Property Name="Event_Description" Type="varchar" MaxLength="255" />
+          <Property Name="Transaction_ID" Type="int" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="Event_ID" />
           </Key>
-          <Property Name="Event_ID" Type="int" Nullable="false" />
-          <Property Name="Event_Type_ID" Type="int" />
-          <Property Name="Event_Date" Type="date" />
+          <Property Name="Event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_Type" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Desc" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Date" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Time" Type="varchar" MaxLength="255" />
           <Property Name="Tickets_Sold" Type="int" />
           <Property Name="Max_Tickets" Type="int" />
           <Property Name="Event_Cost" Type="real" />
-          <Property Name="Location" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Location" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Notes" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="Feedback_ID" />
           </Key>
-          <Property Name="Feedback_ID" Type="int" Nullable="false" />
+          <Property Name="Feedback_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Course_ID" Type="int" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="Teacher_ID" Type="int" />
           <Property Name="Course_Marketing" Type="varchar" MaxLength="255" />
           <Property Name="Course_Registration_Type" Type="bit" />
@@ -91,7 +160,7 @@
             <PropertyRef Name="Teacher_ID" />
           </Key>
           <Property Name="Teacher_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Code" Type="int" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="SSN" Type="int" />
         </EntityType>
         <Association Name="fk_CourseFeedback">
@@ -118,6 +187,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_EventIDRegistration">
           <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
           <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
@@ -127,18 +252,6 @@
             </Principal>
             <Dependent Role="Event_Registration">
               <PropertyRef Name="Event_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_EventTypeEvents">
-          <End Role="Event_Types" Type="Self.Event_Types" Multiplicity="0..1" />
-          <End Role="Events" Type="Self.Events" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event_Types">
-              <PropertyRef Name="Event_Type_ID" />
-            </Principal>
-            <Dependent Role="Events">
-              <PropertyRef Name="Event_Type_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -166,13 +279,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_UserCourseRegistration">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course_Registration">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserDonation">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserEmployee">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserEventRegistration">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Event_Registration">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserFeedback">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserTeacher">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LOLADBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Donation" EntityType="Self.Donation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Event_Types" EntityType="Self.Event_Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
@@ -184,13 +374,25 @@
             <End Role="Courses" EntitySet="Courses" />
             <End Role="Course_Registration" EntitySet="Course_Registration" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="fk_EventIDRegistration" Association="Self.fk_EventIDRegistration">
             <End Role="Events" EntitySet="Events" />
             <End Role="Event_Registration" EntitySet="Event_Registration" />
-          </AssociationSet>
-          <AssociationSet Name="fk_EventTypeEvents" Association="Self.fk_EventTypeEvents">
-            <End Role="Event_Types" EntitySet="Event_Types" />
-            <End Role="Events" EntitySet="Events" />
           </AssociationSet>
           <AssociationSet Name="fk_TeacherCourses" Association="Self.fk_TeacherCourses">
             <End Role="Teacher" EntitySet="Teacher" />
@@ -200,34 +402,135 @@
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Feedback" EntitySet="Feedback" />
           </AssociationSet>
+          <AssociationSet Name="fk_UserCourseRegistration" Association="Self.fk_UserCourseRegistration">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Course_Registration" EntitySet="Course_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserDonation" Association="Self.fk_UserDonation">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserEmployee" Association="Self.fk_UserEmployee">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserEventRegistration" Association="Self.fk_UserEventRegistration">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Event_Registration" EntitySet="Event_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserFeedback" Association="Self.fk_UserFeedback">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserTeacher" Association="Self.fk_UserTeacher">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LOLADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Course_Registration" Relationship="Self.fk_UserCourseRegistration" FromRole="AspNetUsers" ToRole="Course_Registration" />
+          <NavigationProperty Name="Donations" Relationship="Self.fk_UserDonation" FromRole="AspNetUsers" ToRole="Donation" />
+          <NavigationProperty Name="Employees" Relationship="Self.fk_UserEmployee" FromRole="AspNetUsers" ToRole="Employee" />
+          <NavigationProperty Name="Event_Registration" Relationship="Self.fk_UserEventRegistration" FromRole="AspNetUsers" ToRole="Event_Registration" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.fk_UserFeedback" FromRole="AspNetUsers" ToRole="Feedback" />
+          <NavigationProperty Name="Teachers" Relationship="Self.fk_UserTeacher" FromRole="AspNetUsers" ToRole="Teacher" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
         <EntityType Name="Course_Registration">
           <Key>
             <PropertyRef Name="Registration_ID" />
           </Key>
-          <Property Name="Registration_ID" Type="Int32" Nullable="false" />
+          <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Transaction_ID" Type="Int32" />
           <Property Name="Course_ID" Type="Int32" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserCourseRegistration" FromRole="Course_Registration" ToRole="AspNetUsers" />
           <NavigationProperty Name="Cours" Relationship="Self.fk_CourseRegistration" FromRole="Course_Registration" ToRole="Courses" />
         </EntityType>
-        <EntityType Name="Cours">
+        <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="Course_ID" />
           </Key>
           <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Course_Type_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Course_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Teacher_ID" Type="Int32" />
           <Property Name="Course_Max_Size" Type="Int32" />
-          <Property Name="Course_Date" Type="DateTime" Precision="0" />
+          <Property Name="Course_Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Course_End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Course_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_Cost" Type="Single" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
           <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
@@ -236,64 +539,63 @@
           <Key>
             <PropertyRef Name="Donation_ID" />
           </Key>
-          <Property Name="Donation_ID" Type="Int32" Nullable="false" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Donation_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Donation_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Donation_Amount" Type="Single" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserDonation" FromRole="Donation" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Employee_ID" />
           </Key>
           <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SSN" Type="Int32" />
           <Property Name="Job_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserEmployee" FromRole="Employee" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="Event_Registration">
           <Key>
             <PropertyRef Name="Event_Registration_ID" />
           </Key>
-          <Property Name="Event_Registration_ID" Type="Int32" Nullable="false" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Event_Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Event_ID" Type="Int32" />
           <Property Name="Event_Date" Type="DateTime" Precision="0" />
+          <Property Name="Transaction_ID" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserEventRegistration" FromRole="Event_Registration" ToRole="AspNetUsers" />
           <NavigationProperty Name="Event" Relationship="Self.fk_EventIDRegistration" FromRole="Event_Registration" ToRole="Events" />
-        </EntityType>
-        <EntityType Name="Event_Types">
-          <Key>
-            <PropertyRef Name="Event_Type_ID" />
-          </Key>
-          <Property Name="Event_Type_ID" Type="Int32" Nullable="false" />
-          <Property Name="Event_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Events" Relationship="Self.fk_EventTypeEvents" FromRole="Event_Types" ToRole="Events" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Event_ID" />
           </Key>
-          <Property Name="Event_ID" Type="Int32" Nullable="false" />
-          <Property Name="Event_Type_ID" Type="Int32" />
-          <Property Name="Event_Date" Type="DateTime" Precision="0" />
+          <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Date" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Tickets_Sold" Type="Int32" />
           <Property Name="Max_Tickets" Type="Int32" />
           <Property Name="Event_Cost" Type="Single" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
-          <NavigationProperty Name="Event_Types" Relationship="Self.fk_EventTypeEvents" FromRole="Events" ToRole="Event_Types" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="Feedback_ID" />
           </Key>
-          <Property Name="Feedback_ID" Type="Int32" Nullable="false" />
+          <Property Name="Feedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Course_ID" Type="Int32" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Teacher_ID" Type="Int32" />
           <Property Name="Course_Marketing" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_Registration_Type" Type="Boolean" />
           <Property Name="Course_Rating" Type="Int32" />
           <Property Name="Student_Comment" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserFeedback" FromRole="Feedback" ToRole="AspNetUsers" />
           <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Feedback" ToRole="Courses" />
           <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Feedback" ToRole="Teacher" />
         </EntityType>
@@ -302,13 +604,114 @@
             <PropertyRef Name="Teacher_ID" />
           </Key>
           <Property Name="Teacher_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Code" Type="Int32" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SSN" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserTeacher" FromRole="Teacher" ToRole="AspNetUsers" />
           <NavigationProperty Name="Courses" Relationship="Self.fk_TeacherCourses" FromRole="Teacher" ToRole="Courses" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.fk_TeacherFeedback" FromRole="Teacher" ToRole="Feedback" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserCourseRegistration">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course_Registration">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserDonation">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserEmployee">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserEventRegistration">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Event_Registration">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserFeedback">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserTeacher">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_CourseRegistration">
-          <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
           <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -320,7 +723,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_CourseFeedback">
-          <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
           <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -333,7 +736,7 @@
         </Association>
         <Association Name="fk_TeacherCourses">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
-          <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
               <PropertyRef Name="Teacher_ID" />
@@ -355,18 +758,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_EventTypeEvents">
-          <End Role="Event_Types" Type="Self.Event_Types" Multiplicity="0..1" />
-          <End Role="Events" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event_Types">
-              <PropertyRef Name="Event_Type_ID" />
-            </Principal>
-            <Dependent Role="Events">
-              <PropertyRef Name="Event_Type_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_TeacherFeedback">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
@@ -379,16 +770,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="LOLADBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" />
-          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Courses" EntityType="LOLADBModel.Courses" />
           <EntitySet Name="Donations" EntityType="Self.Donation" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" />
-          <EntitySet Name="Event_Types" EntityType="Self.Event_Types" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
           <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserCourseRegistration" Association="Self.fk_UserCourseRegistration">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Course_Registration" EntitySet="Course_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserDonation" Association="Self.fk_UserDonation">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserEmployee" Association="Self.fk_UserEmployee">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserEventRegistration" Association="Self.fk_UserEventRegistration">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Event_Registration" EntitySet="Event_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserFeedback" Association="Self.fk_UserFeedback">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserTeacher" Association="Self.fk_UserTeacher">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
           <AssociationSet Name="fk_CourseRegistration" Association="Self.fk_CourseRegistration">
             <End Role="Courses" EntitySet="Courses" />
             <End Role="Course_Registration" EntitySet="Course_Registration" />
@@ -405,13 +836,13 @@
             <End Role="Events" EntitySet="Events" />
             <End Role="Event_Registration" EntitySet="Event_Registration" />
           </AssociationSet>
-          <AssociationSet Name="fk_EventTypeEvents" Association="Self.fk_EventTypeEvents">
-            <End Role="Event_Types" EntitySet="Event_Types" />
-            <End Role="Events" EntitySet="Events" />
-          </AssociationSet>
           <AssociationSet Name="fk_TeacherFeedback" Association="Self.fk_TeacherFeedback">
             <End Role="Teacher" EntitySet="Teachers" />
             <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -420,27 +851,93 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LOLADBModelStoreContainer" CdmEntityContainer="LOLADBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="LOLADBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="LOLADBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="LOLADBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="LOLADBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="LOLADBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Course_Registration">
             <EntityTypeMapping TypeName="LOLADBModel.Course_Registration">
               <MappingFragment StoreEntitySet="Course_Registration">
                 <ScalarProperty Name="Registration_ID" ColumnName="Registration_ID" />
                 <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="LOLADBModel.Cours">
+            <EntityTypeMapping TypeName="LOLADBModel.Courses">
               <MappingFragment StoreEntitySet="Courses">
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
-                <ScalarProperty Name="Course_Type_ID" ColumnName="Course_Type_ID" />
-                <ScalarProperty Name="Course_Description" ColumnName="Course_Description" />
+                <ScalarProperty Name="Course_Type" ColumnName="Course_Type" />
+                <ScalarProperty Name="Course_Desc" ColumnName="Course_Desc" />
                 <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
                 <ScalarProperty Name="Course_Max_Size" ColumnName="Course_Max_Size" />
-                <ScalarProperty Name="Course_Date" ColumnName="Course_Date" />
+                <ScalarProperty Name="Course_Start_Date" ColumnName="Course_Start_Date" />
+                <ScalarProperty Name="Course_End_Date" ColumnName="Course_End_Date" />
+                <ScalarProperty Name="Course_Time" ColumnName="Course_Time" />
                 <ScalarProperty Name="Course_Cost" ColumnName="Course_Cost" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Course_Location" ColumnName="Course_Location" />
+                <ScalarProperty Name="Course_Notes" ColumnName="Course_Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -448,7 +945,7 @@
             <EntityTypeMapping TypeName="LOLADBModel.Donation">
               <MappingFragment StoreEntitySet="Donation">
                 <ScalarProperty Name="Donation_ID" ColumnName="Donation_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Donation_Type" ColumnName="Donation_Type" />
                 <ScalarProperty Name="Donation_Amount" ColumnName="Donation_Amount" />
               </MappingFragment>
@@ -458,7 +955,7 @@
             <EntityTypeMapping TypeName="LOLADBModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SSN" ColumnName="SSN" />
                 <ScalarProperty Name="Job_Description" ColumnName="Job_Description" />
               </MappingFragment>
@@ -468,17 +965,10 @@
             <EntityTypeMapping TypeName="LOLADBModel.Event_Registration">
               <MappingFragment StoreEntitySet="Event_Registration">
                 <ScalarProperty Name="Event_Registration_ID" ColumnName="Event_Registration_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
                 <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Event_Types">
-            <EntityTypeMapping TypeName="LOLADBModel.Event_Types">
-              <MappingFragment StoreEntitySet="Event_Types">
-                <ScalarProperty Name="Event_Type_ID" ColumnName="Event_Type_ID" />
-                <ScalarProperty Name="Event_Description" ColumnName="Event_Description" />
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -486,12 +976,15 @@
             <EntityTypeMapping TypeName="LOLADBModel.Event">
               <MappingFragment StoreEntitySet="Events">
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
-                <ScalarProperty Name="Event_Type_ID" ColumnName="Event_Type_ID" />
+                <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+                <ScalarProperty Name="Event_Desc" ColumnName="Event_Desc" />
                 <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
+                <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
                 <ScalarProperty Name="Tickets_Sold" ColumnName="Tickets_Sold" />
                 <ScalarProperty Name="Max_Tickets" ColumnName="Max_Tickets" />
                 <ScalarProperty Name="Event_Cost" ColumnName="Event_Cost" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Event_Location" ColumnName="Event_Location" />
+                <ScalarProperty Name="Event_Notes" ColumnName="Event_Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -500,7 +993,7 @@
               <MappingFragment StoreEntitySet="Feedback">
                 <ScalarProperty Name="Feedback_ID" ColumnName="Feedback_ID" />
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
                 <ScalarProperty Name="Course_Marketing" ColumnName="Course_Marketing" />
                 <ScalarProperty Name="Course_Registration_Type" ColumnName="Course_Registration_Type" />
@@ -513,11 +1006,19 @@
             <EntityTypeMapping TypeName="LOLADBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
                 <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
-                <ScalarProperty Name="User_Code" ColumnName="User_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SSN" ColumnName="SSN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="LOLADBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

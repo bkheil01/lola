@@ -15,10 +15,12 @@ namespace LOLAWebsite.Models
     public partial class Event_Registration
     {
         public int Event_Registration_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
         public Nullable<int> Event_ID { get; set; }
         public Nullable<System.DateTime> Event_Date { get; set; }
+        public Nullable<int> Transaction_ID { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Event Event { get; set; }
     }
 }

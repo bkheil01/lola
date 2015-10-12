@@ -31,10 +31,10 @@
                         @Html.ActionLink("Donations","Donations","Home")
                     </li>
                     <li>
-                        <a href="#">Classes</a>
+                        @Html.ActionLink("Courses","Index","Courses")
                     </li>
                     <li>
-                        <a href="#">Events</a>
+                        @Html.ActionLink("Events","Index","Events")
                     </li>
                     <li>
                         @Html.ActionLink("Media","Media","Home")
@@ -45,8 +45,8 @@
                     <li>
                         @Html.ActionLink("Art Impression Event","ArtImpression","Home")
                     </li>
-                    @Html.Partial("_LoginPartial")
-                </ul>
+                    @Html.Partial("_LoginPartial")                   
+                </ul>               
             </div>
             <!-- /.navbar-collapse -->
         </div>

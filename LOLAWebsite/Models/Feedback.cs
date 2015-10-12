@@ -16,14 +16,15 @@ namespace LOLAWebsite.Models
     {
         public int Feedback_ID { get; set; }
         public Nullable<int> Course_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
         public Nullable<int> Teacher_ID { get; set; }
         public string Course_Marketing { get; set; }
         public Nullable<bool> Course_Registration_Type { get; set; }
         public Nullable<int> Course_Rating { get; set; }
         public Nullable<int> Student_Comment { get; set; }
     
-        public virtual Cours Cours { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Courses Cours { get; set; }
         public virtual Teacher Teacher { get; set; }
     }
 }

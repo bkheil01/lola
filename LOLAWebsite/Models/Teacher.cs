@@ -16,15 +16,16 @@ namespace LOLAWebsite.Models
     {
         public Teacher()
         {
-            this.Courses = new HashSet<Cours>();
+            this.Courses = new HashSet<Courses>();
             this.Feedbacks = new HashSet<Feedback>();
         }
     
         public int Teacher_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
         public Nullable<int> SSN { get; set; }
     
-        public virtual ICollection<Cours> Courses { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ICollection<Courses> Courses { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

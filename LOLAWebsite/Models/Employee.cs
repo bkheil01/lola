@@ -15,8 +15,10 @@ namespace LOLAWebsite.Models
     public partial class Employee
     {
         public int Employee_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
         public Nullable<int> SSN { get; set; }
         public string Job_Description { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

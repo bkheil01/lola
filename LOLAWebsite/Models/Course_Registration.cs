@@ -17,8 +17,9 @@ namespace LOLAWebsite.Models
         public int Registration_ID { get; set; }
         public Nullable<int> Transaction_ID { get; set; }
         public Nullable<int> Course_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
     
-        public virtual Cours Cours { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Courses Cours { get; set; }
     }
 }

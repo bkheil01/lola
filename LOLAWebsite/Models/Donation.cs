@@ -15,8 +15,10 @@ namespace LOLAWebsite.Models
     public partial class Donation
     {
         public int Donation_ID { get; set; }
-        public Nullable<int> User_Code { get; set; }
+        public string Id { get; set; }
         public string Donation_Type { get; set; }
         public Nullable<float> Donation_Amount { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LOLAWebsite.Models.Courses>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container navbarpad">
+    <div>
+        @Html.DropDownList("CourseTypes","Select a Course Type")
+    </div>
+    
+    @{
+        Html.RenderPartial("CoursesByTypePartial", ViewData.Model);
+    }
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("CourseTypes").change(function () {
+            $("#log").ajaxError(function (event, jqxhr, settings, exception) {
+                alert(exception);
+            });
+
+            var courseTypeSelected = $("select option: selected").first().text();
+            $.get('@Url.Action("CoursesByTypePartial")',
+                { id: courseTypeSelected }, function (data) {
+                    $("#target").html(data)
+                });
+        });
+    });
+</script>

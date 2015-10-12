@@ -20,14 +20,16 @@ namespace LOLAWebsite.Models
         }
     
         public int Event_ID { get; set; }
-        public Nullable<int> Event_Type_ID { get; set; }
-        public Nullable<System.DateTime> Event_Date { get; set; }
+        public string Event_Type { get; set; }
+        public string Event_Desc { get; set; }
+        public string Event_Date { get; set; }
+        public string Event_Time { get; set; }
         public Nullable<int> Tickets_Sold { get; set; }
         public Nullable<int> Max_Tickets { get; set; }
         public Nullable<float> Event_Cost { get; set; }
-        public string Location { get; set; }
+        public string Event_Location { get; set; }
+        public string Event_Notes { get; set; }
     
         public virtual ICollection<Event_Registration> Event_Registration { get; set; }
-        public virtual Event_Types Event_Types { get; set; }
     }
 }

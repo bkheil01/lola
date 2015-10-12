@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Land O' Lakes Area Artisans</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Land O' Lakes Area Artisans</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Donations","Donations","Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Courses","Index","Courses")
+                    </li>
+                    <li>
+                        <a href="#">Events</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Media","Media","Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Contact", "Contact", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Art Impression Event","ArtImpression","Home")
+                    </li>
+                    @Html.Partial("_LoginPartial")                   
+                </ul>               
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div>
+        @RenderBody()
+        <hr />
+        <center><footer>
+            <p>&copy; @DateTime.Now.Year - Land O' Lakes Area Artisans. Website Design by <i>Cardinal Web Group</i>.</p>
+            <p>
+                <a href="https://www.facebook.com/Land-O-Lakes-Area-Artisans-Inc-LOLA-206828476113365/timeline/">
+                    <img src="~/img/socialicons/facebook.png" class="nav-social" /></a>
+                <a href="https://twitter.com/LOLAartswi">
+                    <img src="~/img/socialicons/twitter.png" class="nav-social" /></a>
+
+                    <img src="~/img/socialicons/youtube.png" class="nav-social" />
+</p>
+        </footer></center>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
