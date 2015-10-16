@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="LOLADBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LOLADBModel.AspNetUser" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LOLADBModel.Course_Registration" Width="1.5" PointX="9.75" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Courses" Width="1.5" PointX="7.5" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Courses" Width="2.125" PointX="7.5" PointY="27.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LOLADBModel.Donation" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LOLADBModel.Employee" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LOLADBModel.Event_Registration" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />

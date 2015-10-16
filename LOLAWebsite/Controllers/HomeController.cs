@@ -35,7 +35,7 @@ namespace LOLAWebsite.Controllers
             return View();
         }
 
-        public ActionResult Media()
+        public ActionResult Photos()
         {
             ViewBag.Message = "Your media page.";
 

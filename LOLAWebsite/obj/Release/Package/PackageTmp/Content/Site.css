@@ -9,8 +9,8 @@ h1 {
 }
 
 #homelogo {
-    width: 400px;
-    max-width: 100%;
+    height: 310px;
+    max-height: 100%
 }
 
 .centertext {
@@ -79,4 +79,36 @@ margin-top:16px;
     height:300px;
     max-height:100%;
     overflow:scroll;
+}
+
+#loginName a {
+    color: #4B721D;
+}
+
+.skyblue {
+    color: #004A8D
+}
+
+.navColor {
+    color: red;
+}
+
+.mossgreen {
+    color: #4B721D
+}
+
+.photoThumb {
+    width: 350px;
+    max-width: 100%;
+    border: 5px solid white;
+    border-radius: 2px;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+}
+
+.photoThumb:hover {
+    -moz-box-shadow:    3px 3px 5px 6px #FDB913;
+    -webkit-box-shadow: 3px 3px 5px 6px #FDB913;
+    box-shadow:         3px 3px 5px 6px #FDB913;
 }

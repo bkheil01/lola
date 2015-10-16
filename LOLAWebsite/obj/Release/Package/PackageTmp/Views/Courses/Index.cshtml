@@ -1,32 +1,73 @@
 ﻿@model IEnumerable<LOLAWebsite.Models.Courses>
-
+<link href="~/Content/events.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="container navbarpad">
-    <div>
-        @Html.DropDownList("CourseTypes","Select a Course Type")
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Available Courses</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    @{
-        Html.RenderPartial("CoursesByTypePartial", ViewData.Model);
-    }
-
+    <!-- /.container -->
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("CourseTypes").change(function () {
-            $("#log").ajaxError(function (event, jqxhr, settings, exception) {
-                alert(exception);
-            });
-
-            var courseTypeSelected = $("select option: selected").first().text();
-            $.get('@Url.Action("CoursesByTypePartial")',
-                { id: courseTypeSelected }, function (data) {
-                    $("#target").html(data)
-                });
-        });
-    });
-</script>
+<!-- /.intro-header -->
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <ul class="event-list">
+                @foreach (var item in Model)
+                {
+                    DateTime sd;
+                    DateTime ed;
+                    sd = item.Course_Start_Date ?? DateTime.Now;
+                    ed = item.Course_End_Date ?? DateTime.Now;
+                    TimeSpan ts = ed - sd;
+                                      
+                    <li>
+                        <time datetime="2014-07-20">
+                            <span class="day">@sd.Day.ToString()</span>
+                            <span class="month">@sd.ToString("MMM")</span>
+                            @if (ts.Days == 0)
+                            {
+                                <span class="time">@Html.DisplayFor(modelItem => item.Course_Time_Start) - @Html.DisplayFor(modeItem => item.Course_Time_End)</span>
+                            }
+                            else
+                            {
+                                <span class="year">Through @ed.ToString("MMM dd")</span>
+                                <br />
+                                <span class="time">@Html.DisplayFor(modelItem => item.Course_Time_Start) - @Html.DisplayFor(modeItem => item.Course_Time_End)</span>
+                            }
+                        </time>
+                        <div class="info">
+                            <h2 class="title">@Html.DisplayFor(modelItem => item.Course_Type)</h2>
+                            <p class="desc">@Html.DisplayFor(modelItem => item.Course_Desc)</p>
+                            <ul>
+                                @if (item.Course_Cost == 0)
+                                {
+                                    <li style="width:33%;">FREE  <span class="fa fa-money"></span></li>
+                                }
+                                else
+                                {
+                                    <li style="width:33%;">@Html.DisplayFor(modelItem => item.Course_Cost)  <span class="fa fa-money"></span></li>
+                                }
+                                <li style="width:34%;">@Html.ActionLink("Click here for course details", "Details", new { id = item.Course_ID })</li>
+                            </ul>
+                        </div>
+                    </li>
+                }               
+            </ul>
+        </div>
+    </div>
+</div>

@@ -95,13 +95,14 @@
     <Property Name="Course_Max_Size" Type="Int32" />
     <Property Name="Course_Start_Date" Type="DateTime" Precision="0" />
     <Property Name="Course_End_Date" Type="DateTime" Precision="0" />
-    <Property Name="Course_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Course_Cost" Type="Single" />
     <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
     <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
     <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
+    <Property Name="Course_Time_Start" Type="Time" Precision="7" />
+    <Property Name="Course_Time_End" Type="Time" Precision="7" />
   </EntityType>
   <EntityType Name="Donation">
     <Key>
@@ -142,14 +143,16 @@
     <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Event_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Event_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Event_Date" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Event_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Tickets_Sold" Type="Int32" />
     <Property Name="Max_Tickets" Type="Int32" />
     <Property Name="Event_Cost" Type="Single" />
     <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
+    <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
+    <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
+    <Property Name="Event_Time_Start" Type="Time" Precision="7" />
+    <Property Name="Event_Time_End" Type="Time" Precision="7" />
   </EntityType>
   <EntityType Name="Feedback">
     <Key>

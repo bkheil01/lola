@@ -11,25 +11,25 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                <label for="txtCardNumber">Card Number *</label>
+                <span>Card Number</span>
             </dt>
             <dd>
                 <input type="text" name="CardNumber" id="txtCardNumber" placeholder="Card Number e.g 1234..." />
             </dd>
             <dt>
-                <label for="txtCvc">Cvc *</label>
+                <span>CVC</span>
             </dt>
             <dd>
                 <input type="text" name="Cvc" id="txtCvc" placeholder="Security Code e.g 987" />
             </dd>
             <dt>
-                <label for="txtExpiryMonth">Expiry Month (MM) *</label>
+                <span>Expiration Month</span>
             </dt>
             <dd>
                 <input type="text" name="ExpiryMonth" id="txtExpiryMonth" placeholder="01" />
             </dd>
             <dt>
-                <label for="txtExpiryYear">Expiry Year (YYYY) *</label>)
+                <span>Expiration Year</span>
             </dt>
             <dd>
                 <input type="text" name="ExpiryYear" id="txtExpiryYear" placeholder="2015" />
@@ -41,46 +41,40 @@
         @Html.AntiForgeryToken()
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.CardHolderName)
+               Card Holder Name
             </dt>
             <dd>
                 @Html.TextBoxFor(model => model.CardHolderName, new { id = "txtCardHolderName" })
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Amount)
-            </dt>
-            <dd>
-                @Html.TextBoxFor(model => model.Amount, new { id = "txtAmount" })
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressLine1)
+                Address Line 1
             </dt>
             <dd>
                 @Html.TextBoxFor(model => model.AddressLine1, new { id = "txtAddress1" })
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.AddressLine2)
+                Address Line 2
             </dt>
             <dd>
                 @Html.TextBoxFor(model => model.AddressLine2, new { id = "txtAddress2" })
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.AddressCity)
+                City
             </dt>
             <dd>
                 @Html.TextBoxFor(model => model.AddressCity, new { id = "txtCity" })
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.AddressPostcode)
+               State
+            </dt>
+            <dd>
+                @Html.TextBoxFor(model => model.AddressState, new { id = "txtState" })
+            </dd>
+            <dt>
+                Zip Code
             </dt>
             <dd>
                 @Html.TextBoxFor(model => model.AddressPostcode, new { id = "txtPostcode" })
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.AddressCountry)
-            </dt>
-            <dd>
-                @Html.TextBoxFor(model => model.AddressCountry, new { id = "txtCountry" })
             </dd>
         </dl>
         <p>

@@ -19,6 +19,7 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Newtonsoft.Json.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Owin.dll
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Stripe.net.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Helpers.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Mvc.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Optimization.dll
@@ -27,6 +28,7 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.WebPages.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.WebPages.Razor.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\WebGrease.dll
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Newtonsoft.Json.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Helpers.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Mvc.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.Optimization.xml
@@ -35,7 +37,6 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Web.WebPages.Razor.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Antlr3.Runtime.pdb
-C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Newtonsoft.Json.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\EntityFramework.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\EntityFramework.SqlServer.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.AspNet.Identity.Core.xml
@@ -50,9 +51,8 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.Migrations.NameFirstName.resources
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csproj.GenerateResource.Cache
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.pdb
-C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Stripe.net.dll
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache

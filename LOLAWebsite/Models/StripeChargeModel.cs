@@ -16,7 +16,7 @@
         public string AddressLine2 { get; set; }
         public string AddressCity { get; set; }
         public string AddressPostcode { get; set; }
-        public string AddressCountry { get; set; }
+        public string AddressState { get; set; }
 
         public int id { get; set; }
     }

@@ -17,7 +17,8 @@ namespace LOLAWebsite.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            return View(db.Events.ToList());
+            var events = db.Events.OrderBy(e => e.Event_Start_Date);
+            return View(events.ToList());
         }
 
         // GET: Events/Details/5
@@ -46,7 +47,7 @@ namespace LOLAWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Event_Time,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes")] Event @event)
+        public ActionResult Create([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes,Event_Start_Date,Event_End_Date,Event_Time_Start,Event_Time_End")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace LOLAWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Event_Time,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes")] Event @event)
+        public ActionResult Edit([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes,Event_Start_Date,Event_End_Date,Event_Time_Start,Event_Time_End")] Event @event)
         {
             if (ModelState.IsValid)
             {

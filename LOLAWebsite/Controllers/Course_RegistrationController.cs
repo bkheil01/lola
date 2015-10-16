@@ -36,7 +36,7 @@ namespace LOLAWebsite.Controllers
                 return View(model);
             }
 
-            var chargeId = await ProcessPayment(model);
+            var chargeId = await ProcessPayment(model, (int)TempData["courseid"] );
 
             var courseReg = new Course_Registration()
             {
@@ -51,16 +51,17 @@ namespace LOLAWebsite.Controllers
             return View("PaymentSuccessful");
         }
         
-        private async Task<string> ProcessPayment(StripeChargeModel model)
+        private async Task<string> ProcessPayment(StripeChargeModel model, int id)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
             string userEmail = currentUser.Email;
             return await Task.Run(() =>
             {
+                Courses course = db.Courses.Find(id);
                 var myCharge = new StripeChargeCreateOptions
                 {
-                    Amount = (int)(model.Amount * 100),
+                    Amount = (int)(course.Course_Cost * 100),
                     Currency = "usd",
                     Description = "Description for test charge",
                     ReceiptEmail = userEmail,

@@ -11,6 +11,7 @@ namespace LOLAWebsite.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Courses
     {
@@ -21,16 +22,41 @@ namespace LOLAWebsite.Models
         }
     
         public int Course_ID { get; set; }
+
+        [Display(Name = "Type")]
         public string Course_Type { get; set; }
+
+        [Display(Name = "Description")]
         public string Course_Desc { get; set; }
+
         public Nullable<int> Teacher_ID { get; set; }
         public Nullable<int> Course_Max_Size { get; set; }
+
+        [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Course_Start_Date { get; set; }
+
+        [Display(Name = "End Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Course_End_Date { get; set; }
-        public string Course_Time { get; set; }
+
+        [Display(Name = "Cost")]
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
         public Nullable<float> Course_Cost { get; set; }
+
+        [Display(Name = "Location")]
         public string Course_Location { get; set; }
+
+        [Display(Name = "Special Notes")]
         public string Course_Notes { get; set; }
+
+        [Display(Name = "Start Time")]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        public Nullable<System.TimeSpan> Course_Time_Start { get; set; }
+
+        [Display(Name = "End Time")]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        public Nullable<System.TimeSpan> Course_Time_End { get; set; }
     
         public virtual ICollection<Course_Registration> Course_Registration { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }

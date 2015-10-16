@@ -77,6 +77,8 @@
     <EntitySetMapping Name="Courses">
       <EntityTypeMapping TypeName="LOLADBModel.Courses">
         <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Course_Time_End" ColumnName="Course_Time_End" />
+          <ScalarProperty Name="Course_Time_Start" ColumnName="Course_Time_Start" />
           <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
           <ScalarProperty Name="Course_Type" ColumnName="Course_Type" />
           <ScalarProperty Name="Course_Desc" ColumnName="Course_Desc" />
@@ -84,7 +86,6 @@
           <ScalarProperty Name="Course_Max_Size" ColumnName="Course_Max_Size" />
           <ScalarProperty Name="Course_Start_Date" ColumnName="Course_Start_Date" />
           <ScalarProperty Name="Course_End_Date" ColumnName="Course_End_Date" />
-          <ScalarProperty Name="Course_Time" ColumnName="Course_Time" />
           <ScalarProperty Name="Course_Cost" ColumnName="Course_Cost" />
           <ScalarProperty Name="Course_Location" ColumnName="Course_Location" />
           <ScalarProperty Name="Course_Notes" ColumnName="Course_Notes" />
@@ -125,11 +126,13 @@
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="LOLADBModel.Event">
         <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Event_Time_End" ColumnName="Event_Time_End" />
+          <ScalarProperty Name="Event_Time_Start" ColumnName="Event_Time_Start" />
+          <ScalarProperty Name="Event_End_Date" ColumnName="Event_End_Date" />
+          <ScalarProperty Name="Event_Start_Date" ColumnName="Event_Start_Date" />
           <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
           <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
           <ScalarProperty Name="Event_Desc" ColumnName="Event_Desc" />
-          <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
-          <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
           <ScalarProperty Name="Tickets_Sold" ColumnName="Tickets_Sold" />
           <ScalarProperty Name="Max_Tickets" ColumnName="Max_Tickets" />
           <ScalarProperty Name="Event_Cost" ColumnName="Event_Cost" />

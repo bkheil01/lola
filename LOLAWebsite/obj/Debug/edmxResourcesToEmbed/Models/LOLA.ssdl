@@ -89,7 +89,8 @@
     <Property Name="Course_Max_Size" Type="int" />
     <Property Name="Course_Start_Date" Type="date" />
     <Property Name="Course_End_Date" Type="date" />
-    <Property Name="Course_Time" Type="varchar" MaxLength="255" />
+    <Property Name="Course_Time_Start" Type="time" Precision="7" />
+    <Property Name="Course_Time_End" Type="time" Precision="7" />
     <Property Name="Course_Cost" Type="real" />
     <Property Name="Course_Location" Type="varchar" MaxLength="255" />
     <Property Name="Course_Notes" Type="varchar" MaxLength="255" />
@@ -129,8 +130,10 @@
     <Property Name="Event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Event_Type" Type="varchar" MaxLength="255" />
     <Property Name="Event_Desc" Type="varchar" MaxLength="255" />
-    <Property Name="Event_Date" Type="varchar" MaxLength="255" />
-    <Property Name="Event_Time" Type="varchar" MaxLength="255" />
+    <Property Name="Event_Start_Date" Type="date" />
+    <Property Name="Event_End_Date" Type="date" />
+    <Property Name="Event_Time_Start" Type="time" Precision="7" />
+    <Property Name="Event_Time_End" Type="time" Precision="7" />
     <Property Name="Tickets_Sold" Type="int" />
     <Property Name="Max_Tickets" Type="int" />
     <Property Name="Event_Cost" Type="real" />

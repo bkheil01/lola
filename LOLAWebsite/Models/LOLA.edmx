@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -94,7 +94,8 @@
           <Property Name="Course_Max_Size" Type="int" />
           <Property Name="Course_Start_Date" Type="date" />
           <Property Name="Course_End_Date" Type="date" />
-          <Property Name="Course_Time" Type="varchar" MaxLength="255" />
+          <Property Name="Course_Time_Start" Type="time" Precision="7" />
+          <Property Name="Course_Time_End" Type="time" Precision="7" />
           <Property Name="Course_Cost" Type="real" />
           <Property Name="Course_Location" Type="varchar" MaxLength="255" />
           <Property Name="Course_Notes" Type="varchar" MaxLength="255" />
@@ -134,8 +135,10 @@
           <Property Name="Event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Event_Type" Type="varchar" MaxLength="255" />
           <Property Name="Event_Desc" Type="varchar" MaxLength="255" />
-          <Property Name="Event_Date" Type="varchar" MaxLength="255" />
-          <Property Name="Event_Time" Type="varchar" MaxLength="255" />
+          <Property Name="Event_Start_Date" Type="date" />
+          <Property Name="Event_End_Date" Type="date" />
+          <Property Name="Event_Time_Start" Type="time" Precision="7" />
+          <Property Name="Event_Time_End" Type="time" Precision="7" />
           <Property Name="Tickets_Sold" Type="int" />
           <Property Name="Max_Tickets" Type="int" />
           <Property Name="Event_Cost" Type="real" />
@@ -427,8 +430,7 @@
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LOLADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -527,13 +529,14 @@
           <Property Name="Course_Max_Size" Type="Int32" />
           <Property Name="Course_Start_Date" Type="DateTime" Precision="0" />
           <Property Name="Course_End_Date" Type="DateTime" Precision="0" />
-          <Property Name="Course_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_Cost" Type="Single" />
           <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
           <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
+          <Property Name="Course_Time_Start" Type="Time" Precision="7" />
+          <Property Name="Course_Time_End" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Donation">
           <Key>
@@ -574,14 +577,16 @@
           <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Event_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Event_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Event_Date" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Event_Time" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Tickets_Sold" Type="Int32" />
           <Property Name="Max_Tickets" Type="Int32" />
           <Property Name="Event_Cost" Type="Single" />
           <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
+          <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Event_Time_Start" Type="Time" Precision="7" />
+          <Property Name="Event_Time_End" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -927,6 +932,8 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="LOLADBModel.Courses">
               <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Course_Time_End" ColumnName="Course_Time_End" />
+                <ScalarProperty Name="Course_Time_Start" ColumnName="Course_Time_Start" />
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
                 <ScalarProperty Name="Course_Type" ColumnName="Course_Type" />
                 <ScalarProperty Name="Course_Desc" ColumnName="Course_Desc" />
@@ -934,7 +941,6 @@
                 <ScalarProperty Name="Course_Max_Size" ColumnName="Course_Max_Size" />
                 <ScalarProperty Name="Course_Start_Date" ColumnName="Course_Start_Date" />
                 <ScalarProperty Name="Course_End_Date" ColumnName="Course_End_Date" />
-                <ScalarProperty Name="Course_Time" ColumnName="Course_Time" />
                 <ScalarProperty Name="Course_Cost" ColumnName="Course_Cost" />
                 <ScalarProperty Name="Course_Location" ColumnName="Course_Location" />
                 <ScalarProperty Name="Course_Notes" ColumnName="Course_Notes" />
@@ -975,11 +981,13 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="LOLADBModel.Event">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Event_Time_End" ColumnName="Event_Time_End" />
+                <ScalarProperty Name="Event_Time_Start" ColumnName="Event_Time_Start" />
+                <ScalarProperty Name="Event_End_Date" ColumnName="Event_End_Date" />
+                <ScalarProperty Name="Event_Start_Date" ColumnName="Event_Start_Date" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
                 <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
                 <ScalarProperty Name="Event_Desc" ColumnName="Event_Desc" />
-                <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
-                <ScalarProperty Name="Event_Time" ColumnName="Event_Time" />
                 <ScalarProperty Name="Tickets_Sold" ColumnName="Tickets_Sold" />
                 <ScalarProperty Name="Max_Tickets" ColumnName="Max_Tickets" />
                 <ScalarProperty Name="Event_Cost" ColumnName="Event_Cost" />

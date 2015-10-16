@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Media";
+}
+<link href="~/Content/css/nanogallery.css" rel="stylesheet" />
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>LOLA Photos</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="container">
+    <h2>Look at our great photo galleries!</h2>
+
+    <div id="nanoGallery"></div>
+    @section Scripts {
+        <script src="~/Scripts/jquery.nanogallery.js"></script>
+        <script>
+        $(document).ready(function () {
+            jQuery("#nanoGallery").nanoGallery({
+                kind: 'flickr',
+                userID: '34858669@N00',
+
+                // uncomment this line to display one specific album:
+                // photoset:'72157594299597591',
+
+                // uncomment this line to display full photostream (v5.0.0):
+                // photoset:'none',
+
+                thumbnailWidth: 150,
+                thumbnailHeight: 150,
+                thumbnailLabel: {
+                    displayDescription: false,
+                    position: 'overImageOnBottom'
+                },
+                thumbnailHoverEffect: 'borderLighter'
+            });
+        });
+        </script>
+    }
+</div>

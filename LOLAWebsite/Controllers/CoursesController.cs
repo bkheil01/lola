@@ -17,15 +17,17 @@ namespace LOLAWebsite.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.Teacher);
+            var courses = db.Courses.Include(c => c.Teacher).OrderBy(d => d.Course_Start_Date);
 
             var courseTypes = new SelectList(
                 db.Courses.Select(r => r.Course_Type).Distinct().ToList());
 
             ViewBag.CourseTypes = courseTypes;
 
+
             return View(courses.ToList());
         }
+    
 
         // GET: Courses/Details/5
         public ActionResult Details(int? id)

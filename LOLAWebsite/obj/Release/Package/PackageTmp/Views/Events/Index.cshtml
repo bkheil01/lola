@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LOLAWebsite.Models.Event>
+<link href="~/Content/events.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Up Coming Events</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <ul class="event-list">
+                @foreach (var item in Model)
+                {
+                    DateTime sd;
+                    DateTime ed;
+                    sd = item.Event_Start_Date ?? DateTime.Now;
+                    ed = item.Event_End_Date ?? DateTime.Now;
+                    TimeSpan ts = ed - sd;
+
+                    <li>
+                        <time datetime="2014-07-20">
+                            <span class="day">@sd.Day.ToString()</span>
+                            <span class="month">@sd.ToString("MMM")</span>
+                            @if (ts.Days == 0)
+                            {
+                                <span class="time">@Html.DisplayFor(modelItem => item.Event_Time_Start) - @Html.DisplayFor(modeItem => item.Event_Time_End)</span>
+                            }
+                            else
+                            {
+                                <span class="year">Through @ed.ToString("MMM dd")</span>
+                                <br />
+                                <span class="time">@Html.DisplayFor(modelItem => item.Event_Time_Start) - @Html.DisplayFor(modeItem => item.Event_Time_End)</span>
+                            }
+                        </time>
+                        <div class="info">
+                            <h2 class="title">@Html.DisplayFor(modelItem => item.Event_Type)</h2>
+                            <p class="desc">@Html.DisplayFor(modelItem => item.Event_Desc)</p>
+                            <ul>
+                                @if (item.Event_Cost == 0)
+                                {
+                                    <li style="width:33%;">FREE  <span class="fa fa-money"></span></li>
+                                }
+                                else
+                                {
+                                    <li style="width:33%;">@Html.DisplayFor(modelItem => item.Event_Cost)  <span class="fa fa-money"></span></li>
+                                }
+                                <li style="width:34%;">@Html.ActionLink("Click here for Event details", "Details", new { id = item.Event_ID })</li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
