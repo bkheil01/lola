@@ -4,93 +4,80 @@
     ViewBag.Title = "Details";
 }
 
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Course Details</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
 
 <div class="container navbarpad">
-    <h4>LOLA Courses</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Type)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course_Type)
-        </dd>
+    <div class="col-sm-5 skyblue">
+        <h1>@Html.DisplayFor(model => model.Course_Type)</h1>
+        <p>@Html.DisplayFor(model => model.Course_Desc)</p>
+        <p>Date - @Html.DisplayFor(model => model.Course_Start_Date) - @Html.DisplayFor(model => model.Course_End_Date)</p>
+        <p>Time - @Html.DisplayFor(model => model.Course_Time_Start) - @Html.DisplayFor(model => model.Course_Time_End) </p>
+        <p>Cost - @Html.DisplayFor(model => model.Course_Cost)</p>
+        <p>Location -  @Html.DisplayFor(model => model.Course_Location)</p>
+        <p>Special Notes - @Html.DisplayFor(model => model.Course_Notes)</p> 
+        <p>
+            <center><a class="btn btn-default" @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Course_ID }, null)</a></center>
+        </p>
+    </div>
+    <div class="col-sm-6">
+        @{
+            switch (Model.Course_Location)
+            {
+                case "Land O Lakes Elementary School":
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Desc)
-        </dt>
+                    <center><div class="Flexible-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.509656457768!2d-89.22482688418609!3d46.16050949473122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542884fcac96b7%3A0xa9fec5eb6000e822!2sLand+O+Lakes+Elementary+School!5e0!3m2!1sen!2sus!4v1444953106006"
+                                width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div></center>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course_Desc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Max_Size)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Max_Size)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Start_Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Start_Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_End_Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_End_Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Time_Start)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Time_Start)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Time_End)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Time_End)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Cost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Cost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Course_Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course_Notes)
-        </dd>
-    </dl>
-    <p>
-        @Html.ActionLink("Register", "Charge","Course_Registration", new { CourseID = Model.Course_ID },null)
-    </p>
+                    break;
+                    
+                case "LOLA Center for the Arts":
+                    <center><div class="Flexible-container">
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4229535721006!2d-89.22110868418605!3d46.16223569461463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542883bf5cc5f7%3A0x257e7b3a13a5550f!2sLand+O+Lakes+Area+Artisans+Inc!5e0!3m2!1sen!2sus!4v1444953243619"
+                               width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div></center>
+                  
+                    break;
+                    
+                case  "St. Alberts Church":
+                    <center><div class="Flexible-container">
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4572922554016!2d-89.22396255457784!3d46.16155203901531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x5a6c983df0ade5e4!2sSt+Albert&#39;s+Catholic+Church!5e0!3m2!1sen!2sus!4v1444953372565"
+                               width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div></center>    
+                
+                    break;
+                    
+                case "Ely Memorial Church":
+                    <center><div class="Flexible-container">
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.475581350295!2d-89.22334028208635!3d46.16118791463118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xe09394db98328bda!2sEly+Memorial+Church!5e0!3m2!1sen!2sus!4v1444953452226"
+                               width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div></center>  
+                
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    </div>
 </div>
 

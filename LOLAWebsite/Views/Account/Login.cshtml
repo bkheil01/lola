@@ -12,7 +12,7 @@
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4>Use a local account to log in.</h4>
+                    <h4>LOLA Account Log In</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
@@ -53,9 +53,10 @@
             </section>
         </div>
         <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-            </section>
+            <h4>About LOLA Account</h4>
+            <p>LOLA Accounts are a free user account used when registering for classes or event, or
+            making online donations. If you need to create an account, click on the register link. If you
+            forgot your password, click on the forgot passwork link and we will help you reset it.</p>
         </div>
     </div>
 </div>

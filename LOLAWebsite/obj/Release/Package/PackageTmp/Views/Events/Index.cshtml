@@ -61,7 +61,7 @@
                                 }
                                 else
                                 {
-                                    <li style="width:33%;">@Html.DisplayFor(modelItem => item.Event_Cost)  <span class="fa fa-money"></span></li>
+                                    <li style="width:33%;">@Html.ActionLink(String.Format("{0:c}", item.Event_Cost), "Charge", "Event_Registration", new { EventID = item.Event_ID }, null)</li>
                                 }
                                 <li style="width:34%;">@Html.ActionLink("Click here for Event details", "Details", new { id = item.Event_ID })</li>
                             </ul>

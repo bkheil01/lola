@@ -1,0 +1,117 @@
+﻿@model LOLAWebsite.Models.NewDonationModel
+<script src="https://checkout.stripe.com/checkout.js"></script>
+@{
+    ViewBag.Title = "Donate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Donate to LOLA!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="container">
+        @using (Html.BeginForm("Donate", "Donations", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-sm-5">
+                <h1 class="skyblue">Donation Form</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="categoryList" class="skyblue">Donation Category:</label>
+                        <select class="form-control" id="categoryList">
+                            <option>General Fund</option>
+                            <option>Sandy Hardy Brown - Classroom Fund</option>
+                            <option>Scholarship Fund</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="otherCatText">
+                        <label for="txtCat" class="skyblue">Alternative Category:</label>
+                        @Html.TextBoxFor(model => model.Category, new { id = "txtCat", @class = "form-control", @placeholder = "Example: In Memory of or In Honor of" })
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAmount" class="skyblue">Amount</label>
+                        @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @id = "txtAmount", @placeholder = "$0.00" })
+                    </div>
+                    <div>
+                        <label class="skyblue">@Html.CheckBoxFor(model => model.Type, new { id = "chkDonation" }) Monthly Donation</label>
+                    </div>
+                    <br />
+                    <br />
+                    @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
+                    <button class="btn btn-primary" id="stripeButton">Payment</button>
+                </form>
+            </div>
+            <div class="col-sm-7 skyblue">
+                <div class="largespacer"></div>
+                <br />
+                <br />
+                <p>Please select a donation category and then enter the amount for the donation. If you would like to 
+                specify a custom donation category, select "Other" from the drop down list and fill out the Alternative 
+                Category textbox.</p>
+                <p>For a monthly subscription donation, select the monthly donation checkbox before clicking on the payment button. 
+                For all one time donations just select the payment button and fill out the Stripe Checkout payment form.</p>
+                <p>All payments done through the LOLA website are done securly through the Stipe.com online merchant.</p>
+            </div>
+   }
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $('document').ready(function () {
+            $("#otherCatText").hide();
+            $('#txtCat').val("General Fund");
+
+            $("select").change(function () {
+                var str = "";
+                $("select option:selected").each(function () {
+                    str += $(this).text();
+                    $('#txtCat').val(str);
+                });
+                if (str == "Other") {
+                    $("#otherCatText").show();
+                    $('#txtCat').val("");
+                } else {
+                    $("#otherCatText").hide();
+                }
+            });
+
+            
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
+                locale: 'auto',
+                token: function (token) {
+                    var $form = $('#frmCharge');
+                    var response = token.id;
+                    $('#hdnToken').val(response);
+                    $form.get(0).submit();
+                }
+            });
+            $('#stripeButton').on('click', function (e) {
+                var amount = $("txtAmount").val() * 100;
+                handler.open({
+                    name: 'Land O Lakes Art',
+                    description: 'Donation to LOLA',
+                    amount: amount,
+                    billingAddress: true
+                });
+                e.preventDefault();
+            });
+        });
+    </script>
+}
+

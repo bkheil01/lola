@@ -56,11 +56,11 @@
                             <ul>
                                 @if (item.Course_Cost == 0)
                                 {
-                                    <li style="width:33%;">FREE  <span class="fa fa-money"></span></li>
+                                    <li style="width:33%;">FREE</li>
                                 }
                                 else
                                 {
-                                    <li style="width:33%;">@Html.DisplayFor(modelItem => item.Course_Cost)  <span class="fa fa-money"></span></li>
+                                    <li style="width:33%;">@Html.ActionLink(String.Format("{0:c}", item.Course_Cost), "Charge", "Course_Registration", new { CourseID = item.Course_ID }, null)</li>
                                 }
                                 <li style="width:34%;">@Html.ActionLink("Click here for course details", "Details", new { id = item.Course_ID })</li>
                             </ul>

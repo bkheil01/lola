@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Land O' Lakes Area Artisans</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/landing-page.css" rel="stylesheet" />
+
     @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -32,7 +35,7 @@
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class =  "navColor" })
                     </li>
                     <li>
-                        @Html.ActionLink("Donations","Donations","Home")
+                        @Html.ActionLink("Donations","Donations","Donations")
                     </li>
                     <li>
                         @Html.ActionLink("Courses","Index","Courses")
@@ -41,7 +44,7 @@
                         @Html.ActionLink("Events","Index","Events")
                     </li>
                     <li>
-                        @Html.ActionLink("Photos","Media","Home")
+                        @Html.ActionLink("Photos","Photos","Home")
                     </li>
                     <li>
                         @Html.ActionLink("Contact", "Contact", "Home")

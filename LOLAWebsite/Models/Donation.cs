@@ -17,8 +17,8 @@ namespace LOLAWebsite.Models
         public int Donation_ID { get; set; }
         public string Id { get; set; }
         public string Donation_Type { get; set; }
-        public Nullable<float> Donation_Amount { get; set; }
-    
+        public string Donation_Category { get; set; }
+        public Nullable<float> Donation_Amount { get; set; }   
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

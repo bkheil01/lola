@@ -55,5 +55,10 @@ namespace LOLAWebsite.Controllers
 
             return View();
         }
+
+        public ActionResult Scholarship()
+        {
+            return View();
+        }
     }
 }

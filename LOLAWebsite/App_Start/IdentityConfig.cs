@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using LOLAWebsite.Models;
+using System;
 
 namespace LOLAWebsite
 {
@@ -45,13 +46,19 @@ namespace LOLAWebsite
                 Subject = "Security Code",
                 BodyFormat = "Your security code is: {0}"
             });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+
+            manager.EmailService = new LOLAWebsite.Services.EmailService();
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
+                {
+                    //Code for email confirmation and reset password life time
+                    TokenLifespan = TimeSpan.FromHours(6)
+                };
             }
+
             return manager;
         }
     }

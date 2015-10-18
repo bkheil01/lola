@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2015 18:07:17</publishTime>
     </File>
     <File Include="bin/LOLAWebsite.dll">
-      <publishTime>10/14/2015 22:41:35</publishTime>
+      <publishTime>10/17/2015 17:47:22</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>10/01/2015 18:07:19</publishTime>
@@ -97,19 +97,91 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2015 18:07:15</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>10/13/2015 20:25:44</publishTime>
+      <publishTime>10/15/2015 19:03:29</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>10/01/2015 18:10:32</publishTime>
+      <publishTime>10/15/2015 19:03:29</publishTime>
+    </File>
+    <File Include="Content/css/font/nano_icon_font3.eot">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/font/nano_icon_font3.svg">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/font/nano_icon_font3.ttf">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/font/nano_icon_font3.woff">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/loading.gif">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/nanogallery.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/nanogallery.woff.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/nano_logo.png">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/font/nano_icon_font3.eot">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/font/nano_icon_font3.svg">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/font/nano_icon_font3.ttf">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/font/nano_icon_font3.woff">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/loading.gif">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/nanogallery_clean.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/nanogallery_clean.woff.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/clean/nano_logo.png">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/font/nano_icon_font3.eot">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/font/nano_icon_font3.svg">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/font/nano_icon_font3.ttf">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/font/nano_icon_font3.woff">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/loading.gif">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/nanogallery_light.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/nanogallery_light.woff.css">
+      <publishTime>10/15/2015 21:24:07</publishTime>
+    </File>
+    <File Include="Content/css/themes/light/nano_logo.png">
+      <publishTime>10/15/2015 21:24:07</publishTime>
     </File>
     <File Include="Content/events.css">
-      <publishTime>10/14/2015 22:17:22</publishTime>
+      <publishTime>10/15/2015 19:03:29</publishTime>
     </File>
     <File Include="Content/landing-page.css">
-      <publishTime>10/13/2015 20:43:10</publishTime>
+      <publishTime>10/15/2015 19:03:29</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/14/2015 22:06:28</publishTime>
+      <publishTime>10/17/2015 16:57:19</publishTime>
     </File>
     <File Include="docs/ArtImpression_Registration.pdf">
       <publishTime>10/01/2015 18:09:50</publishTime>
@@ -379,145 +451,166 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/06/2015 21:17:44</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.nanogallery.js">
+      <publishTime>10/15/2015 21:24:15</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/respond.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/scrolling-nav.js">
-      <publishTime>10/01/2015 18:09:17</publishTime>
+      <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>10/14/2015 22:41:26</publishTime>
+      <publishTime>10/17/2015 17:35:24</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginFailure.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ForgotPassword.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>10/06/2015 20:10:27</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/Manage.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>10/01/2015 21:18:32</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/_RemoveAccountPartial.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/_SetPasswordPartial.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Courses/CoursesByTypePartial.cshtml">
       <publishTime>10/06/2015 22:47:19</publishTime>
     </File>
+    <File Include="Views/Courses/Create.cshtml">
+      <publishTime>10/17/2015 10:42:09</publishTime>
+    </File>
     <File Include="Views/Courses/Details.cshtml">
-      <publishTime>10/13/2015 18:17:14</publishTime>
+      <publishTime>10/15/2015 22:10:14</publishTime>
     </File>
     <File Include="Views/Courses/Index.cshtml">
-      <publishTime>10/14/2015 22:36:56</publishTime>
+      <publishTime>10/15/2015 19:29:49</publishTime>
     </File>
     <File Include="Views/Course_Registration/Charge.cshtml">
-      <publishTime>10/07/2015 07:27:51</publishTime>
+      <publishTime>10/16/2015 21:04:57</publishTime>
     </File>
     <File Include="Views/Course_Registration/PaymentSuccessful.cshtml">
-      <publishTime>10/06/2015 22:10:40</publishTime>
+      <publishTime>10/15/2015 21:41:35</publishTime>
+    </File>
+    <File Include="Views/Donations/Donate.cshtml">
+      <publishTime>10/17/2015 17:38:48</publishTime>
+    </File>
+    <File Include="Views/Donations/Donations.cshtml">
+      <publishTime>10/16/2015 20:24:54</publishTime>
     </File>
     <File Include="Views/Events/Details.cshtml">
-      <publishTime>10/14/2015 22:21:14</publishTime>
+      <publishTime>10/15/2015 22:28:26</publishTime>
     </File>
     <File Include="Views/Events/Index.cshtml">
-      <publishTime>10/14/2015 22:20:41</publishTime>
+      <publishTime>10/15/2015 21:15:20</publishTime>
+    </File>
+    <File Include="Views/Event_Registration/Charge.cshtml">
+      <publishTime>10/15/2015 21:42:29</publishTime>
+    </File>
+    <File Include="Views/Event_Registration/PaymentSuccessful.cshtml">
+      <publishTime>10/15/2015 21:42:23</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>10/01/2015 18:07:10</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/ArtImpression.cshtml">
-      <publishTime>10/01/2015 18:08:53</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>10/01/2015 18:08:55</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Donations.cshtml">
-      <publishTime>10/01/2015 18:08:55</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/14/2015 21:52:00</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Media.cshtml">
       <publishTime>10/14/2015 14:24:07</publishTime>
     </File>
+    <File Include="Views/Home/Photos.cshtml">
+      <publishTime>10/15/2015 21:31:32</publishTime>
+    </File>
     <File Include="Views/Home/Success.cshtml">
-      <publishTime>10/01/2015 18:08:55</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>10/01/2015 18:07:17</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/14/2015 22:09:20</publishTime>
+      <publishTime>10/17/2015 17:35:39</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>10/13/2015 20:23:46</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>10/01/2015 20:11:09</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>10/01/2015 18:07:10</publishTime>
+      <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>10/06/2015 22:53:26</publishTime>

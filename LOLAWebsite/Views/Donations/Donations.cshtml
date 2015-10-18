@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Donations";
+}
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Donate to LOLA!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="container skyblue">
+
+    <h1>About Donations</h1>
+    <!-- About Donations-->
+    <div class="col-sm-12">
+        <p>LOLA is a 501(c)(3) Non-profit organization and all donations are tax deductible.</p>
+        <p>We invite you to join us in working towards achieving our goals, so that you may share in the pleasure this 
+        enrichment promises for our community.</p>
+    </div>
+    <!-- End of About Donations -->
+
+    <div class="largespacer"></div>
+
+    <!-- Donation Table -->
+    <div class="col-lg-6">
+        <p>
+            At LOLA we accept donations of any amount. Donations may be mailed directly to us or can be made online. 
+            If choosing an online donation, you may choose a subscription donation that occurs monthly, or you may
+            make a one time donation. The list below list the different donation categories you may choose to donate to. 
+        </p> 
+        <ol>
+            <li>General Fund</li>
+            <li>Sandy Hardy Brown - Classroom Fund</li>
+            <li>Scholarship Fund</li>
+            <li>Other (example - In Memory of or In Honor of)</li>
+        </ol>
+    </div>   
+
+    <div class="col-sm-6">
+        <p>Donations and Pledges may be made out to Land O 'Lakes Area Artisans, Inc. and mailed to:</p>
+        <p class="tabin">LOLA - P.O. Box 981</p>
+        <p class="tabin">Land O' Lakes, WI 54540</p>
+    </div>
+        <div class="smallspacer"></div>
+        @Html.ActionLink("Click here to donate online!", "Donate", "Donations", new { @class = "btn btn-default skyblue"})
+    </div>
+</div>
+
+

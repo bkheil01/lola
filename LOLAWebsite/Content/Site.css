@@ -97,9 +97,11 @@ margin-top:16px;
     color: #4B721D
 }
 
-.photoThumb {
-    width: 350px;
+#scholarPic {
+    width:600px;
     max-width: 100%;
+    vertical-align: middle;
+    margin-top:50px;
     border: 5px solid white;
     border-radius: 2px;
     -moz-box-shadow:    3px 3px 5px 6px #ccc;
@@ -107,8 +109,25 @@ margin-top:16px;
     box-shadow:         3px 3px 5px 6px #ccc;
 }
 
-.photoThumb:hover {
-    -moz-box-shadow:    3px 3px 5px 6px #FDB913;
-    -webkit-box-shadow: 3px 3px 5px 6px #FDB913;
-    box-shadow:         3px 3px 5px 6px #FDB913;
+
+.Flexible-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.Flexible-container iframe,   
+.Flexible-container object,  
+.Flexible-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hide {
+    display:none;
 }

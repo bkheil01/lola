@@ -56,3 +56,5 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.pdb
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\SendGrid.SmtpApi.dll
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\SendGridMail.dll
