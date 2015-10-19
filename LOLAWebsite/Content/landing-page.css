@@ -35,7 +35,157 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/header_background.jpg) no-repeat center center;
+    background: url('../img/Headers/100 Days Finale.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/100 Days of Art - photos.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header2 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/2014.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header3 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/Classes Info & Photos 2015.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header4 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/Classes Info & Photos 20151.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header5 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/Classes Info & Photos 20152.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header6 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/Classes Info & Photos 20153.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header7 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/Classes Info & Photos 20154.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header8 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/HOLIDAYSchristmas.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header9 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/JULY4.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header10 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/LINEdancing.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header11 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/YAM 2015.jpg') no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header12 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/YouthSummerClasses2014.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header13 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/YouthSummerClasses20141.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header14 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/Headers/YouthSummerClasses20142.jpg) no-repeat center center;
+    background-size: cover;
+    height: 500px;
+}
+
+.intro-header15 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../img/Headers/NEW LOLA.jpg') no-repeat center center;
     background-size: cover;
     height: 500px;
 }
