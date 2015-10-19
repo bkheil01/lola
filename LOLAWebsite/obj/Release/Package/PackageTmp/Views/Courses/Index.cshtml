@@ -54,15 +54,7 @@
                             <h2 class="title">@Html.DisplayFor(modelItem => item.Course_Type)</h2>
                             <p class="desc">@Html.DisplayFor(modelItem => item.Course_Desc)</p>
                             <ul>
-                                @if (item.Course_Cost == 0)
-                                {
-                                    <li style="width:33%;">FREE</li>
-                                }
-                                else
-                                {
-                                    <li style="width:33%;">@Html.ActionLink(String.Format("{0:c}", item.Course_Cost), "Charge", "Course_Registration", new { CourseID = item.Course_ID }, null)</li>
-                                }
-                                <li style="width:34%;">@Html.ActionLink("Click here for course details", "Details", new { id = item.Course_ID })</li>
+                                <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Course details and to register", "Details", new { id = item.Course_ID })</li>
                             </ul>
                         </div>
                     </li>

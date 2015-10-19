@@ -89,17 +89,15 @@ margin-top:16px;
     color: #004A8D
 }
 
-.navColor {
-    color: red;
-}
-
 .mossgreen {
     color: #4B721D
 }
 
-.photoThumb {
-    width: 350px;
+#scholarPic {
+    width:600px;
     max-width: 100%;
+    vertical-align: middle;
+    margin-top:50px;
     border: 5px solid white;
     border-radius: 2px;
     -moz-box-shadow:    3px 3px 5px 6px #ccc;
@@ -107,11 +105,6 @@ margin-top:16px;
     box-shadow:         3px 3px 5px 6px #ccc;
 }
 
-.photoThumb:hover {
-    -moz-box-shadow:    3px 3px 5px 6px #FDB913;
-    -webkit-box-shadow: 3px 3px 5px 6px #FDB913;
-    box-shadow:         3px 3px 5px 6px #FDB913;
-}
 
 .Flexible-container {
     position: relative;
@@ -133,4 +126,25 @@ margin-top:16px;
 
 .hide {
     display:none;
+}
+
+.navbar .nav > li > a {
+    color: #004A8D;
+}
+
+.navbar .nav > li > a:hover{
+    color:#AEB938;
+}
+
+.darkerGrey {
+    background-color: #DFDFDF;
+}
+
+#footer {
+    border-top: 2px solid #C9C9C9;
+    margin-bottom: 0px;
+}
+
+#detailsButton:hover {
+    color: #004A8D
 }

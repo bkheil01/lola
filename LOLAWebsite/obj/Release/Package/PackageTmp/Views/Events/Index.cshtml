@@ -55,15 +55,7 @@
                             <h2 class="title">@Html.DisplayFor(modelItem => item.Event_Type)</h2>
                             <p class="desc">@Html.DisplayFor(modelItem => item.Event_Desc)</p>
                             <ul>
-                                @if (item.Event_Cost == 0)
-                                {
-                                    <li style="width:33%;">FREE  <span class="fa fa-money"></span></li>
-                                }
-                                else
-                                {
-                                    <li style="width:33%;">@Html.ActionLink(String.Format("{0:c}", item.Event_Cost), "Charge", "Event_Registration", new { EventID = item.Event_ID }, null)</li>
-                                }
-                                <li style="width:34%;">@Html.ActionLink("Click here for Event details", "Details", new { id = item.Event_ID })</li>
+                                <li class="darkerGrey"  style="width:100%;">@Html.ActionLink("Click here for Event details and to register", "Details", new { id = item.Event_ID })</li>
                             </ul>
                         </div>
                     </li>

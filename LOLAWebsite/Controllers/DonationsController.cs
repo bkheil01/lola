@@ -39,8 +39,7 @@ namespace LOLAWebsite.Controllers
             return View(new NewDonationModel());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<ActionResult> Donate(NewDonationModel model)
         {
             if (!ModelState.IsValid)

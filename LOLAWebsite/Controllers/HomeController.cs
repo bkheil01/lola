@@ -60,5 +60,15 @@ namespace LOLAWebsite.Controllers
         {
             return View();
         }
+
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public ActionResult Links()
+        {
+            return View();
+        }
     }
 }

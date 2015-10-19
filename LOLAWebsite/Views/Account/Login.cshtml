@@ -5,7 +5,26 @@
     ViewBag.Title = "Log in";
 }
 
-<div class="container navbarpad">
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Welcome to LOLA!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="container skyblue">
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
@@ -40,11 +59,9 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Log in" class="btn btn-default" />
+                            @Html.ActionLink("Register as a new user", "Register","Account", new { @class="btn btn-default"})
                         </div>
                     </div>
-                    <p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>
                     @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
@@ -54,12 +71,13 @@
         </div>
         <div class="col-md-4">
             <h4>About LOLA Account</h4>
+            <div class="largespacer"></div>
             <p>LOLA Accounts are a free user account used when registering for classes or event, or
-            making online donations. If you need to create an account, click on the register link. If you
-            forgot your password, click on the forgot passwork link and we will help you reset it.</p>
+            making online donations. If you need to create an account, click on the register link.</p>
         </div>
     </div>
 </div>
+<div class="largespacer"></div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

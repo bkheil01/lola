@@ -1,5 +1,5 @@
 ﻿@model LOLAWebsite.Models.Event
-
+<script src="https://checkout.stripe.com/checkout.js"></script>
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,69 +24,99 @@
 </div>
 <!-- /.intro-header -->
 
-<div class="container navbarpad">
+@using (Html.BeginForm("Details", "Events", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
+    {
+    @Html.AntiForgeryToken()
+    <div class="container navbarpad">
+        <div class="col-sm-5 skyblue">
+            <h1>@Html.DisplayFor(model => model.Event_Type)</h1>
+            <p>@Html.DisplayFor(model => model.Event_Desc)</p>
+            <p>Date - @Html.DisplayFor(model => model.Event_Start_Date) - @Html.DisplayFor(model => model.Event_End_Date)</p>
+            <p>Time - @Html.DisplayFor(model => model.Event_Time_Start) - @Html.DisplayFor(model => model.Event_Time_End) </p>
+            <p>Cost - @Html.DisplayFor(model => model.Event_Cost)</p>
+            <p>Location -  @Html.DisplayFor(model => model.Event_Location)</p>
+            <p>Special Notes - @Html.DisplayFor(model => model.Event_Notes)</p>
+            <p>
+                <center><button class="btn btn-primary" id="stripeButton">Register For Event</button></center>
+                @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
+                @Html.HiddenFor(model => model.Event_Cost)
+                @Html.HiddenFor(model => model.Event_ID)
+            </p>
+        </div>
+        <div class="col-sm-6">
+            @{
+                switch (Model.Event_Location)
+                {
+                    case "Land O Lakes Elementary School":
 
-    <div class="col-sm-5 skyblue">
-        <h1>@Html.DisplayFor(model => model.Event_Type)</h1>
-        <p>@Html.DisplayFor(model => model.Event_Desc)</p>
-        <p>Date - @Html.DisplayFor(model => model.Event_Start_Date) - @Html.DisplayFor(model => model.Event_End_Date)</p>
-        <p>Time - @Html.DisplayFor(model => model.Event_Time_Start) - @Html.DisplayFor(model => model.Event_Time_End) </p>
-        <p>Cost - @Html.DisplayFor(model => model.Event_Cost)</p>
-        <p>Location -  @Html.DisplayFor(model => model.Event_Location)</p>
-        <p>Special Notes - @Html.DisplayFor(model => model.Event_Notes)</p>
-        <p>
-            <center><a class="btn btn-default" @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Event_ID }, null)</a></center>
-        </p>
+                        <center>
+                            <div class="Flexible-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.509656457768!2d-89.22482688418609!3d46.16050949473122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542884fcac96b7%3A0xa9fec5eb6000e822!2sLand+O+Lakes+Elementary+School!5e0!3m2!1sen!2sus!4v1444953106006"
+                                        width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            </div>
+                        </center>
+
+                        break;
+
+                    case "LOLA Center for the Arts":
+                    <center>
+                        <div class="Flexible-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4229535721006!2d-89.22110868418605!3d46.16223569461463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542883bf5cc5f7%3A0x257e7b3a13a5550f!2sLand+O+Lakes+Area+Artisans+Inc!5e0!3m2!1sen!2sus!4v1444953243619"
+                                    width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </center>
+
+                        break;
+
+                    case "St. Alberts Church":
+                    <center>
+                        <div class="Flexible-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4572922554016!2d-89.22396255457784!3d46.16155203901531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x5a6c983df0ade5e4!2sSt+Albert&#39;s+Catholic+Church!5e0!3m2!1sen!2sus!4v1444953372565"
+                                    width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </center>
+
+                        break;
+
+                    case "Ely Memorial Church":
+                    <center>
+                        <div class="Flexible-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.475581350295!2d-89.22334028208635!3d46.16118791463118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xe09394db98328bda!2sEly+Memorial+Church!5e0!3m2!1sen!2sus!4v1444953452226"
+                                    width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </center>
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        </div>
     </div>
-    <div class="col-sm-6">
-       @{
-           switch (Model.Event_Location)
-           {
-               case "Land O Lakes Elementary School":
-
-                <center>
-                    <div class="Flexible-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.509656457768!2d-89.22482688418609!3d46.16050949473122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542884fcac96b7%3A0xa9fec5eb6000e822!2sLand+O+Lakes+Elementary+School!5e0!3m2!1sen!2sus!4v1444953106006"
-                                width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
-                </center>
-
-                   break;
-
-               case "LOLA Center for the Arts":
-            <center>
-                <div class="Flexible-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4229535721006!2d-89.22110868418605!3d46.16223569461463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d542883bf5cc5f7%3A0x257e7b3a13a5550f!2sLand+O+Lakes+Area+Artisans+Inc!5e0!3m2!1sen!2sus!4v1444953243619"
-                            width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-            </center>
-
-                   break;
-
-               case "St. Alberts Church":
-            <center>
-                <div class="Flexible-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.4572922554016!2d-89.22396255457784!3d46.16155203901531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x5a6c983df0ade5e4!2sSt+Albert&#39;s+Catholic+Church!5e0!3m2!1sen!2sus!4v1444953372565"
-                            width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-            </center>
-
-                   break;
-
-               case "Ely Memorial Church":
-            <center>
-                <div class="Flexible-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.475581350295!2d-89.22334028208635!3d46.16118791463118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xe09394db98328bda!2sEly+Memorial+Church!5e0!3m2!1sen!2sus!4v1444953452226"
-                            width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-            </center>
-
-                   break;
-
-               default:
-                   break;
-           }
     }
-    </div>
-</div>
 
+@section Scripts {
+    <script type="text/javascript">
+        var handler = StripeCheckout.configure({
+            key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
+            locale: 'auto',
+            token: function (token) {
+                var $form = $('#frmCharge');
+                var response = token.id;
+                $('#hdnToken').val(response);
+                $form.get(0).submit();
+            }
+        });
+        $('#stripeButton').on('click', function (e) {
+            var amount = '@(Model.Event_Cost)' * 100;
+            handler.open({
+                name: 'Land O Lakes Artisans',
+                description: 'Register for LOLA Event',
+                amount: amount,
+                billingAddress: true
+            });
+            e.preventDefault();
+        });
+    </script>
+}

@@ -89,10 +89,6 @@ margin-top:16px;
     color: #004A8D
 }
 
-.navColor {
-    color: red;
-}
-
 .mossgreen {
     color: #4B721D
 }
@@ -130,4 +126,25 @@ margin-top:16px;
 
 .hide {
     display:none;
+}
+
+.navbar .nav > li > a {
+    color: #004A8D;
+}
+
+.navbar .nav > li > a:hover{
+    color:#AEB938;
+}
+
+.darkerGrey {
+    background-color: #DFDFDF;
+}
+
+#footer {
+    border-top: 2px solid #C9C9C9;
+    margin-bottom: 0px;
+}
+
+#detailsButton:hover {
+    color: #004A8D
 }

@@ -7,6 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LOLAWebsite.Models;
+using Stripe;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LOLAWebsite.Controllers
 {
@@ -30,6 +34,7 @@ namespace LOLAWebsite.Controllers
     
 
         // GET: Courses/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,101 +46,59 @@ namespace LOLAWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["course"] = courses;
             return View(courses);
         }
 
-        // GET: Courses/Create
-        public ActionResult Create()
-        {
-            ViewBag.Teacher_ID = new SelectList(db.Teachers, "Teacher_ID", "Id");
-            return View();
-        }
-
-        // POST: Courses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Course_ID,Course_Type,Course_Desc,Teacher_ID,Course_Max_Size,Course_Start_Date,Course_End_Date,Course_Time,Course_Cost,Course_Location,Course_Notes")] Courses courses)
+        public async Task<ActionResult> Details(Courses model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Courses.Add(courses);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(model);
             }
 
-            ViewBag.Teacher_ID = new SelectList(db.Teachers, "Teacher_ID", "Id", courses.Teacher_ID);
-            return View(courses);
-        }
+            var chargeId = await ProcessPayment(model);
 
-        // GET: Courses/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            var courseReg = new Course_Registration()
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Courses courses = db.Courses.Find(id);
-            if (courses == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Teacher_ID = new SelectList(db.Teachers, "Teacher_ID", "Id", courses.Teacher_ID);
-            return View(courses);
-        }
+                Transaction_ID = 123,
+                Course_ID = model.Course_ID,
+                Id = User.Identity.GetUserId()
+            };
 
-        // POST: Courses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Course_ID,Course_Type,Course_Desc,Teacher_ID,Course_Max_Size,Course_Start_Date,Course_End_Date,Course_Time,Course_Cost,Course_Location,Course_Notes")] Courses courses)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(courses).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Teacher_ID = new SelectList(db.Teachers, "Teacher_ID", "Id", courses.Teacher_ID);
-            return View(courses);
-        }
-
-        // GET: Courses/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Courses courses = db.Courses.Find(id);
-            if (courses == null)
-            {
-                return HttpNotFound();
-            }
-            return View(courses);
-        }
-
-        // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Courses courses = db.Courses.Find(id);
-            db.Courses.Remove(courses);
+            db.Course_Registration.Add(courseReg);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View("PaymentSuccessful");
         }
+        private async Task<string> ProcessPayment(Courses model)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            string userEmail = currentUser.Email;
+            return await Task.Run(() =>
+            {
+                var myCharge = new StripeChargeCreateOptions
+                {
+                    Amount = (int)(model.Course_Cost * 100),
+                    Currency = "usd",
+                    Description = "Course Registration",
+                    ReceiptEmail = userEmail,
+                    Source = new StripeSourceOptions
+                    {
+                        TokenId = model.Token
+                    }
+                };
+
+                var chargeService = new StripeChargeService("sk_test_yPi2XADkAP3wiS1i6tkjErxZ");
+                var stripeCharge = chargeService.Create(myCharge);
+
+                return stripeCharge.Id;
+            });
+        }
+        
 
         public PartialViewResult CoursesByTypePartial(string id)
         {

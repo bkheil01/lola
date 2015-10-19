@@ -57,6 +57,8 @@ namespace LOLAWebsite.Models
         [Display(Name = "End Time")]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> Event_Time_End { get; set; }
+
+        public String Token { get; set; }
     
         public virtual ICollection<Event_Registration> Event_Registration { get; set; }
     }

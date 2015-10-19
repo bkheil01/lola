@@ -249,7 +249,6 @@
     <Compile Include="Views\HtmlHelpers\Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\awesome-bootstrap-checkbox.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\font\nano_icon_font3.svg" />
@@ -277,6 +276,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\AmazonSmile.png" />
     <Content Include="img\forest_stock.jpg" />
     <Content Include="img\header_background.jpg" />
     <Content Include="img\intro-bg.jpg" />
@@ -400,17 +400,18 @@
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Course_Registration\Charge.cshtml" />
-    <Content Include="Views\Course_Registration\PaymentSuccessful.cshtml" />
+    <Content Include="Views\Courses\PaymentSuccessful.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Home\Photos.cshtml" />
-    <Content Include="Views\Event_Registration\PaymentSuccessful.cshtml" />
+    <Content Include="Views\Events\PaymentSuccessful.cshtml" />
     <Content Include="Views\Event_Registration\Charge.cshtml" />
     <Content Include="Views\Donations\Donate.cshtml" />
-    <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Donations\PaymentSuccessful.cshtml" />
     <Content Include="Views\Home\Scholarship.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Links.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

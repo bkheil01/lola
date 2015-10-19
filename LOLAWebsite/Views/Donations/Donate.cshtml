@@ -70,6 +70,7 @@
             </div>
    }
 </div>
+<div class="largespacer">
 @section Scripts {
     <script type="text/javascript">
         $('document').ready(function () {
@@ -104,7 +105,7 @@
             $('#stripeButton').on('click', function (e) {
                 var amount = $("txtAmount").val() * 100;
                 handler.open({
-                    name: 'Land O Lakes Art',
+                    name: 'Land O Lakes Artisans',
                     description: 'Donation to LOLA',
                     amount: amount,
                     billingAddress: true

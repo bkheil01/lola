@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2015 18:07:17</publishTime>
     </File>
     <File Include="bin/LOLAWebsite.dll">
-      <publishTime>10/17/2015 17:47:22</publishTime>
+      <publishTime>10/18/2015 22:06:29</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>10/01/2015 18:07:19</publishTime>
@@ -68,6 +68,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>10/01/2015 18:07:19</publishTime>
+    </File>
+    <File Include="bin/SendGrid.SmtpApi.dll">
+      <publishTime>10/18/2015 11:31:57</publishTime>
+    </File>
+    <File Include="bin/SendGridMail.dll">
+      <publishTime>10/18/2015 11:51:04</publishTime>
     </File>
     <File Include="bin/Stripe.net.dll">
       <publishTime>10/06/2015 21:17:42</publishTime>
@@ -181,7 +187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:29</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/17/2015 16:57:19</publishTime>
+      <publishTime>10/18/2015 21:49:39</publishTime>
     </File>
     <File Include="docs/ArtImpression_Registration.pdf">
       <publishTime>10/01/2015 18:09:50</publishTime>
@@ -381,6 +387,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>10/01/2015 18:07:10</publishTime>
     </File>
+    <File Include="img/AmazonSmile.png">
+      <publishTime>10/18/2015 18:37:23</publishTime>
+    </File>
     <File Include="img/forest_stock.jpg">
       <publishTime>10/01/2015 18:09:38</publishTime>
     </File>
@@ -435,6 +444,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="img/logo.jpg">
       <publishTime>10/13/2015 20:30:59</publishTime>
     </File>
+    <File Include="img/scholar.jpg">
+      <publishTime>10/18/2015 13:30:38</publishTime>
+    </File>
     <File Include="img/socialicons/facebook.png">
       <publishTime>10/01/2015 18:09:38</publishTime>
     </File>
@@ -448,7 +460,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/12/2015 15:10:44</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/06/2015 21:17:44</publishTime>
+      <publishTime>10/18/2015 11:51:05</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>10/15/2015 19:02:56</publishTime>
@@ -511,7 +523,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>10/15/2015 19:03:13</publishTime>
+      <publishTime>10/18/2015 17:24:06</publishTime>
     </File>
     <File Include="Views/Account/Manage.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
@@ -544,10 +556,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2015 10:42:09</publishTime>
     </File>
     <File Include="Views/Courses/Details.cshtml">
-      <publishTime>10/15/2015 22:10:14</publishTime>
+      <publishTime>10/18/2015 21:37:56</publishTime>
     </File>
     <File Include="Views/Courses/Index.cshtml">
-      <publishTime>10/15/2015 19:29:49</publishTime>
+      <publishTime>10/18/2015 21:51:49</publishTime>
+    </File>
+    <File Include="Views/Courses/PaymentSuccessful.cshtml">
+      <publishTime>10/15/2015 21:41:35</publishTime>
     </File>
     <File Include="Views/Course_Registration/Charge.cshtml">
       <publishTime>10/16/2015 21:04:57</publishTime>
@@ -556,16 +571,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 21:41:35</publishTime>
     </File>
     <File Include="Views/Donations/Donate.cshtml">
-      <publishTime>10/17/2015 17:38:48</publishTime>
+      <publishTime>10/18/2015 21:38:22</publishTime>
     </File>
     <File Include="Views/Donations/Donations.cshtml">
-      <publishTime>10/16/2015 20:24:54</publishTime>
+      <publishTime>10/18/2015 17:19:09</publishTime>
+    </File>
+    <File Include="Views/Donations/PaymentSuccessful.cshtml">
+      <publishTime>10/18/2015 18:29:22</publishTime>
     </File>
     <File Include="Views/Events/Details.cshtml">
-      <publishTime>10/15/2015 22:28:26</publishTime>
+      <publishTime>10/18/2015 21:42:08</publishTime>
     </File>
     <File Include="Views/Events/Index.cshtml">
-      <publishTime>10/15/2015 21:15:20</publishTime>
+      <publishTime>10/18/2015 21:50:30</publishTime>
+    </File>
+    <File Include="Views/Events/PaymentSuccessful.cshtml">
+      <publishTime>10/15/2015 21:42:23</publishTime>
     </File>
     <File Include="Views/Event_Registration/Charge.cshtml">
       <publishTime>10/15/2015 21:42:29</publishTime>
@@ -576,23 +597,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/About.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
+    <File Include="Views/Home/AboutUs.cshtml">
+      <publishTime>10/18/2015 18:56:57</publishTime>
+    </File>
     <File Include="Views/Home/ArtImpression.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>10/15/2015 19:03:13</publishTime>
+      <publishTime>10/18/2015 18:07:39</publishTime>
     </File>
     <File Include="Views/Home/Donations.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/15/2015 19:03:13</publishTime>
+      <publishTime>10/18/2015 18:37:50</publishTime>
+    </File>
+    <File Include="Views/Home/Links.cshtml">
+      <publishTime>10/18/2015 19:13:28</publishTime>
     </File>
     <File Include="Views/Home/Media.cshtml">
       <publishTime>10/14/2015 14:24:07</publishTime>
     </File>
     <File Include="Views/Home/Photos.cshtml">
-      <publishTime>10/15/2015 21:31:32</publishTime>
+      <publishTime>10/18/2015 22:04:55</publishTime>
+    </File>
+    <File Include="Views/Home/Scholarship.cshtml">
+      <publishTime>10/18/2015 13:42:36</publishTime>
     </File>
     <File Include="Views/Home/Success.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
@@ -601,7 +631,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/17/2015 17:35:39</publishTime>
+      <publishTime>10/18/2015 19:14:33</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
@@ -613,7 +643,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/06/2015 22:53:26</publishTime>
+      <publishTime>10/18/2015 18:23:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

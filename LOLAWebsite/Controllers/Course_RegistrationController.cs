@@ -23,7 +23,7 @@ namespace LOLAWebsite.Controllers
         // GET: Course_Registration
         public ActionResult Charge(int CourseID)
         {
-            TempData["courseid"] = CourseID;
+            TempData["course"] = CourseID;
             return View(new StripeChargeModel());
         }
 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <!-- Header -->
 <a name="about"></a>
 <div class="intro-header">
@@ -24,7 +24,9 @@
 <!-- /.intro-header -->
 
 <div class="container navbarpad">
-
+    @using (Html.BeginForm("Details", "Courses", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
+    { 
+        @Html.AntiForgeryToken()
     <div class="col-sm-5 skyblue">
         <h1>@Html.DisplayFor(model => model.Course_Type)</h1>
         <p>@Html.DisplayFor(model => model.Course_Desc)</p>
@@ -34,7 +36,10 @@
         <p>Location -  @Html.DisplayFor(model => model.Course_Location)</p>
         <p>Special Notes - @Html.DisplayFor(model => model.Course_Notes)</p> 
         <p>
-            <center><a class="btn btn-default" @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Course_ID }, null)</a></center>
+            <center><button class="btn btn-primary" id="stripeButton">Register For Course</button></center>
+            @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
+            @Html.HiddenFor(model=>model.Course_Cost)
+            @Html.HiddenFor(model=>model.Course_ID)
         </p>
     </div>
     <div class="col-sm-6">
@@ -79,5 +84,31 @@
             }
         }
     </div>
+    }
 </div>
+<div class="largespacer"></div>
+@section Scripts {
+    <script type="text/javascript">
+        var handler = StripeCheckout.configure({
+            key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
+            locale: 'auto',
+            token: function (token) {
+                var $form = $('#frmCharge');
+                var response = token.id;
+                $('#hdnToken').val(response);
+                $form.get(0).submit();
+            }
+        });
+        $('#stripeButton').on('click', function (e) {
+            var amount = '@(Model.Course_Cost)' * 100;
+            handler.open({
+                name: 'Land O Lakes Artisans',
+                description: 'Register for LOLA Course',
+                amount: amount,
+                billingAddress: true
+            });
+            e.preventDefault();
+        });
+    </script>
+}
 

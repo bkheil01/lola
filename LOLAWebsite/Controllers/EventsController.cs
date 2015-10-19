@@ -7,6 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LOLAWebsite.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Stripe;
 
 namespace LOLAWebsite.Controllers
 {
@@ -22,6 +26,7 @@ namespace LOLAWebsite.Controllers
         }
 
         // GET: Events/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,93 +41,53 @@ namespace LOLAWebsite.Controllers
             return View(@event);
         }
 
-        // GET: Events/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Events/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes,Event_Start_Date,Event_End_Date,Event_Time_Start,Event_Time_End")] Event @event)
+        public async Task<ActionResult> Details(Event model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(model);
             }
 
-            return View(@event);
-        }
+            var chargeId = await ProcessPayment(model);
 
-        // GET: Events/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            var courseReg = new Event_Registration()
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
+                Transaction_ID = 123,
+                Event_ID = model.Event_ID,
+                Id = User.Identity.GetUserId()
+            };
 
-        // POST: Events/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Event_ID,Event_Type,Event_Desc,Event_Date,Tickets_Sold,Max_Tickets,Event_Cost,Event_Location,Event_Notes,Event_Start_Date,Event_End_Date,Event_Time_Start,Event_Time_End")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(@event);
-        }
-
-        // GET: Events/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: Events/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
+            db.Event_Registration.Add(courseReg);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        protected override void Dispose(bool disposing)
+            return View("PaymentSuccessful");
+        }
+        private async Task<string> ProcessPayment(Event model)
         {
-            if (disposing)
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            string userEmail = currentUser.Email;
+            return await Task.Run(() =>
             {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+                var myCharge = new StripeChargeCreateOptions
+                {
+                    Amount = (int)(model.Event_Cost * 100),
+                    Currency = "usd",
+                    Description = "Course Registration",
+                    ReceiptEmail = userEmail,
+                    Source = new StripeSourceOptions
+                    {
+                        TokenId = model.Token
+                    }
+                };
+
+                var chargeService = new StripeChargeService("sk_test_yPi2XADkAP3wiS1i6tkjErxZ");
+                var stripeCharge = chargeService.Create(myCharge);
+
+                return stripeCharge.Id;
+            });
         }
     }
 }
