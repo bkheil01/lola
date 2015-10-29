@@ -31,12 +31,13 @@ namespace LOLAWebsite.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Course_Registration> Course_Registration { get; set; }
-        public virtual DbSet<Courses> Courses { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Donation> Donations { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Event_Registration> Event_Registration { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -73,15 +73,19 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="StripeID" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Course_Registration">
           <Key>
             <PropertyRef Name="Registration_ID" />
           </Key>
           <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Transaction_ID" Type="int" />
+          <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
           <Property Name="Course_ID" Type="int" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="P_Name" Type="varchar" MaxLength="255" />
+          <Property Name="P_Phone" Type="varchar" MaxLength="255" />
+          <Property Name="P_UnderAge" Type="bit" />
         </EntityType>
         <EntityType Name="Courses">
           <Key>
@@ -105,9 +109,11 @@
             <PropertyRef Name="Donation_ID" />
           </Key>
           <Property Name="Donation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="Donation_Type" Type="varchar" MaxLength="255" />
           <Property Name="Donation_Amount" Type="real" />
+          <Property Name="Donation_Category" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -126,7 +132,10 @@
           <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="Event_ID" Type="int" />
           <Property Name="Event_Date" Type="date" />
-          <Property Name="Transaction_ID" Type="int" />
+          <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
+          <Property Name="P_Name" Type="varchar" MaxLength="255" />
+          <Property Name="P_Phone" Type="varchar" MaxLength="255" />
+          <Property Name="P_UnderAge" Type="bit" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -157,6 +166,16 @@
           <Property Name="Course_Registration_Type" Type="bit" />
           <Property Name="Course_Rating" Type="int" />
           <Property Name="Student_Comment" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -368,6 +387,7 @@
           <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
             <End Role="Courses" EntitySet="Courses" />
@@ -430,7 +450,8 @@
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LOLADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -497,6 +518,7 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StripeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="Course_Registration" Relationship="Self.fk_UserCourseRegistration" FromRole="AspNetUsers" ToRole="Course_Registration" />
@@ -512,13 +534,16 @@
             <PropertyRef Name="Registration_ID" />
           </Key>
           <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Transaction_ID" Type="Int32" />
+          <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_ID" Type="Int32" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="P_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_UnderAge" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserCourseRegistration" FromRole="Course_Registration" ToRole="AspNetUsers" />
           <NavigationProperty Name="Cours" Relationship="Self.fk_CourseRegistration" FromRole="Course_Registration" ToRole="Courses" />
         </EntityType>
-        <EntityType Name="Courses">
+        <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Course_ID" />
           </Key>
@@ -529,23 +554,25 @@
           <Property Name="Course_Max_Size" Type="Int32" />
           <Property Name="Course_Start_Date" Type="DateTime" Precision="0" />
           <Property Name="Course_End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Course_Time_Start" Type="Time" Precision="7" />
+          <Property Name="Course_Time_End" Type="Time" Precision="7" />
           <Property Name="Course_Cost" Type="Single" />
           <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
           <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
           <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
-          <Property Name="Course_Time_Start" Type="Time" Precision="7" />
-          <Property Name="Course_Time_End" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Donation">
           <Key>
             <PropertyRef Name="Donation_ID" />
           </Key>
           <Property Name="Donation_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Donation_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Donation_Amount" Type="Single" />
+          <Property Name="Donation_Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserDonation" FromRole="Donation" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="Employee">
@@ -566,7 +593,10 @@
           <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Event_ID" Type="Int32" />
           <Property Name="Event_Date" Type="DateTime" Precision="0" />
-          <Property Name="Transaction_ID" Type="Int32" />
+          <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="P_UnderAge" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserEventRegistration" FromRole="Event_Registration" ToRole="AspNetUsers" />
           <NavigationProperty Name="Event" Relationship="Self.fk_EventIDRegistration" FromRole="Event_Registration" ToRole="Events" />
         </EntityType>
@@ -577,16 +607,16 @@
           <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Event_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Event_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Event_Time_Start" Type="Time" Precision="7" />
+          <Property Name="Event_Time_End" Type="Time" Precision="7" />
           <Property Name="Tickets_Sold" Type="Int32" />
           <Property Name="Max_Tickets" Type="Int32" />
           <Property Name="Event_Cost" Type="Single" />
           <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
-          <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
-          <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
-          <Property Name="Event_Time_Start" Type="Time" Precision="7" />
-          <Property Name="Event_Time_End" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -603,6 +633,16 @@
           <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserFeedback" FromRole="Feedback" ToRole="AspNetUsers" />
           <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Feedback" ToRole="Courses" />
           <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Feedback" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -716,7 +756,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_CourseRegistration">
-          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
           <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -728,7 +768,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_CourseFeedback">
-          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
           <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -741,7 +781,7 @@
         </Association>
         <Association Name="fk_TeacherCourses">
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
-          <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="*" />
+          <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
               <PropertyRef Name="Teacher_ID" />
@@ -786,12 +826,13 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" />
-          <EntitySet Name="Courses" EntityType="LOLADBModel.Courses" />
+          <EntitySet Name="Courses" EntityType="LOLADBModel.Course" />
           <EntitySet Name="Donations" EntityType="Self.Donation" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" />
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Teachers" EntityType="Self.Teacher" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -916,6 +957,7 @@
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="StripeID" ColumnName="StripeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -926,14 +968,15 @@
                 <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="P_Phone" ColumnName="P_Phone" />
+                <ScalarProperty Name="P_UnderAge" ColumnName="P_UnderAge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="LOLADBModel.Courses">
+            <EntityTypeMapping TypeName="LOLADBModel.Course">
               <MappingFragment StoreEntitySet="Courses">
-                <ScalarProperty Name="Course_Time_End" ColumnName="Course_Time_End" />
-                <ScalarProperty Name="Course_Time_Start" ColumnName="Course_Time_Start" />
                 <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
                 <ScalarProperty Name="Course_Type" ColumnName="Course_Type" />
                 <ScalarProperty Name="Course_Desc" ColumnName="Course_Desc" />
@@ -941,6 +984,8 @@
                 <ScalarProperty Name="Course_Max_Size" ColumnName="Course_Max_Size" />
                 <ScalarProperty Name="Course_Start_Date" ColumnName="Course_Start_Date" />
                 <ScalarProperty Name="Course_End_Date" ColumnName="Course_End_Date" />
+                <ScalarProperty Name="Course_Time_Start" ColumnName="Course_Time_Start" />
+                <ScalarProperty Name="Course_Time_End" ColumnName="Course_Time_End" />
                 <ScalarProperty Name="Course_Cost" ColumnName="Course_Cost" />
                 <ScalarProperty Name="Course_Location" ColumnName="Course_Location" />
                 <ScalarProperty Name="Course_Notes" ColumnName="Course_Notes" />
@@ -951,9 +996,11 @@
             <EntityTypeMapping TypeName="LOLADBModel.Donation">
               <MappingFragment StoreEntitySet="Donation">
                 <ScalarProperty Name="Donation_ID" ColumnName="Donation_ID" />
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Donation_Type" ColumnName="Donation_Type" />
                 <ScalarProperty Name="Donation_Amount" ColumnName="Donation_Amount" />
+                <ScalarProperty Name="Donation_Category" ColumnName="Donation_Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -975,19 +1022,22 @@
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
                 <ScalarProperty Name="Event_Date" ColumnName="Event_Date" />
                 <ScalarProperty Name="Transaction_ID" ColumnName="Transaction_ID" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="P_Phone" ColumnName="P_Phone" />
+                <ScalarProperty Name="P_UnderAge" ColumnName="P_UnderAge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="LOLADBModel.Event">
               <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="Event_Time_End" ColumnName="Event_Time_End" />
-                <ScalarProperty Name="Event_Time_Start" ColumnName="Event_Time_Start" />
-                <ScalarProperty Name="Event_End_Date" ColumnName="Event_End_Date" />
-                <ScalarProperty Name="Event_Start_Date" ColumnName="Event_Start_Date" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
                 <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
                 <ScalarProperty Name="Event_Desc" ColumnName="Event_Desc" />
+                <ScalarProperty Name="Event_Start_Date" ColumnName="Event_Start_Date" />
+                <ScalarProperty Name="Event_End_Date" ColumnName="Event_End_Date" />
+                <ScalarProperty Name="Event_Time_Start" ColumnName="Event_Time_Start" />
+                <ScalarProperty Name="Event_Time_End" ColumnName="Event_Time_End" />
                 <ScalarProperty Name="Tickets_Sold" ColumnName="Tickets_Sold" />
                 <ScalarProperty Name="Max_Tickets" ColumnName="Max_Tickets" />
                 <ScalarProperty Name="Event_Cost" ColumnName="Event_Cost" />
@@ -1007,6 +1057,17 @@
                 <ScalarProperty Name="Course_Registration_Type" ColumnName="Course_Registration_Type" />
                 <ScalarProperty Name="Course_Rating" ColumnName="Course_Rating" />
                 <ScalarProperty Name="Student_Comment" ColumnName="Student_Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LOLADBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

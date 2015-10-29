@@ -99,6 +99,8 @@ namespace LOLAWebsite.Models
         [Required]
         [Display(Name = "Birth Date")]
         public DateTime BirthDate {get; set;}
+
+        public string StripeID { get; set; }
     }
 
     public class ResetPasswordViewModel

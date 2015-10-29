@@ -24,7 +24,7 @@ namespace LOLAWebsite.Models
         public Nullable<int> Student_Comment { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Courses Cours { get; set; }
+        public virtual Course Cours { get; set; }
         public virtual Teacher Teacher { get; set; }
     }
 }

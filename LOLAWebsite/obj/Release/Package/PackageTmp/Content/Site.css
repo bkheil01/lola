@@ -10,7 +10,8 @@ h1 {
 
 #homelogo {
     height: 310px;
-    max-height: 100%
+    max-height: 100%;
+    border-radius: 10px;
 }
 
 .centertext {
@@ -147,4 +148,17 @@ margin-top:16px;
 
 #detailsButton:hover {
     color: #004A8D
+}
+
+.skyblueback {
+    background-color:#004A8D;
+}
+
+#headerText {
+    background-color: red;
+}
+
+#stripeLogo {
+    width: 100px;
+    max-width: 100%
 }

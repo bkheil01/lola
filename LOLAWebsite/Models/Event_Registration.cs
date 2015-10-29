@@ -18,7 +18,10 @@ namespace LOLAWebsite.Models
         public string Id { get; set; }
         public Nullable<int> Event_ID { get; set; }
         public Nullable<System.DateTime> Event_Date { get; set; }
-        public Nullable<int> Transaction_ID { get; set; }
+        public string Transaction_ID { get; set; }
+        public string P_Name { get; set; }
+        public string P_Phone { get; set; }
+        public Nullable<bool> P_UnderAge { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Event Event { get; set; }

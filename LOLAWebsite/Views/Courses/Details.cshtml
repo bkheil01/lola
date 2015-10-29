@@ -1,4 +1,4 @@
-﻿@model LOLAWebsite.Models.Courses
+﻿@model LOLAWebsite.Models.Course
 
 @{
     ViewBag.Title = "Details";
@@ -12,7 +12,7 @@
             <div class="col-lg-12">
                 <div class="intro-message">
                     <!-- LOLA Logo-->
-                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <img src="~/img/logo.png" id="homelogo" />
                     <hr class="intro-divider">
                     <h1>Course Details</h1>
                 </div>
@@ -36,10 +36,7 @@
         <p>Location -  @Html.DisplayFor(model => model.Course_Location)</p>
         <p>Special Notes - @Html.DisplayFor(model => model.Course_Notes)</p> 
         <p>
-            <center><button class="btn btn-primary" id="stripeButton">Register For Course</button></center>
-            @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
-            @Html.HiddenFor(model=>model.Course_Cost)
-            @Html.HiddenFor(model=>model.Course_ID)
+           @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Course_ID }, new { @class = "btn btn-default skyblue" })
         </p>
     </div>
     <div class="col-sm-6">
@@ -87,28 +84,5 @@
     }
 </div>
 <div class="largespacer"></div>
-@section Scripts {
-    <script type="text/javascript">
-        var handler = StripeCheckout.configure({
-            key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
-            locale: 'auto',
-            token: function (token) {
-                var $form = $('#frmCharge');
-                var response = token.id;
-                $('#hdnToken').val(response);
-                $form.get(0).submit();
-            }
-        });
-        $('#stripeButton').on('click', function (e) {
-            var amount = '@(Model.Course_Cost)' * 100;
-            handler.open({
-                name: 'Land O Lakes Artisans',
-                description: 'Register for LOLA Course',
-                amount: amount,
-                billingAddress: true
-            });
-            e.preventDefault();
-        });
-    </script>
-}
+
 

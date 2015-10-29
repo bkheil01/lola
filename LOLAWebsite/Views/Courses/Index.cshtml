@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LOLAWebsite.Models.Courses>
+﻿@model IEnumerable<LOLAWebsite.Models.Course>
 <link href="~/Content/events.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @{
@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <div class="intro-message">
                     <!-- LOLA Logo-->
-                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <img src="~/img/logo.png" id="homelogo" />
                     <hr class="intro-divider">
                     <h1>Available Courses</h1>
                 </div>
@@ -25,6 +25,23 @@
 <!-- /.intro-header -->
 <div class="container">
     <div class="row">
+        @*<div class="form-group">
+            <select class="form-control" id="monthSelect">
+                <option>January</option>
+                <option>Febuary</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        </div>*@
+        
         <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
             <ul class="event-list">
                 @foreach (var item in Model)
@@ -34,9 +51,9 @@
                     sd = item.Course_Start_Date ?? DateTime.Now;
                     ed = item.Course_End_Date ?? DateTime.Now;
                     TimeSpan ts = ed - sd;
-                                      
-                    <li>
-                        <time datetime="2014-07-20">
+
+                    <li id="courseContainer">
+                        <time>
                             <span class="day">@sd.Day.ToString()</span>
                             <span class="month">@sd.ToString("MMM")</span>
                             @if (ts.Days == 0)
@@ -63,3 +80,15 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script type="text/javascript">
+        $('document').ready(function () {
+            var month = document.getElementById("month").innerText;
+            alert(month);
+        });
+    </script>
+}
+
+
+
+

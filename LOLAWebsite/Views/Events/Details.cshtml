@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <div class="intro-message">
                     <!-- LOLA Logo-->
-                    <img src="~/img/logo.jpg" id="homelogo" />
+                    <img src="~/img/logo.png" id="homelogo" />
                     <hr class="intro-divider">
                     <h1>Event Details</h1>
                 </div>
@@ -37,10 +37,7 @@
             <p>Location -  @Html.DisplayFor(model => model.Event_Location)</p>
             <p>Special Notes - @Html.DisplayFor(model => model.Event_Notes)</p>
             <p>
-                <center><button class="btn btn-primary" id="stripeButton">Register For Event</button></center>
-                @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
-                @Html.HiddenFor(model => model.Event_Cost)
-                @Html.HiddenFor(model => model.Event_ID)
+                @Html.ActionLink("Register for this event", "Charge", "Event_Registration", new { EventID = Model.Event_ID }, new { @class = "btn btn-default skyblue" })
             </p>
         </div>
         <div class="col-sm-6">
@@ -96,27 +93,3 @@
     </div>
     }
 
-@section Scripts {
-    <script type="text/javascript">
-        var handler = StripeCheckout.configure({
-            key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
-            locale: 'auto',
-            token: function (token) {
-                var $form = $('#frmCharge');
-                var response = token.id;
-                $('#hdnToken').val(response);
-                $form.get(0).submit();
-            }
-        });
-        $('#stripeButton').on('click', function (e) {
-            var amount = '@(Model.Event_Cost)' * 100;
-            handler.open({
-                name: 'Land O Lakes Artisans',
-                description: 'Register for LOLA Event',
-                amount: amount,
-                billingAddress: true
-            });
-            e.preventDefault();
-        });
-    </script>
-}

@@ -23,34 +23,42 @@ namespace LOLAWebsite.Controllers
         public ActionResult Charge(int EventID)
         {
             TempData["eventid"] = EventID;
-            return View(new StripeChargeModel());
+            return View(new EventRegistrationModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Charge(StripeChargeModel model)
+        public async Task<ActionResult> Charge(EventRegistrationModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
             var chargeId = await ProcessPayment(model, (int)TempData["eventid"]);
 
-            var eventReg = new Event_Registration()
+            foreach (var p in model.Participant)
             {
-                Transaction_ID = 123,
-                Event_ID = (int)TempData["eventid"],
-                Id = User.Identity.GetUserId()
-            };
+                if (p.Name != null)
+                {
+                    var eventReg = new Event_Registration()
+                    {
+                        Transaction_ID = chargeId,
+                        Event_ID = (int)TempData["eventid"],
+                        Id = User.Identity.GetUserId(),
+                        P_Name = p.Name,
+                        P_Phone = p.PhoneNumber,
+                        P_UnderAge = p.UnderAge
+                    };
 
-            db.Event_Registration.Add(eventReg);
-            db.SaveChanges();
-
+                    db.Event_Registration.Add(eventReg);
+                    db.SaveChanges();
+                }
+            }
             return View("PaymentSuccessful");
         }
 
-        private async Task<string> ProcessPayment(StripeChargeModel model, int id)
+        private async Task<string> ProcessPayment(EventRegistrationModel model, int id)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -60,9 +68,9 @@ namespace LOLAWebsite.Controllers
                 Event events = db.Events.Find(id);
                 var myCharge = new StripeChargeCreateOptions
                 {
-                    Amount = (int)(events.Event_Cost * 100),
+                    Amount = (int)(events.Event_Cost * model.NumberOfParticipants * 100),
                     Currency = "usd",
-                    Description = "Description for test charge",
+                    Description = "Registration for "+events.Event_Desc.ToString(),
                     ReceiptEmail = userEmail,
                     Source = new StripeSourceOptions
                     {

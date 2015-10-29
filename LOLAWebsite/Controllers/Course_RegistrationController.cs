@@ -14,54 +14,63 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LOLAWebsite.Controllers
 {
-    [Authorize]
+
     public class Course_RegistrationController : Controller
     {
         private LOLADBEntities db = new LOLADBEntities();
-
-
-        // GET: Course_Registration
+        
+        [HttpGet]
         public ActionResult Charge(int CourseID)
         {
-            TempData["course"] = CourseID;
-            return View(new StripeChargeModel());
+            TempData["courseid"] = CourseID;
+            var course = db.Courses.Find(CourseID);
+            return View(new CourseRegistrationModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult>Charge(StripeChargeModel model)
+        public async Task<ActionResult>Charge(CourseRegistrationModel model)
         {
-            if(!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if(!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
             var chargeId = await ProcessPayment(model, (int)TempData["courseid"] );
 
-            var courseReg = new Course_Registration()
-            {
-                Transaction_ID = 123,
-              Course_ID = (int)TempData["courseid"],
-                Id = User.Identity.GetUserId()
-            };
+            var courseReg = new Course_Registration();
 
-            db.Course_Registration.Add(courseReg);
-            db.SaveChanges();
-            
+            foreach (var p in model.Participant)
+            {
+                if (p.Name != null)
+                {
+                    courseReg = new Course_Registration()
+                    {
+                        Transaction_ID = chargeId,
+                        Course_ID = (int)TempData["courseid"],
+                        Id = User.Identity.GetUserId(),
+                        P_Name = p.Name,
+                        P_Phone = p.PhoneNumber,
+                        P_UnderAge = p.UnderAge
+                    };
+                    db.Course_Registration.Add(courseReg);
+                    db.SaveChanges();
+                }
+            }          
             return View("PaymentSuccessful");
         }
         
-        private async Task<string> ProcessPayment(StripeChargeModel model, int id)
+        private async Task<string> ProcessPayment(CourseRegistrationModel model, int id)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
             string userEmail = currentUser.Email;
             return await Task.Run(() =>
             {
-                Courses course = db.Courses.Find(id);
+                Course course = db.Courses.Find(id);
                 var myCharge = new StripeChargeCreateOptions
                 {
-                    Amount = (int)(course.Course_Cost * 100),
+                    Amount = (int)(course.Course_Cost * model.NumberOfParticipants * 100),
                     Currency = "usd",
                     Description = "Description for test charge",
                     ReceiptEmail = userEmail,

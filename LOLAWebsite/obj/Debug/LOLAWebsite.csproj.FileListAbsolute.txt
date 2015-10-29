@@ -53,8 +53,8 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.Migrations.NameFirstName.resources
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csproj.GenerateResource.Cache
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.pdb
+C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache

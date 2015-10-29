@@ -68,15 +68,19 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="StripeID" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Course_Registration">
     <Key>
       <PropertyRef Name="Registration_ID" />
     </Key>
     <Property Name="Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Transaction_ID" Type="int" />
+    <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
     <Property Name="Course_ID" Type="int" />
     <Property Name="Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="P_Name" Type="varchar" MaxLength="255" />
+    <Property Name="P_Phone" Type="varchar" MaxLength="255" />
+    <Property Name="P_UnderAge" Type="bit" />
   </EntityType>
   <EntityType Name="Courses">
     <Key>
@@ -100,9 +104,11 @@
       <PropertyRef Name="Donation_ID" />
     </Key>
     <Property Name="Donation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
     <Property Name="Id" Type="nvarchar" MaxLength="128" />
     <Property Name="Donation_Type" Type="varchar" MaxLength="255" />
     <Property Name="Donation_Amount" Type="real" />
+    <Property Name="Donation_Category" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -121,7 +127,10 @@
     <Property Name="Id" Type="nvarchar" MaxLength="128" />
     <Property Name="Event_ID" Type="int" />
     <Property Name="Event_Date" Type="date" />
-    <Property Name="Transaction_ID" Type="int" />
+    <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
+    <Property Name="P_Name" Type="varchar" MaxLength="255" />
+    <Property Name="P_Phone" Type="varchar" MaxLength="255" />
+    <Property Name="P_UnderAge" Type="bit" />
   </EntityType>
   <EntityType Name="Events">
     <Key>
@@ -152,6 +161,16 @@
     <Property Name="Course_Registration_Type" Type="bit" />
     <Property Name="Course_Rating" Type="int" />
     <Property Name="Student_Comment" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -363,6 +382,7 @@
     <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
       <End Role="Courses" EntitySet="Courses" />

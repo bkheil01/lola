@@ -15,11 +15,14 @@ namespace LOLAWebsite.Models
     public partial class Course_Registration
     {
         public int Registration_ID { get; set; }
-        public Nullable<int> Transaction_ID { get; set; }
+        public string Transaction_ID { get; set; }
         public Nullable<int> Course_ID { get; set; }
         public string Id { get; set; }
+        public string P_Name { get; set; }
+        public string P_Phone { get; set; }
+        public Nullable<bool> P_UnderAge { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Courses Cours { get; set; }
+        public virtual Course Cours { get; set; }
     }
 }

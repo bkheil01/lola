@@ -198,9 +198,10 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Courses.cs">
+    <Compile Include="Models\Course.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Course_Registration.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
@@ -216,10 +217,13 @@
     <Compile Include="Models\Event.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EventRegistrationModel.cs" />
     <Compile Include="Models\Event_Registration.cs">
+      <SubType>Code</SubType>
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feedback.cs">
+      <SubType>Code</SubType>
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -229,8 +233,8 @@
       <DependentUpon>LOLA.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOLA.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOLA.Designer.cs">
@@ -239,7 +243,10 @@
       <DependentUpon>LOLA.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NewDonationModel.cs" />
-    <Compile Include="Models\StripeChargeModel.cs" />
+    <Compile Include="Models\CourseRegistrationModel.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>LOLA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
@@ -297,32 +304,17 @@
     <Content Include="img\Headers\YouthSummerClasses20142.jpg" />
     <Content Include="img\header_background.jpg" />
     <Content Include="img\intro-bg.jpg" />
-    <Content Include="img\logo.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\LOGOLOLA1.jpeg" />
     <Content Include="img\scholar.jpg" />
     <Content Include="img\socialicons\facebook.png" />
     <Content Include="img\socialicons\twitter.png" />
     <Content Include="img\socialicons\youtube.png" />
+    <Content Include="img\Stripe.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="docs\ArtImpression_Registration.pdf" />
     <Content Include="docs\ArtImpression_Requirements.pdf" />
-    <EntityDeploy Include="Models\LOLA.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LOLA.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\LOLA.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOLA.edmx</DependentUpon>
-      <LastGenOutput>LOLA.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\LOLA.edmx.diagram">
-      <DependentUpon>LOLA.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\LOLA.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LOLA.edmx</DependentUpon>
-      <LastGenOutput>LOLA.cs</LastGenOutput>
-    </Content>
     <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
@@ -363,6 +355,23 @@
     <Content Include="Content\css\themes\light\font\nano_icon_font3.eot" />
     <Content Include="Content\css\themes\light\font\nano_icon_font3.ttf" />
     <Content Include="Content\css\themes\light\font\nano_icon_font3.woff" />
+    <EntityDeploy Include="Models\LOLA.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LOLA.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LOLA.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LOLA.edmx</DependentUpon>
+      <LastGenOutput>LOLA.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LOLA.edmx.diagram">
+      <DependentUpon>LOLA.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LOLA.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LOLA.edmx</DependentUpon>
+      <LastGenOutput>LOLA.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\PublishTylerDesktop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -393,7 +402,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -416,25 +424,23 @@
     <Content Include="Views\Donations\Donations.cshtml" />
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
-    <Content Include="Views\Course_Registration\Charge.cshtml" />
-    <Content Include="Views\Courses\PaymentSuccessful.cshtml" />
+    <Content Include="Views\Course_Registration\PaymentSuccessful.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Home\Photos.cshtml" />
-    <Content Include="Views\Events\PaymentSuccessful.cshtml" />
+    <Content Include="Views\Event_Registration\PaymentSuccessful.cshtml" />
     <Content Include="Views\Event_Registration\Charge.cshtml" />
     <Content Include="Views\Donations\Donate.cshtml" />
     <Content Include="Views\Donations\PaymentSuccessful.cshtml" />
     <Content Include="Views\Home\Scholarship.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Links.cshtml" />
+    <Content Include="Views\Course_Registration\Charge.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\galleryimgs\" />
-    <Folder Include="Views\HighlightHelper\" />
-    <Folder Include="Views\HtmlHelper\" />
     <Folder Include="Views\MenuLink\" />
     <Folder Include="Views\NewDonationModel\" />
   </ItemGroup>

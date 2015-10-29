@@ -18,6 +18,7 @@ namespace LOLAWebsite.Models
         public int Zip { get; set; }
         public string Phone {get; set;}
         public DateTime BirthDate { get; set; }
+        public string StripeID { get; set; }
         
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

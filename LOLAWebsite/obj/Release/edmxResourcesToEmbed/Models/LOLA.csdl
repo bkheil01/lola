@@ -63,6 +63,7 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StripeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="Course_Registration" Relationship="Self.fk_UserCourseRegistration" FromRole="AspNetUsers" ToRole="Course_Registration" />
@@ -78,13 +79,16 @@
       <PropertyRef Name="Registration_ID" />
     </Key>
     <Property Name="Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Transaction_ID" Type="Int32" />
+    <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Course_ID" Type="Int32" />
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="P_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="P_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="P_UnderAge" Type="Boolean" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserCourseRegistration" FromRole="Course_Registration" ToRole="AspNetUsers" />
     <NavigationProperty Name="Cours" Relationship="Self.fk_CourseRegistration" FromRole="Course_Registration" ToRole="Courses" />
   </EntityType>
-  <EntityType Name="Courses">
+  <EntityType Name="Course">
     <Key>
       <PropertyRef Name="Course_ID" />
     </Key>
@@ -95,23 +99,25 @@
     <Property Name="Course_Max_Size" Type="Int32" />
     <Property Name="Course_Start_Date" Type="DateTime" Precision="0" />
     <Property Name="Course_End_Date" Type="DateTime" Precision="0" />
+    <Property Name="Course_Time_Start" Type="Time" Precision="7" />
+    <Property Name="Course_Time_End" Type="Time" Precision="7" />
     <Property Name="Course_Cost" Type="Single" />
     <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
     <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
     <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
-    <Property Name="Course_Time_Start" Type="Time" Precision="7" />
-    <Property Name="Course_Time_End" Type="Time" Precision="7" />
   </EntityType>
   <EntityType Name="Donation">
     <Key>
       <PropertyRef Name="Donation_ID" />
     </Key>
     <Property Name="Donation_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Donation_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Donation_Amount" Type="Single" />
+    <Property Name="Donation_Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserDonation" FromRole="Donation" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Employee">
@@ -132,7 +138,10 @@
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Event_ID" Type="Int32" />
     <Property Name="Event_Date" Type="DateTime" Precision="0" />
-    <Property Name="Transaction_ID" Type="Int32" />
+    <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="P_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="P_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="P_UnderAge" Type="Boolean" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserEventRegistration" FromRole="Event_Registration" ToRole="AspNetUsers" />
     <NavigationProperty Name="Event" Relationship="Self.fk_EventIDRegistration" FromRole="Event_Registration" ToRole="Events" />
   </EntityType>
@@ -143,16 +152,16 @@
     <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Event_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Event_Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
+    <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
+    <Property Name="Event_Time_Start" Type="Time" Precision="7" />
+    <Property Name="Event_Time_End" Type="Time" Precision="7" />
     <Property Name="Tickets_Sold" Type="Int32" />
     <Property Name="Max_Tickets" Type="Int32" />
     <Property Name="Event_Cost" Type="Single" />
     <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
-    <Property Name="Event_Start_Date" Type="DateTime" Precision="0" />
-    <Property Name="Event_End_Date" Type="DateTime" Precision="0" />
-    <Property Name="Event_Time_Start" Type="Time" Precision="7" />
-    <Property Name="Event_Time_End" Type="Time" Precision="7" />
   </EntityType>
   <EntityType Name="Feedback">
     <Key>
@@ -169,6 +178,16 @@
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserFeedback" FromRole="Feedback" ToRole="AspNetUsers" />
     <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Feedback" ToRole="Courses" />
     <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Feedback" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -282,7 +301,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_CourseRegistration">
-    <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
+    <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
     <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Courses">
@@ -294,7 +313,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_CourseFeedback">
-    <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="0..1" />
+    <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
     <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Courses">
@@ -307,7 +326,7 @@
   </Association>
   <Association Name="fk_TeacherCourses">
     <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
-    <End Role="Courses" Type="LOLADBModel.Courses" Multiplicity="*" />
+    <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Teacher">
         <PropertyRef Name="Teacher_ID" />
@@ -352,12 +371,13 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" />
-    <EntitySet Name="Courses" EntityType="LOLADBModel.Courses" />
+    <EntitySet Name="Courses" EntityType="LOLADBModel.Course" />
     <EntitySet Name="Donations" EntityType="Self.Donation" />
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" />
     <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Teachers" EntityType="Self.Teacher" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

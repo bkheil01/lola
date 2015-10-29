@@ -22,43 +22,41 @@ namespace LOLAWebsite.Models
     
         public int Event_ID { get; set; }
 
-        [Display(Name="Type")]
+        [Display(Name = "Type")]
         public string Event_Type { get; set; }
 
-        [Display(Name="Description")]
+        [Display(Name = "Description")]
         public string Event_Desc { get; set; }
 
-        public Nullable<int> Tickets_Sold { get; set; }
-
-        public Nullable<int> Max_Tickets { get; set; }
-
-        [Display(Name="Cost")]
-        [DisplayFormat(DataFormatString="{0:c}",ApplyFormatInEditMode=true)]
-        public Nullable<float> Event_Cost { get; set; }
-
-        [Display(Name="Location")]
-        public string Event_Location { get; set; }
-
-        [Display(Name="Special Notes")]
-        public string Event_Notes { get; set; }
-
-        [Display(Name="Start Date")]
-        [DisplayFormat(DataFormatString="{0:MM/dd/yy}",ApplyFormatInEditMode=true)]
+        [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Event_Start_Date { get; set; }
 
         [Display(Name = "End Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Event_End_Date { get; set; }
 
-        [Display(Name="Start Time")]
+        [Display(Name = "Start Time")]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> Event_Time_Start { get; set; }
 
         [Display(Name = "End Time")]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-        public Nullable<System.TimeSpan> Event_Time_End { get; set; }
 
-        public String Token { get; set; }
+
+        public Nullable<System.TimeSpan> Event_Time_End { get; set; }
+        public Nullable<int> Tickets_Sold { get; set; }
+        public Nullable<int> Max_Tickets { get; set; }
+
+        [Display(Name = "Cost")]
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
+        public Nullable<float> Event_Cost { get; set; }
+
+        [Display(Name = "Location")]
+        public string Event_Location { get; set; }
+
+        [Display(Name = "Special Notes")]
+        public string Event_Notes { get; set; }
     
         public virtual ICollection<Event_Registration> Event_Registration { get; set; }
     }
