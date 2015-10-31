@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2015 18:07:17</publishTime>
     </File>
     <File Include="bin/LOLAWebsite.dll">
-      <publishTime>10/28/2015 21:42:44</publishTime>
+      <publishTime>10/31/2015 17:22:58</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>10/01/2015 18:07:19</publishTime>
@@ -609,6 +609,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_SetPasswordPartial.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
+    <File Include="Views/Courses/Courses.cshtml">
+      <publishTime>10/31/2015 17:19:01</publishTime>
+    </File>
     <File Include="Views/Courses/CoursesByTypePartial.cshtml">
       <publishTime>10/06/2015 22:47:19</publishTime>
     </File>
@@ -641,6 +644,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Events/Details.cshtml">
       <publishTime>10/28/2015 21:34:25</publishTime>
+    </File>
+    <File Include="Views/Events/Events.cshtml">
+      <publishTime>10/31/2015 17:18:51</publishTime>
     </File>
     <File Include="Views/Events/Index.cshtml">
       <publishTime>10/28/2015 20:33:15</publishTime>
@@ -691,7 +697,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/21/2015 14:16:53</publishTime>
+      <publishTime>10/31/2015 17:20:21</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>

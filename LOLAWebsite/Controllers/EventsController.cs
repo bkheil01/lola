@@ -19,14 +19,13 @@ namespace LOLAWebsite.Controllers
         private LOLADBEntities db = new LOLADBEntities();
 
         // GET: Events
-        public ActionResult Index()
+        public ActionResult Events()
         {
             var events = db.Events.OrderBy(e => e.Event_Start_Date);
             return View(events.ToList());
         }
 
         // GET: Events/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)

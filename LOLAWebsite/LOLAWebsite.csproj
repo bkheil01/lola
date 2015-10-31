@@ -425,9 +425,9 @@
     <Content Include="Views\Home\Success.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Course_Registration\PaymentSuccessful.cshtml" />
-    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\Courses.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\Events.cshtml" />
     <Content Include="Views\Home\Photos.cshtml" />
     <Content Include="Views\Event_Registration\PaymentSuccessful.cshtml" />
     <Content Include="Views\Event_Registration\Charge.cshtml" />

@@ -19,7 +19,7 @@ namespace LOLAWebsite.Controllers
         private LOLADBEntities db = new LOLADBEntities();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Courses()
         {
             var courses = db.Courses.OrderBy(d => d.Course_Start_Date);
 
@@ -34,7 +34,6 @@ namespace LOLAWebsite.Controllers
     
 
         // GET: Courses/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
