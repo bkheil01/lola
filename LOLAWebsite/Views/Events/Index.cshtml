@@ -26,6 +26,24 @@
 <!-- /.intro-header -->
 <div class="container">
     <div class="row">
+        <div class="form-group [ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <label>Filter Events By Month</label>
+            <select class="form-control" id="monthSelect">
+                <option value="All">Show All Months</option>
+                <option value="Jan">January</option>
+                <option value="Feb">Febuary</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+            </select>
+        </div>
         <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
             <ul class="event-list">
                 @foreach (var item in Model)
@@ -36,7 +54,7 @@
                     ed = item.Event_End_Date ?? DateTime.Now;
                     TimeSpan ts = ed - sd;
 
-                    <li>
+                    <li class="@sd.ToString("MMM")">
                         <time datetime="2014-07-20">
                             <span class="day">@sd.Day.ToString()</span>
                             <span class="month">@sd.ToString("MMM")</span>
@@ -55,7 +73,7 @@
                             <h2 class="title">@Html.DisplayFor(modelItem => item.Event_Type)</h2>
                             <p class="desc">@Html.DisplayFor(modelItem => item.Event_Desc)</p>
                             <ul>
-                                <li class="darkerGrey"  style="width:100%;">@Html.ActionLink("Click here for Event details and to register", "Details", new { id = item.Event_ID })</li>
+                                <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Event details and to register", "Details", new { id = item.Event_ID })</li>
                             </ul>
                         </div>
                     </li>
@@ -64,3 +82,78 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script type="text/javascript">
+        $('document').ready(function () {
+            $('#monthSelect').change(function () {
+                $('.Jan').hide();
+                $('.Feb').hide();
+                $('.Mar').hide();
+                $('.Apr').hide();
+                $('.May').hide();
+                $('.Jun').hide();
+                $('.Jul').hide();
+                $('.Aug').hide();
+                $('.Sep').hide();
+                $('.Oct').hide();
+                $('.Nov').hide();
+                $('.Dec').hide();
+
+                var month = $("#monthSelect option:selected").val();
+
+                switch (month) {
+                    case 'Jan':
+                        $('.Jan').show();
+                        break;
+                    case 'Feb':
+                        $('.Feb').show();
+                        break;
+                    case 'Mar':
+                        $('.Mar').show();
+                        break;
+                    case 'Apr':
+                        $('.Apr').show();
+                        break;
+                    case 'May':
+                        $('.May').show();
+                        break;
+                    case 'Jun':
+                        $('.Jun').show();
+                        break;
+                    case 'Jul':
+                        $('.Jul').show();
+                        break;
+                    case 'Aug':
+                        $('.Aug').show();
+                        break;
+                    case 'Sep':
+                        $('.Sep').show();
+                        break;
+                    case 'Oct':
+                        $('.Oct').show();
+                        break;
+                    case 'Nov':
+                        $('.Nov').show();
+                        break;
+                    case 'Dec':
+                        $('.Dec').show();
+                        break;
+                    default:
+                        $('.Jan').show();
+                        $('.Feb').show();
+                        $('.Mar').show();
+                        $('.Apr').show();
+                        $('.May').show();
+                        $('.Jun').show();
+                        $('.Jul').show();
+                        $('.Aug').show();
+                        $('.Sep').show();
+                        $('.Oct').show();
+                        $('.Nov').show();
+                        $('.Dec').show();
+                }
+
+            });
+        });
+    </script>
+}
