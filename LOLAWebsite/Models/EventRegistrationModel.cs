@@ -8,7 +8,6 @@ namespace LOLAWebsite.Models
 
     public class EventRegistrationModel
     {
-        [Required]
         public string Token { get; set; }
 
         public List<Participant> Participant { get; set; }

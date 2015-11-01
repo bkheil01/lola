@@ -437,6 +437,8 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Links.cshtml" />
     <Content Include="Views\Course_Registration\Charge.cshtml" />
+    <Content Include="Views\Course_Registration\FreeRegistration.cshtml" />
+    <Content Include="Views\Event_Registration\FreeRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -91,5 +91,37 @@ namespace LOLAWebsite.Controllers
         {
             return View();
         }
+
+        public ActionResult FreeRegistration(int CourseID)
+        {
+            TempData["courseid"] = CourseID;
+            var course = db.Courses.Find(CourseID);
+            return View(new CourseRegistrationModel());
+        }
+
+        [HttpPost]
+        public ActionResult FreeRegistration(CourseRegistrationModel model)
+        {
+            var courseReg = new Course_Registration();
+
+            foreach (var p in model.Participant)
+            {
+                if (p.Name != null)
+                {
+                    courseReg = new Course_Registration()
+                    {
+                        Transaction_ID = "Free Course",
+                        Course_ID = (int)TempData["courseid"],
+                        Id = User.Identity.GetUserId(),
+                        P_Name = p.Name,
+                        P_Phone = p.PhoneNumber,
+                        P_UnderAge = p.UnderAge
+                    };
+                    db.Course_Registration.Add(courseReg);
+                    db.SaveChanges();
+                }
+            }
+            return View("PaymentSuccessful");
+        }
     }
 }

@@ -5,7 +5,7 @@
 
     public class CourseRegistrationModel
     {
-        [Required]
+
         public string Token { get; set; }
 
         public List<Participant> Participant { get; set; }

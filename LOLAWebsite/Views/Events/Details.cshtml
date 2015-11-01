@@ -33,12 +33,32 @@
             <p>@Html.DisplayFor(model => model.Event_Desc)</p>
             <p>Date - @Html.DisplayFor(model => model.Event_Start_Date) - @Html.DisplayFor(model => model.Event_End_Date)</p>
             <p>Time - @Html.DisplayFor(model => model.Event_Time_Start) - @Html.DisplayFor(model => model.Event_Time_End) </p>
-            <p>Cost - @Html.DisplayFor(model => model.Event_Cost)</p>
+            @{
+                if (Model.Event_Cost == 0)
+                {
+                    <p>Cost - FREE</p>
+                }
+                else
+                {
+                    <p>Cost - @Html.DisplayFor(model => model.Event_Cost)</p>
+                }
+            }
             <p>Location -  @Html.DisplayFor(model => model.Event_Location)</p>
             <p>Special Notes - @Html.DisplayFor(model => model.Event_Notes)</p>
-            <p>
-                @Html.ActionLink("Register for this event", "Charge", "Event_Registration", new { EventID = Model.Event_ID }, new { @class = "btn btn-default skyblue" })
-            </p>
+            @{
+                if (Model.Event_Cost == 0)
+                {
+                    <p>
+                        @Html.ActionLink("Register for this event", "FreeRegistration", "Event_Registration", new { EventID = Model.Event_ID }, new { @class = "btn btn-default skyblue" })
+                    </p>
+                }
+                else
+                {
+                   <p>
+                        @Html.ActionLink("Register for this event", "Charge", "Event_Registration", new { EventID = Model.Event_ID }, new { @class = "btn btn-default skyblue" })
+                    </p> 
+                }
+            }
         </div>
         <div class="col-sm-6">
             @{

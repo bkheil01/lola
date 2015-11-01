@@ -1,7 +1,7 @@
 ﻿@model LOLAWebsite.Models.EventRegistrationModel
-<script src="https://checkout.stripe.com/checkout.js"></script>
 @{
-    ViewBag.Title = "Charge";
+    ViewBag.Title = "FreeRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Header -->
@@ -25,7 +25,7 @@
 
 
 <div class="container navbarpad">
-    @using (Html.BeginForm("Charge", "Event_Registration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
+    @using (Html.BeginForm("FreeRegistration", "Event_Registration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
     {
         @Html.AntiForgeryToken()
         <div class="col-md-5">
@@ -122,8 +122,6 @@
                 To register for the event, select the number of participants and fill out the participant
                 information. If the participant is under 18, please check the checkbox.
             </p>
-            <p>All payments done through the LOLA website are done securly through the Stipe.com online merchant.</p>
-            <img src="~/img/Stripe.png" style="width:100px; max-width:100%" />
         </div>
     }
 </div>
@@ -151,26 +149,7 @@
                     $(part).show();
                 }
             });
-            var handler = StripeCheckout.configure({
-                key: 'pk_test_HoPqOGqtlmgKQ3dWeVvbZFgA',
-                locale: 'auto',
-                token: function (token) {
-                    var $form = $('#frmCharge');
-                    var response = token.id;
-                    $('#hdnToken').val(response);
-                    $('#frmCharge').get(0).submit();
-                }
-            });
-            $('#stripeButton').on('click', function (e) {
-                var amount;
-                handler.open({
-                    name: 'Land O Lakes Artisans',
-                    description: 'Register for LOLA Event',
-                    amount: amount,
-                    billingAddress: true
-                });
-                e.preventDefault();
-            });
         });
     </script>
 }
+

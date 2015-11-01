@@ -89,6 +89,36 @@ namespace LOLAWebsite.Controllers
         {
             return View();
         }
+
+        public ActionResult FreeRegistration(int EventID)
+        {
+            TempData["eventid"] = EventID;
+            return View(new EventRegistrationModel());
+        }
+
+        [HttpPost]
+        public ActionResult FreeRegistration(EventRegistrationModel model)
+        {
+            foreach (var p in model.Participant)
+            {
+                if (p.Name != null)
+                {
+                    var eventReg = new Event_Registration()
+                    {
+                        Transaction_ID = "Free Event",
+                        Event_ID = (int)TempData["eventid"],
+                        Id = User.Identity.GetUserId(),
+                        P_Name = p.Name,
+                        P_Phone = p.PhoneNumber,
+                        P_UnderAge = p.UnderAge
+                    };
+
+                    db.Event_Registration.Add(eventReg);
+                    db.SaveChanges();
+                }
+            }
+            return View("PaymentSuccessful");
+        }
         
     }
 }

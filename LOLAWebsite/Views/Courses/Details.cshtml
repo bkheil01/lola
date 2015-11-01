@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Details";
 }
-<script src="https://checkout.stripe.com/checkout.js"></script>
 <!-- Header -->
 <a name="about"></a>
 <div class="intro-header3">
@@ -32,12 +31,32 @@
         <p>@Html.DisplayFor(model => model.Course_Desc)</p>
         <p>Date - @Html.DisplayFor(model => model.Course_Start_Date) - @Html.DisplayFor(model => model.Course_End_Date)</p>
         <p>Time - @Html.DisplayFor(model => model.Course_Time_Start) - @Html.DisplayFor(model => model.Course_Time_End) </p>
-        <p>Cost - @Html.DisplayFor(model => model.Course_Cost)</p>
+        @{
+            if (Model.Course_Cost == 0)
+            {
+                <p>Cost - FREE</p>
+            }
+            else
+            {
+                <p>Cost - @Html.DisplayFor(model => model.Course_Cost)</p>
+            }
+        }
         <p>Location -  @Html.DisplayFor(model => model.Course_Location)</p>
         <p>Special Notes - @Html.DisplayFor(model => model.Course_Notes)</p> 
-        <p>
-           @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Course_ID }, new { @class = "btn btn-default skyblue" })
-        </p>
+        @{
+            if (Model.Course_Cost == 0)
+            {
+                <p>
+                   @Html.ActionLink("Register for this course", "FreeRegistration", "Course_Registration", new { CourseID = Model.Course_ID }, new { @class = "btn btn-default skyblue" })
+                </p>
+            }
+            else
+            {
+                <p>
+                   @Html.ActionLink("Register for this course", "Charge", "Course_Registration", new { CourseID = Model.Course_ID }, new { @class = "btn btn-default skyblue" })
+                </p>
+            }
+        }
     </div>
     <div class="col-sm-6">
         @{
