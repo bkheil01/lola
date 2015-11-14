@@ -1,0 +1,55 @@
+﻿@using LOLAWebsite.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+<h2>Personal Information</h2>
+
+<p>This is the current information you have provided us with.</p>
+
+<!-- GET : user information -->
+@{
+    var currentUserID = User.Identity.GetUserId();
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = userManager.FindById(User.Identity.GetUserId());
+    
+    
+    String currentUserName = currentUser.FirstName.ToString() + " " + currentUser.LastName.ToString();
+    String currentUserAddressLine1 = currentUser.Address.ToString();
+    String currentUserAddressLine2 = currentUser.City.ToString() + ", " + currentUser.State.ToString() + " " + currentUser.Zip.ToString();
+    String currentUserEmail = currentUser.Email.ToString();
+    String currentUserPhone = String.Format("({0}) {1}-{2}", currentUser.Phone.Substring(0, 3), currentUser.Phone.Substring(3, 3), currentUser.Phone.Substring(6, 4));
+    String currentUserDob = String.Format("{0:MM/dd/yyyy}", currentUser.BirthDate);
+}
+<!-- /user information -->
+
+<!-- display user information in a table -->
+<table>
+    <tr>
+        <td>Name:</td>
+        <td>@currentUserName</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>@currentUserEmail</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:text-top">Address:</td>
+        <td>
+            @currentUserAddressLine1<br />
+            @currentUserAddressLine2
+        </td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>@currentUserPhone</td>
+    </tr>
+    <tr>
+        <td>Birthday:</td>
+        <td>@currentUserDob</td>
+    </tr>
+</table>
+<!-- /display user information -->
+
+<p>
+    <a class="btn btn-default" @Html.ActionLink("Edit information or change password", "PersonalInfo", "UserAccounts")</a>
+    <a class="btn btn-default" @Html.ActionLink("Change Password", "Manage", "Account")</a>
+</p>

@@ -36,6 +36,7 @@ namespace LOLAWebsite.Controllers
             //}
 
             var chargeId = await ProcessPayment(model, (int)TempData["eventid"]);
+            Event @event = db.Events.Find((int)TempData["eventid"]);
 
             foreach (var p in model.Participant)
             {
@@ -50,7 +51,7 @@ namespace LOLAWebsite.Controllers
                         P_Phone = p.PhoneNumber,
                         P_UnderAge = p.UnderAge
                     };
-
+                    @event.Tickets_Sold++;
                     db.Event_Registration.Add(eventReg);
                     db.SaveChanges();
                 }
@@ -99,6 +100,7 @@ namespace LOLAWebsite.Controllers
         [HttpPost]
         public ActionResult FreeRegistration(EventRegistrationModel model)
         {
+            Event @event = db.Events.Find((int)TempData["eventid"]);
             foreach (var p in model.Participant)
             {
                 if (p.Name != null)
@@ -112,7 +114,7 @@ namespace LOLAWebsite.Controllers
                         P_Phone = p.PhoneNumber,
                         P_UnderAge = p.UnderAge
                     };
-
+                    @event.Tickets_Sold++;
                     db.Event_Registration.Add(eventReg);
                     db.SaveChanges();
                 }

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Course History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.png" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Class History</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<!-- Accounts navigation bar -->
+@Html.Partial("_AccountsNavBarPartial")
+<!-- /accounts navigation bar -->
+
+<div class="container">
+    
+    <div class="col-sm-4">
+        <h2>Classes</h2>
+        <p>Education in the arts is the most important aspect of our activities here at LOLA, so we are grateful that you took classes here.</p>
+        <p>The first section the the right displays any future classes you may be signed up for.</p>
+        <p>The second section lists all the classes you have previously attended.</p>
+    </div>
+
+
+    <div class="col-md-8">
+        <!--
+            TODO : Section for upcomming classes
+
+            GET : ~/UserAccounts/_UpcomingClassesPartial.cshtml
+        -->
+        <div style="clear:both;">@Html.Partial("_UpcomingCoursesPartial")</div>
+        
+        <br />
+
+        <!--
+
+            TODO : Section for past classes
+
+            GET : ~/UserAccounts/_ClassHistoryPartial.cshtml
+
+        -->
+        <div style ="clear:both">@Html.Partial("_CourseHistoryPartial")</div>
+    </div>
+
+
+</div>
+

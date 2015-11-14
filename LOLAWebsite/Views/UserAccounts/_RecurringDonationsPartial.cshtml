@@ -1,0 +1,47 @@
+﻿<!--
+    TODO : Section for Reocurring Donations
+
+    1. get number of reoccuring donations.
+    2. if number of donations = 0 display message
+    3. if number of donations > 0 display donation information
+ -->
+@using LOLAWebsite.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+<h2>Recurring Donations</h2>
+<p>This section will display a list of recurring donations and the amount.</p>
+@{
+    // GET : userID
+    var currentUserID = User.Identity.GetUserId();
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = userManager.FindById(User.Identity.GetUserId());
+    int i = 0;
+
+    // GET : donations
+    LOLADBEntities db = new LOLADBEntities();
+
+    var donations = db.Donations.ToList();
+    if (donations.Count > 0)
+    {
+        foreach (var item in donations)
+        {
+            if (item.Donation_Type == "Subscription - Monthly" && item.Id == currentUserID)
+            {
+                i++;
+                <p>@item.Donation_Amount.ToString() to @item.Donation_Category on [ date forthcoming ]</p>
+            }
+        } // end foreach
+        
+        if (i == 0)
+        {
+            <p>You have not set up any recurring donations.</p>
+        }
+        
+    } // end if
+
+    else
+    {
+        <p>There are no donations in the database right now.</p>
+    }
+}

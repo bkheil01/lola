@@ -37,6 +37,7 @@ namespace LOLAWebsite.Controllers
             //}
 
             var chargeId = await ProcessPayment(model, (int)TempData["courseid"] );
+            Course @course = db.Courses.Find((int)TempData["courseid"]);
 
             var courseReg = new Course_Registration();
 

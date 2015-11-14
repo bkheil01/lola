@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "DonationHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.png" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Donation History</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<!-- Accounts navigation bar -->
+@Html.Partial("_AccountsNavBarPartial")
+<!-- /accounts navigation bar -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            @Html.Partial("_RecurringDonationsPartial")
+        </div>
+
+        <div class="col-md-9">
+            @Html.Partial("_DonationHistoryPartial")
+            
+            <!-- Display a button with a link to the donations page -->
+            
+            <p><a class="btn btn-default" @Html.ActionLink("Make a donation to LOLA.", "Donations", "Donations")</a></p>
+        </div>
+    </div>
+</div>

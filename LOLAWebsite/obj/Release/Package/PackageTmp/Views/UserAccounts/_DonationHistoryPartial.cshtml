@@ -1,0 +1,45 @@
+﻿<!--
+    TODO : Donation History
+
+    1. get userId
+    2. get donation with userId
+    3. if no donations display a message
+    4. if there are donations display donations in a table
+-->
+@using LOLAWebsite.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+<h2>Donation History</h2>
+<p>These are the donations you have made to LOLA.</p>
+@{
+    // GET : userID
+    var currentUserID = User.Identity.GetUserId();
+    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = userManager.FindById(User.Identity.GetUserId());
+
+    // GET : donations
+    LOLADBEntities db = new LOLADBEntities();
+
+    var donations = db.Donations.ToList();
+    if (donations.Count > 0)
+    {
+        foreach (var item in donations)
+        {
+            int i=0;
+            if (item.Donation_Type == "One Time" && item.Id==currentUserID)
+            {
+                i++;
+                <p>@item.Donation_Amount.ToString() to @item.Donation_Category on [ date function forthcoming ].</p>
+            }
+            if (i == 0)
+            {
+                <p>You have not made any donations.</p>
+            }
+        }
+    }
+    else
+    {
+        <p>There are no donations in the database.</p>
+    }
+}

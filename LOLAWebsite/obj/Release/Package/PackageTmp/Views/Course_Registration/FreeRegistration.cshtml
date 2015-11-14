@@ -1,0 +1,154 @@
+﻿@model LOLAWebsite.Models.CourseRegistrationModel
+@{
+    ViewBag.Title = "FreeRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.png" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Course Registration</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="container navbarpad">
+    @using (Html.BeginForm("FreeRegistration", "Course_Registration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmCharge" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-5">
+            <h4>Register for Course</h4>
+            <label>Select number of Participants</label>
+            <select id="selectStores">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="smallspacer"></div>
+            <div id="coursePart1">
+                <div class="form-group">
+                    <label>Name for Participant 1</label>
+                    @Html.TextBoxFor(model => model.Participant[0].Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Phone Number for Participant 1</label>
+                    @Html.TextBoxFor(model => model.Participant[0].PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(model => model.Participant[0].UnderAge) Is Participant 1 Under Age?
+                </div>
+            </div>
+            <div class="smallspacer"></div>
+            <div id="coursePart2">
+                <div class="form-group">
+                    <label>Name for Participant 2</label>
+                    @Html.TextBoxFor(model => model.Participant[1].Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Phone Number for Participant 2</label>
+                    @Html.TextBoxFor(model => model.Participant[1].PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(model => model.Participant[1].UnderAge) Is Participant 2 Under Age?
+                </div>
+            </div>
+            <div class="smallspacer"></div>
+            <div id="coursePart3">
+                <div class="form-group">
+                    <label>Name for Participant 3</label>
+                    @Html.TextBoxFor(model => model.Participant[2].Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Phone Number for Participant 3</label>
+                    @Html.TextBoxFor(model => model.Participant[2].PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(model => model.Participant[2].UnderAge) Is Participant 3 Under Age?
+                </div>
+            </div>
+            <div class="smallspacer"></div>
+            <div id="coursePart4">
+                <div class="form-group">
+                    <label>Name for Participant 4</label>
+                    @Html.TextBoxFor(model => model.Participant[3].Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Phone Number for Participant 4</label>
+                    @Html.TextBoxFor(model => model.Participant[3].PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(model => model.Participant[3].UnderAge) Is Participant 4 Under Age?
+                </div>
+            </div>
+            <div class="smallspacer"></div>
+            <div id="coursePart5">
+                <div class="form-group">
+                    <label>Name for Participant 5</label>
+                    @Html.TextBoxFor(model => model.Participant[4].Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Phone Number for Participant 5</label>
+                    @Html.TextBoxFor(model => model.Participant[4].PhoneNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(model => model.Participant[4].UnderAge) Is Participant 5 Under Age?
+                </div>
+            </div>
+            <div class="largespacer"></div>
+            <button class="btn btn-primary" id="stripeButton">Register</button>
+            <div class="largespacer"></div>
+
+            @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
+            @Html.HiddenFor(model => model.NumberOfParticipants, new { id = "numOfPart" })
+        </div>
+        <div class="col-md-5 skyblue">
+            <div class="largespacer"></div>
+            <p>
+                To register for the course, select the number of participants and fill out the participant
+                information. If the participant is under 18, please check the checkbox.
+            </p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Hides Participant Forms
+            $('#coursePart1').hide();
+            $('#coursePart2').hide();
+            $('#coursePart3').hide();
+            $('#coursePart4').hide();
+            $('#coursePart5').hide();
+
+            $("#selectStores").change(function () {
+                $('#coursePart1').hide();
+                $('#coursePart2').hide();
+                $('#coursePart3').hide();
+                $('#coursePart4').hide();
+                $('#coursePart5').hide();
+                var number = $("#selectStores option:selected").text();
+                $('#numOfPart').val(number);
+                for (var i = 1; i <= number; i++) {
+                    var part = "#coursePart" + i
+                    $(part).show();
+                }
+            });
+        });
+    </script>
+}
+

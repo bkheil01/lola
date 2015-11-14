@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "EventHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.png" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Event History</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<!-- Accounts navigation bar -->
+@Html.Partial("_AccountsNavBarPartial")
+<!-- /accounts navigation bar -->
+
+<div class="container">
+    <!--
+        TODO : Section for upcomming events
+        GET : ~/UserAccounts/_UpcomingEventsPartial.cshtml
+    -->
+    <div class="col-sm-3">
+       <h2>Events</h2>
+        <p>This page details your involvement in LOLA events.</p>
+        <p>The first section lists any upcoming events you signed up for.</p>
+        <p>The second section lists all the past events you signed up for.</p>
+    </div>
+
+    <!--
+        
+        TODO : Section for past events
+
+        GET : ~/UserAccounts/_EventHistoryPartial.cshtml
+    
+    -->
+    <div class="col-md-9">
+        @Html.Partial("_UpcomingEventsPartial")
+        @Html.Partial("_EventHistoryPartial")
+    </div>
+
+
+</div>

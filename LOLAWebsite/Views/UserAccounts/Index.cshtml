@@ -1,0 +1,80 @@
+﻿@using LOLAWebsite.Models;
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+<link href="~/Content/events.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@{
+    ViewBag.Title = "Account Overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";  // standard layout
+}
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <!-- LOLA Logo-->
+                    <img src="~/img/logo.png" id="homelogo" />
+                    <hr class="intro-divider">
+                    <h1>Account Overview</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<!-- Accounts navigation bar -->
+@Html.Partial("_AccountsNavBarPartial")
+<!-- /accounts navigation bar -->
+
+<div class="container">
+    <div class="row"><!-- begin row 1 -->
+        <!--
+            section for Personal Information
+
+            GET : ~/UserAccounts/_PersonalPartial.cshtml
+        -->
+        <div class="col-sm-4">
+            @Html.Partial("_PersonalPartial")
+        </div>
+
+        <!--
+            section for Upcomming Classes
+
+            GET : ~/UserAccounts/_UpcomingCoursesPartial.cshtml
+        -->
+        <div class="col-md-8">
+            <p>@Html.Partial("_UpcomingCoursesPartial")</p>
+            <p><a class="btn btn-default" @Html.ActionLink("View class history and details.", "CourseHistory", "UserAccounts")</a></p>
+        </div>    
+    </div> <!-- end row 1-->
+
+    <div class="row"> <!-- begin row 2 -->
+        <!--
+            Section for reocurring donations
+        
+            GET : /UserAccounts/_RecurringDonationsPartial
+        -->
+        <div class="col-sm-4">
+            <p>@Html.Partial("_RecurringDonationsPartial")</p>
+            <p><a class="btn btn-default" @Html.ActionLink("View your donation history.", "DonationHistory", "UserAccounts")</a></p>
+        </div>
+
+        <!--
+            section for upcoming events
+
+            GET : /UserAccounts/_UpcomingEventsPartial
+        -->
+        <div class="col-md-8">
+            <p>@Html.Partial("_UpcomingEventsPartial")</p> 
+            <p><a class="btn btn-default" @Html.ActionLink("View your event history and details.", "EventHistory", "UserAccounts")</a></p>
+        </div>
+    </div> <!-- end row 2 -->
+
+</div>
