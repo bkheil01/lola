@@ -17,18 +17,23 @@ namespace LOLAWebsite.Models
     {
         public Course()
         {
+            this.Course_Feedback = new HashSet<Course_Feedback>();
             this.Course_Registration = new HashSet<Course_Registration>();
-            this.Feedbacks = new HashSet<Feedback>();
         }
-    
+
         public int Course_ID { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Name")]
         public string Course_Type { get; set; }
 
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Course_Desc { get; set; }
+
+        [Display(Name = "Teacher")]
         public Nullable<int> Teacher_ID { get; set; }
+
+        [Display(Name = "Max Students")]
         public Nullable<int> Course_Max_Size { get; set; }
 
         [Display(Name = "Start Date")]
@@ -55,10 +60,14 @@ namespace LOLAWebsite.Models
         public string Course_Location { get; set; }
 
         [Display(Name = "Special Notes")]
+        [DataType(DataType.MultilineText)]
         public string Course_Notes { get; set; }
-    
+
+
+        public Nullable<int> Participating_Students { get; set; }
+
+        public virtual ICollection<Course_Feedback> Course_Feedback { get; set; }
         public virtual ICollection<Course_Registration> Course_Registration { get; set; }
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual Teacher Teacher { get; set; }
     }
 }

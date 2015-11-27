@@ -43,6 +43,9 @@ namespace LOLAWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Donate(NewDonationModel model)
         {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -54,6 +57,7 @@ namespace LOLAWebsite.Controllers
  
                 var customer = GetCustomer(model, plan);
 
+
                 var chargeId = await SubscriptionDonation(model, customer);
 
                 var donate = new Donation()
@@ -61,7 +65,10 @@ namespace LOLAWebsite.Controllers
                     Donation_Type = "Subscription - Monthly",
                     Donation_Category = model.Category,
                     Id = User.Identity.GetUserId(),
-                    Donation_Amount = model.Amount
+                    Donation_Amount = model.Amount,
+                    Donation_Date = System.DateTime.Now,
+                    Active_Donation = true,
+                    Transaction_ID = chargeId
                 };
 
                 db.Donations.Add(donate);
@@ -76,7 +83,9 @@ namespace LOLAWebsite.Controllers
                     Donation_Type = "One Time",
                     Donation_Category = model.Category,
                     Id = User.Identity.GetUserId(),
-                    Donation_Amount = model.Amount
+                    Donation_Amount = model.Amount,
+                    Donation_Date = System.DateTime.Now,
+                    Transaction_ID = chargeId
                 };
 
                 db.Donations.Add(donate);

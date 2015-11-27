@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LOLADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityType Name="AspNetRole">
     <Key>
       <PropertyRef Name="Id" />
@@ -70,9 +60,26 @@
     <NavigationProperty Name="Donations" Relationship="Self.fk_UserDonation" FromRole="AspNetUsers" ToRole="Donation" />
     <NavigationProperty Name="Employees" Relationship="Self.fk_UserEmployee" FromRole="AspNetUsers" ToRole="Employee" />
     <NavigationProperty Name="Event_Registration" Relationship="Self.fk_UserEventRegistration" FromRole="AspNetUsers" ToRole="Event_Registration" />
-    <NavigationProperty Name="Feedbacks" Relationship="Self.fk_UserFeedback" FromRole="AspNetUsers" ToRole="Feedback" />
+    <NavigationProperty Name="Course_Feedback" Relationship="Self.fk_UserFeedback" FromRole="AspNetUsers" ToRole="Course_Feedback" />
+    <NavigationProperty Name="Event_Feedback" Relationship="Self.fk_UserID" FromRole="AspNetUsers" ToRole="Event_Feedback" />
     <NavigationProperty Name="Teachers" Relationship="Self.fk_UserTeacher" FromRole="AspNetUsers" ToRole="Teacher" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Course_Feedback">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Teacher_ID" Type="Int32" />
+    <Property Name="Course_Marketing" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Course_Registration_Type" Type="Boolean" />
+    <Property Name="Course_Rating" Type="Int32" />
+    <Property Name="Student_Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserFeedback" FromRole="Course_Feedback" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Course_Feedback" ToRole="Courses" />
+    <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Course_Feedback" ToRole="Teacher" />
   </EntityType>
   <EntityType Name="Course_Registration">
     <Key>
@@ -104,8 +111,9 @@
     <Property Name="Course_Cost" Type="Single" />
     <Property Name="Course_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Course_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Participating_Students" Type="Int32" />
+    <NavigationProperty Name="Course_Feedback" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Course_Feedback" />
     <NavigationProperty Name="Course_Registration" Relationship="Self.fk_CourseRegistration" FromRole="Courses" ToRole="Course_Registration" />
-    <NavigationProperty Name="Feedbacks" Relationship="Self.fk_CourseFeedback" FromRole="Courses" ToRole="Feedback" />
     <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherCourses" FromRole="Courses" ToRole="Teacher" />
   </EntityType>
   <EntityType Name="Donation">
@@ -118,6 +126,8 @@
     <Property Name="Donation_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Donation_Amount" Type="Single" />
     <Property Name="Donation_Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Active_Donation" Type="Boolean" />
+    <Property Name="Donation_Date" Type="DateTime" Precision="0" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserDonation" FromRole="Donation" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Employee">
@@ -130,6 +140,20 @@
     <Property Name="Job_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserEmployee" FromRole="Employee" ToRole="AspNetUsers" />
   </EntityType>
+  <EntityType Name="Event_Feedback">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Event_ID" Type="Int32" />
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Event_Marketing" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Event_Registration_Type" Type="Boolean" />
+    <Property Name="Event_Rating" Type="Int32" />
+    <Property Name="Student_Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserID" FromRole="Event_Feedback" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Event" Relationship="Self.fk_EventFeedback" FromRole="Event_Feedback" ToRole="Events" />
+  </EntityType>
   <EntityType Name="Event_Registration">
     <Key>
       <PropertyRef Name="Event_Registration_ID" />
@@ -137,7 +161,6 @@
     <Property Name="Event_Registration_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Event_ID" Type="Int32" />
-    <Property Name="Event_Date" Type="DateTime" Precision="0" />
     <Property Name="Transaction_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="P_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="P_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -161,33 +184,8 @@
     <Property Name="Event_Cost" Type="Single" />
     <Property Name="Event_Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Event_Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Event_Feedback" Relationship="Self.fk_EventFeedback" FromRole="Events" ToRole="Event_Feedback" />
     <NavigationProperty Name="Event_Registration" Relationship="Self.fk_EventIDRegistration" FromRole="Events" ToRole="Event_Registration" />
-  </EntityType>
-  <EntityType Name="Feedback">
-    <Key>
-      <PropertyRef Name="Feedback_ID" />
-    </Key>
-    <Property Name="Feedback_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Course_ID" Type="Int32" />
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Teacher_ID" Type="Int32" />
-    <Property Name="Course_Marketing" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Course_Registration_Type" Type="Boolean" />
-    <Property Name="Course_Rating" Type="Int32" />
-    <Property Name="Student_Comment" Type="Int32" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserFeedback" FromRole="Feedback" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Cours" Relationship="Self.fk_CourseFeedback" FromRole="Feedback" ToRole="Courses" />
-    <NavigationProperty Name="Teacher" Relationship="Self.fk_TeacherFeedback" FromRole="Feedback" ToRole="Teacher" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -197,8 +195,8 @@
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="SSN" Type="Int32" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.fk_UserTeacher" FromRole="Teacher" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Course_Feedback" Relationship="Self.fk_TeacherFeedback" FromRole="Teacher" ToRole="Course_Feedback" />
     <NavigationProperty Name="Courses" Relationship="Self.fk_TeacherCourses" FromRole="Teacher" ToRole="Courses" />
-    <NavigationProperty Name="Feedbacks" Relationship="Self.fk_TeacherFeedback" FromRole="Teacher" ToRole="Feedback" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -278,12 +276,24 @@
   </Association>
   <Association Name="fk_UserFeedback">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Feedback">
+      <Dependent Role="Course_Feedback">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserID">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Event_Feedback" Type="Self.Event_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event_Feedback">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -300,6 +310,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_CourseFeedback">
+    <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Course_Feedback">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_TeacherFeedback">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Teacher_ID" />
+      </Principal>
+      <Dependent Role="Course_Feedback">
+        <PropertyRef Name="Teacher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_CourseRegistration">
     <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
     <End Role="Course_Registration" Type="Self.Course_Registration" Multiplicity="*" />
@@ -308,18 +342,6 @@
         <PropertyRef Name="Course_ID" />
       </Principal>
       <Dependent Role="Course_Registration">
-        <PropertyRef Name="Course_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_CourseFeedback">
-    <End Role="Courses" Type="LOLADBModel.Course" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Courses">
-        <PropertyRef Name="Course_ID" />
-      </Principal>
-      <Dependent Role="Feedback">
         <PropertyRef Name="Course_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -336,6 +358,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_EventFeedback">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Event_Feedback" Type="Self.Event_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Event_ID" />
+      </Principal>
+      <Dependent Role="Event_Feedback">
+        <PropertyRef Name="Event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_EventIDRegistration">
     <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
     <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
@@ -348,36 +382,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_TeacherFeedback">
-    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Teacher">
-        <PropertyRef Name="Teacher_ID" />
-      </Principal>
-      <Dependent Role="Feedback">
-        <PropertyRef Name="Teacher_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="AspNetUserRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
   <EntityContainer Name="LOLADBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Course_Feedback" EntityType="Self.Course_Feedback" />
     <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" />
     <EntitySet Name="Courses" EntityType="LOLADBModel.Course" />
     <EntitySet Name="Donations" EntityType="Self.Donation" />
     <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Event_Feedback" EntityType="Self.Event_Feedback" />
     <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" />
     <EntitySet Name="Events" EntityType="Self.Event" />
-    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Teachers" EntityType="Self.Teacher" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -405,31 +426,39 @@
     </AssociationSet>
     <AssociationSet Name="fk_UserFeedback" Association="Self.fk_UserFeedback">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Feedback" EntitySet="Feedbacks" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserID" Association="Self.fk_UserID">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Event_Feedback" EntitySet="Event_Feedback" />
     </AssociationSet>
     <AssociationSet Name="fk_UserTeacher" Association="Self.fk_UserTeacher">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Teacher" EntitySet="Teachers" />
     </AssociationSet>
+    <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="fk_TeacherFeedback" Association="Self.fk_TeacherFeedback">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
+    </AssociationSet>
     <AssociationSet Name="fk_CourseRegistration" Association="Self.fk_CourseRegistration">
       <End Role="Courses" EntitySet="Courses" />
       <End Role="Course_Registration" EntitySet="Course_Registration" />
-    </AssociationSet>
-    <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
-      <End Role="Courses" EntitySet="Courses" />
-      <End Role="Feedback" EntitySet="Feedbacks" />
     </AssociationSet>
     <AssociationSet Name="fk_TeacherCourses" Association="Self.fk_TeacherCourses">
       <End Role="Teacher" EntitySet="Teachers" />
       <End Role="Courses" EntitySet="Courses" />
     </AssociationSet>
+    <AssociationSet Name="fk_EventFeedback" Association="Self.fk_EventFeedback">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Event_Feedback" EntitySet="Event_Feedback" />
+    </AssociationSet>
     <AssociationSet Name="fk_EventIDRegistration" Association="Self.fk_EventIDRegistration">
       <End Role="Events" EntitySet="Events" />
       <End Role="Event_Registration" EntitySet="Event_Registration" />
-    </AssociationSet>
-    <AssociationSet Name="fk_TeacherFeedback" Association="Self.fk_TeacherFeedback">
-      <End Role="Teacher" EntitySet="Teachers" />
-      <End Role="Feedback" EntitySet="Feedbacks" />
     </AssociationSet>
     <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />

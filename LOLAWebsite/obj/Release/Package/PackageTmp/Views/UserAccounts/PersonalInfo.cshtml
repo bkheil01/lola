@@ -1,5 +1,4 @@
-﻿
-@using LOLAWebsite.Models;
+﻿@using LOLAWebsite.Models;
 @using LOLAWebsite.Controllers (CourseController)
 @using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework;
@@ -7,7 +6,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Personal Information";
-    
+
     var currentUserID = User.Identity.GetUserId();
     var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -33,14 +32,13 @@
     <!-- /.container -->
 </div>
 <!-- /.intro-header -->
-
 <!-- Accounts navigation bar -->
 @Html.Partial("_AccountsNavBarPartial")
 <!-- /accounts navigation bar -->
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <h2>Personal Information</h2>
 
             <p>Use this page to change your personal information.</p>
@@ -50,7 +48,7 @@
             <p><a class="btn btn-default" @Html.ActionLink("Change Password", "_ChangePasswordPartial", "Account")</a></p>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="container navbarpad">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
@@ -61,7 +59,7 @@
                             @Html.TextBoxFor(m => currentUser.Email, new { @class = "form-control" })
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         @Html.LabelFor(m => currentUser.FirstName, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
@@ -120,7 +118,6 @@
         </div> <!-- end right block -->
     </div> <!-- end row -->
 </div> <!-- end content container -->
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

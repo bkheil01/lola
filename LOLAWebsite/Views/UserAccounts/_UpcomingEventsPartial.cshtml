@@ -48,7 +48,8 @@
                 i++;
                 DateTime sd = thisEvent.Event_Start_Date ?? DateTime.Now;
                 DateTime ed = thisEvent.Event_End_Date ?? DateTime.Now;
-                <div class="[ col-xs-12 col-sm-offset-1 col-sm-8 ]">
+                <div class="[ col-xs-12 col-sm-offset-1 col-md-12 ]">
+                    @Html.AntiForgeryToken()
                     <ul class="event-list">
                         <li id="eventContainer" class="@sd.ToString("MMM")">
                             <time>
@@ -69,7 +70,12 @@
                                 <h2 class="title">@Html.DisplayFor(modelItem => thisEvent.Event_Type)</h2>
                                 <p class="desc">@Html.DisplayFor(modelItem => thisEvent.Event_Desc)</p>
                                 <ul>
-                                    <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Course details", "Details", new { id = item.Event_ID })</li>
+                                    <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Event details", "Details", "Events", new { id = item.Event_ID }, null)</li>
+                                </ul>
+                                <ul>
+                                    <li class="darkerGrey" style="width:100%;">
+                                        @Html.ActionLink("Click Here to Give Feedback!", "EventFeedback", "UserAccounts", new { id = thisEvent.Event_ID })
+                                    </li>
                                 </ul>
                             </div>
                         </li>

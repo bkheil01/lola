@@ -27,15 +27,23 @@
     {
 
         foreach (var item in donations)
-        { 
-            if (item.Donation_Type == "One Time" && item.Id==currentUserID)
+        {
+            if (item.Donation_Type == "One Time" && item.Id == currentUserID)
             {
                 i++;
-                <p>@item.Donation_Amount.ToString() to @item.Donation_Category on [ date function forthcoming ].</p>
+                <ul>
+                    <li>
+                        <div class="info">
+                            <span>$@item.Donation_Amount.ToString()</span>
+                            <span>to</span>
+                            <span>@item.Donation_Category</span>
+                        </div>
+                    </li>
+                </ul>
             } // end if
 
         } // end for each
-        
+
         if (i == 0)
         {
             <p>You have not made any donations.</p>

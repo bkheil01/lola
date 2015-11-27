@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/01/2015 18:07:17</publishTime>
     </File>
     <File Include="bin/LOLAWebsite.dll">
-      <publishTime>11/02/2015 14:56:32</publishTime>
+      <publishTime>11/16/2015 14:04:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>10/01/2015 18:07:19</publishTime>
@@ -187,13 +187,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/28/2015 20:31:30</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/28/2015 20:26:03</publishTime>
+      <publishTime>11/15/2015 21:21:26</publishTime>
     </File>
     <File Include="docs/ArtImpression_Registration.pdf">
-      <publishTime>10/01/2015 18:09:50</publishTime>
+      <publishTime>11/11/2015 10:23:55</publishTime>
     </File>
     <File Include="docs/ArtImpression_Requirements.pdf">
-      <publishTime>10/01/2015 18:09:50</publishTime>
+      <publishTime>11/11/2015 10:23:55</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/01/2015 18:07:10</publishTime>
@@ -391,31 +391,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2015 18:37:23</publishTime>
     </File>
     <File Include="img/Board/Barbra.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Debra.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Joanne.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Karen.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Lynn.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Mary.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Sandra.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
+    </File>
+    <File Include="img/Board/Stephanie.jpg">
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Susan.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
     </File>
     <File Include="img/Board/Wendy.jpg">
-      <publishTime>11/02/2015 14:18:18</publishTime>
+      <publishTime>11/16/2015 13:52:16</publishTime>
+    </File>
+    <File Include="img/Donate_Now.jpg">
+      <publishTime>11/15/2015 20:58:43</publishTime>
     </File>
     <File Include="img/forest_stock.jpg">
       <publishTime>10/01/2015 18:09:38</publishTime>
@@ -544,7 +550,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/28/2015 20:23:37</publishTime>
     </File>
     <File Include="Models/LOLA.edmx.diagram">
-      <publishTime>10/22/2015 21:15:02</publishTime>
+      <publishTime>11/15/2015 21:52:53</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/18/2015 11:51:05</publishTime>
@@ -592,7 +598,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:02:56</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>11/01/2015 18:35:40</publishTime>
+      <publishTime>11/15/2015 11:31:58</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>10/15/2015 19:03:13</publishTime>
@@ -667,7 +673,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 18:05:18</publishTime>
     </File>
     <File Include="Views/Donations/Donations.cshtml">
-      <publishTime>10/28/2015 20:32:24</publishTime>
+      <publishTime>11/15/2015 21:43:25</publishTime>
     </File>
     <File Include="Views/Donations/PaymentSuccessful.cshtml">
       <publishTime>11/01/2015 18:22:35</publishTime>
@@ -688,7 +694,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 18:05:11</publishTime>
     </File>
     <File Include="Views/Event_Registration/FreeRegistration.cshtml">
-      <publishTime>11/01/2015 18:13:40</publishTime>
+      <publishTime>11/11/2015 10:00:10</publishTime>
     </File>
     <File Include="Views/Event_Registration/PaymentSuccessful.cshtml">
       <publishTime>11/01/2015 18:23:42</publishTime>
@@ -697,10 +703,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/AboutUs.cshtml">
-      <publishTime>11/02/2015 14:39:31</publishTime>
+      <publishTime>11/16/2015 13:55:50</publishTime>
     </File>
     <File Include="Views/Home/ArtImpression.cshtml">
-      <publishTime>10/28/2015 20:35:53</publishTime>
+      <publishTime>11/11/2015 10:25:45</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>10/28/2015 20:36:00</publishTime>
@@ -709,7 +715,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/28/2015 21:40:08</publishTime>
+      <publishTime>11/16/2015 13:30:53</publishTime>
     </File>
     <File Include="Views/Home/Links.cshtml">
       <publishTime>10/28/2015 20:36:08</publishTime>
@@ -736,43 +742,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2015 14:51:01</publishTime>
     </File>
     <File Include="Views/UserAccounts/CourseHistory.cshtml">
-      <publishTime>11/02/2015 14:53:13</publishTime>
+      <publishTime>11/11/2015 10:40:19</publishTime>
     </File>
     <File Include="Views/UserAccounts/DonationHistory.cshtml">
-      <publishTime>11/02/2015 14:53:57</publishTime>
+      <publishTime>11/11/2015 10:40:54</publishTime>
     </File>
     <File Include="Views/UserAccounts/EventHistory.cshtml">
-      <publishTime>11/02/2015 14:53:04</publishTime>
+      <publishTime>11/11/2015 10:40:54</publishTime>
     </File>
     <File Include="Views/UserAccounts/Index.cshtml">
-      <publishTime>11/02/2015 14:51:44</publishTime>
+      <publishTime>11/11/2015 10:40:54</publishTime>
     </File>
     <File Include="Views/UserAccounts/PersonalInfo.cshtml">
-      <publishTime>11/02/2015 14:52:54</publishTime>
+      <publishTime>11/16/2015 13:30:30</publishTime>
     </File>
     <File Include="Views/UserAccounts/_AccountsNavBarPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/11/2015 10:38:25</publishTime>
     </File>
     <File Include="Views/UserAccounts/_CourseHistoryPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/16/2015 10:12:57</publishTime>
     </File>
     <File Include="Views/UserAccounts/_DonationHistoryPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/11/2015 11:08:39</publishTime>
     </File>
     <File Include="Views/UserAccounts/_EventHistoryPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/16/2015 10:13:10</publishTime>
     </File>
     <File Include="Views/UserAccounts/_PersonalPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/11/2015 10:38:25</publishTime>
     </File>
     <File Include="Views/UserAccounts/_RecurringDonationsPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/11/2015 13:41:15</publishTime>
     </File>
     <File Include="Views/UserAccounts/_UpcomingCoursesPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/16/2015 12:12:49</publishTime>
     </File>
     <File Include="Views/UserAccounts/_UpcomingEventsPartial.cshtml">
-      <publishTime>11/02/2015 14:47:45</publishTime>
+      <publishTime>11/16/2015 10:10:59</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/15/2015 19:03:13</publishTime>
@@ -781,7 +787,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/15/2015 19:03:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/28/2015 21:42:44</publishTime>
+      <publishTime>11/15/2015 21:58:48</publishTime>
     </File>
   </ItemGroup>
 </Project>

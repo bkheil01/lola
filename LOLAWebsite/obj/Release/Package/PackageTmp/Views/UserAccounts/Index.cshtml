@@ -40,7 +40,7 @@
 
             GET : ~/UserAccounts/_PersonalPartial.cshtml
         -->
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             @Html.Partial("_PersonalPartial")
         </div>
 
@@ -49,8 +49,8 @@
 
             GET : ~/UserAccounts/_UpcomingCoursesPartial.cshtml
         -->
-        <div class="col-md-9">
-            @Html.Partial("_UpcomingCoursesPartial")
+        <div class="col-md-8">
+            <p>@Html.Partial("_UpcomingCoursesPartial")</p>
             <p><a class="btn btn-default" @Html.ActionLink("View class history and details.", "CourseHistory", "UserAccounts")</a></p>
         </div>    
     </div> <!-- end row 1-->
@@ -59,10 +59,10 @@
         <!--
             Section for reocurring donations
         
-            GET : /UserAccounts/_RecurringDonations
+            GET : /UserAccounts/_RecurringDonationsPartial
         -->
-        <div class="col-sm-3">
-            @Html.Partial("_RecurringDonationsPartial")
+        <div class="col-sm-4">
+            <p>@Html.Partial("_RecurringDonationsPartial")</p>
             <p><a class="btn btn-default" @Html.ActionLink("View your donation history.", "DonationHistory", "UserAccounts")</a></p>
         </div>
 
@@ -71,15 +71,10 @@
 
             GET : /UserAccounts/_UpcomingEventsPartial
         -->
-        <div class="col-md-9">
-            @Html.Partial("_UpcomingEventsPartial")
+        <div class="col-md-8">
+            <p>@Html.Partial("_UpcomingEventsPartial")</p> 
             <p><a class="btn btn-default" @Html.ActionLink("View your event history and details.", "EventHistory", "UserAccounts")</a></p>
         </div>
     </div> <!-- end row 2 -->
 
 </div>
-
-<!--
-    Scripts
--->
-

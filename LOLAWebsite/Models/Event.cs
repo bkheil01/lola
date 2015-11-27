@@ -17,15 +17,17 @@ namespace LOLAWebsite.Models
     {
         public Event()
         {
+            this.Event_Feedback = new HashSet<Event_Feedback>();
             this.Event_Registration = new HashSet<Event_Registration>();
         }
-    
+
         public int Event_ID { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Name")]
         public string Event_Type { get; set; }
 
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Event_Desc { get; set; }
 
         [Display(Name = "Start Date")]
@@ -42,10 +44,12 @@ namespace LOLAWebsite.Models
 
         [Display(Name = "End Time")]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-
-
         public Nullable<System.TimeSpan> Event_Time_End { get; set; }
+
+        [Display(Name = "Tickets Sold")]
         public Nullable<int> Tickets_Sold { get; set; }
+
+        [Display(Name = "Maximum Tickets")]
         public Nullable<int> Max_Tickets { get; set; }
 
         [Display(Name = "Cost")]
@@ -56,8 +60,10 @@ namespace LOLAWebsite.Models
         public string Event_Location { get; set; }
 
         [Display(Name = "Special Notes")]
+        [DataType(DataType.MultilineText)]
         public string Event_Notes { get; set; }
-    
+
+        public virtual ICollection<Event_Feedback> Event_Feedback { get; set; }
         public virtual ICollection<Event_Registration> Event_Registration { get; set; }
     }
 }

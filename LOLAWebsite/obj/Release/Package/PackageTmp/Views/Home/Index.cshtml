@@ -11,7 +11,7 @@
                     <!-- LOLA Logo-->
                     <img src="~/img/logo.png" id="homelogo" />
                     <hr class="intro-divider">
-                    <h1>Welcome to LOLA!</h1>
+                    <h1></h1>
                 </div>
             </div>
         </div>
@@ -28,20 +28,28 @@
         Western Upper Peninsula of Michigan.</p>
     </div>
     <div class="row">
-        <div class="col-md-4 centertext skyblue">
+        <div class="col-md-4 centertext skyblue" style="border-right:solid #DFDFDF 1px">
             <h2>Mission</h2>
             <p>
-                Land O' Lakes Area Artisans, Inc. (LOLA) is dedicated to promoting the Arts in Northern Wisconsin and the Upper 
-                Peninsula of Michigan. LOLA will support Local Artists in fulfilling their artistic potential while also bringing Enrichment, 
+                Land O' Lakes Area Artisans, Inc. (LOLA) is dedicated to promoting the Arts in Northern Wisconsin and the Upper
+                Peninsula of Michigan. LOLA will support Local Artists in fulfilling their artistic potential while also bringing Enrichment,
                 Arts Education and Beautification to the people of the area, which contributes to the vitality of the larger community.
             </p>
+            <br />
+            <br/>   
+            <br />
+            <br />
         </div>
-        <div class="col-md-4 centertext skyblue">
+        <div class="col-md-4 centertext skyblue" style="border-right:solid #DFDFDF 1px">
             <h2>GOALS</h2>
-            <p>To purchase the current rental space to be the permanent home of The LOLA Center for the Arts. The Arts Center will 
-            then be able to provide space for all forms of art programming .</p>
-            <p>To provide quality that offers a variety of classes and events, with the purpose of Enlivening, Entertaining and 
-            Increasing the quality of life in our area.</p>
+            <p>
+                To purchase the current rental space to be the permanent home of The LOLA Center for the Arts. The Arts Center will
+                then be able to provide space for all forms of art programming .
+            </p>
+            <p>
+                To provide quality that offers a variety of classes and events, with the purpose of Enlivening, Entertaining and
+                Increasing the quality of life in our area.
+            </p>
             <p>To award Scholarships to selected area High School Seniors & Adults who intend to enroll in Arts related programs</p>
         </div>
         <div class="col-md-4 centertext skyblue">
@@ -49,12 +57,9 @@
             <p>LOLA is a 501(c)(3) Non-Profit organization. All donations are tax deductible.</p>
             <p>We invite you to join us in working towards achieving these goals, so that you may share in the pleasure 
             this enrichment promises for our community</p>
-            <p><a class="btn btn-default" @Html.ActionLink("Learn more about Donations", "Donations", "Donations")</a></p>
-            <p>
-                <a link href="https://smile.amazon.com/ch/27-1993459">
-                    <img src="~/img/AmazonSmile.png" style="max-width:100%" />
-                </a>
-            </p>
+            <a href="@Url.Action("Donations","Donations")">
+                <img src="~/img/Donate_Now.jpg" style="max-width:100%; width:250px" />
+            </a>
         </div>
     </div>
 </div>

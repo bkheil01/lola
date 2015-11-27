@@ -11,18 +11,33 @@ namespace LOLAWebsite.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Event_Registration
     {
         public int Event_Registration_ID { get; set; }
+
+        [Display(Name = "User")]
         public string Id { get; set; }
+
+        [Display(Name = "Event")]
         public Nullable<int> Event_ID { get; set; }
-        public Nullable<System.DateTime> Event_Date { get; set; }
+
+        [Display(Name = "Transaction")]
         public string Transaction_ID { get; set; }
+
+        [Display(Name = "Participants Name")]
         public string P_Name { get; set; }
+
+        [Display(Name = "Participants Phone")]
         public string P_Phone { get; set; }
+
+        [Display(Name = "Is Participant 18")]
         public Nullable<bool> P_UnderAge { get; set; }
-    
+
+
+        public List<Participant> Participant { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Event Event { get; set; }
     }

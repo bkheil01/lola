@@ -11,6 +11,7 @@
 
 <h2>Recurring Donations</h2>
 <p>This section will display a list of recurring donations and the amount.</p>
+
 @{
     // GET : userID
     var currentUserID = User.Identity.GetUserId();
@@ -22,17 +23,38 @@
     LOLADBEntities db = new LOLADBEntities();
 
     var donations = db.Donations.ToList();
+    
+    // if there are recurring donations display them in a list
     if (donations.Count > 0)
     {
         foreach (var item in donations)
         {
+            // if there are recurring donations, display it
             if (item.Donation_Type == "Subscription - Monthly" && item.Id == currentUserID)
             {
                 i++;
-                <p>@item.Donation_Amount.ToString() to @item.Donation_Category on [ date forthcoming ]</p>
+                
+                <div>
+                    <ul>
+                        <li>
+
+                        <div class="info" style="width:100%;">
+                            <span>$@item.Donation_Amount.ToString()</span>
+                            <span>to</span>
+                            <span>@item.Donation_Category</span>
+                        </div>
+
+                        <div class="darkerGrey" style="width:100%;">
+                            @Html.ActionLink("Cancel", "_CancelDonationsPartial", new { id = item.Donation_ID }, new { @class = "dialog" })
+                        </div>
+                        
+                        </li>
+                    </ul>
+                </div>
             }
         } // end foreach
         
+        // if there are no recurring donations display a message
         if (i == 0)
         {
             <p>You have not set up any recurring donations.</p>
@@ -40,8 +62,26 @@
         
     } // end if
 
+    // if there are no donations in the entire database display a message
     else
     {
         <p>There are no donations in the database right now.</p>
     }
 }
+<script type="text/javascript">
+    $(function (){
+        $('a.dialog').click(function() {
+            var url = $(this).attr('href');
+            var dialog = $('<div style="display:none"></div>').appendTo('body');
+            dialog.load(url, {},
+                function (responseText, textStatus, XMLHttpRequest) {
+                dialog.dialog({
+                    close: function(event, ui) {
+                        dialog.remove();
+                    }
+                });
+            });
+            return false;
+        });
+    });
+</script>

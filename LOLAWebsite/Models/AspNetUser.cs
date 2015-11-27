@@ -22,7 +22,8 @@ namespace LOLAWebsite.Models
             this.Donations = new HashSet<Donation>();
             this.Employees = new HashSet<Employee>();
             this.Event_Registration = new HashSet<Event_Registration>();
-            this.Feedbacks = new HashSet<Feedback>();
+            this.Course_Feedback = new HashSet<Course_Feedback>();
+            this.Event_Feedback = new HashSet<Event_Feedback>();
             this.Teachers = new HashSet<Teacher>();
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
@@ -55,7 +56,8 @@ namespace LOLAWebsite.Models
         public virtual ICollection<Donation> Donations { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Event_Registration> Event_Registration { get; set; }
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
+        public virtual ICollection<Course_Feedback> Course_Feedback { get; set; }
+        public virtual ICollection<Event_Feedback> Event_Feedback { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

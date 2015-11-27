@@ -30,7 +30,7 @@
 
 <div class="container">
     
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h2>Classes</h2>
         <p>Education in the arts is the most important aspect of our activities here at LOLA, so we are grateful that you took classes here.</p>
         <p>The first section the the right displays any future classes you may be signed up for.</p>
@@ -38,13 +38,15 @@
     </div>
 
 
-    <div class="col-md-9">
+    <div class="col-md-8">
         <!--
             TODO : Section for upcomming classes
 
             GET : ~/UserAccounts/_UpcomingClassesPartial.cshtml
         -->
-        @Html.Partial("_UpcomingCoursesPartial")
+        <div style="clear:both;">@Html.Partial("_UpcomingCoursesPartial")</div>
+        
+        <br />
 
         <!--
 
@@ -53,7 +55,7 @@
             GET : ~/UserAccounts/_ClassHistoryPartial.cshtml
 
         -->
-        @Html.Partial("_CourseHistoryPartial")
+        <div style ="clear:both">@Html.Partial("_CourseHistoryPartial")</div>
     </div>
 
 

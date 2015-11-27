@@ -48,6 +48,15 @@
             <li>Scholarship Fund</li>
             <li>Other (example - In Memory of or In Honor of)</li>
         </ol>
+        <p>
+            AmazonSmile is a simple and automatic way for you to support LOLA every time you shop, 
+            at no cost to you. When you shop at <a href="">smile.amazon.com</a> you’ll find the exact same low prices, vast selection and convenient 
+            shopping experience as Amazon.com, with the added bonus that Amazon will donate a portion of the purchase price to LOLA. To learn more, 
+            click on the Amazon Smile logo below. 
+        </p>
+        <p>
+            <a href="http://t.co/mQcovzYsiE"><img src="~/img/AmazonSmile.png" style="width:250px; max-width:100%" /></a>
+</p>
     </div>   
 
     <div class="col-sm-6">
@@ -55,8 +64,16 @@
         <p class="tabin">LOLA - P.O. Box 981</p>
         <p class="tabin">Land O' Lakes, WI 54540</p>
     </div>
-        <div class="smallspacer"></div>
-        @Html.ActionLink("Click here to donate online!", "Donate", "Donations", new { @class = "btn btn-default skyblue"})
+    <br />
+    <br />
+    <div style="margin-top: 100px">
+        <a href="@Url.Action("Donate","Donations")" id="testbutton">Donate through LOLA Website</a>
+        <br />
+    </div>
+    <div style="margin-top: 45px">
+        <a href="http://www.paypal.com" id="testbutton2">Donate through PayPal</a>
+        <br />
+    </div>
 </div>
 <div class="largespacer"></div>
 

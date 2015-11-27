@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LOLADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -70,6 +60,19 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="StripeID" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="Course_Feedback">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_ID" Type="int" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="Teacher_ID" Type="int" />
+    <Property Name="Course_Marketing" Type="varchar" MaxLength="255" />
+    <Property Name="Course_Registration_Type" Type="bit" />
+    <Property Name="Course_Rating" Type="int" />
+    <Property Name="Student_Comment" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="Course_Registration">
     <Key>
       <PropertyRef Name="Registration_ID" />
@@ -98,6 +101,7 @@
     <Property Name="Course_Cost" Type="real" />
     <Property Name="Course_Location" Type="varchar" MaxLength="255" />
     <Property Name="Course_Notes" Type="varchar" MaxLength="255" />
+    <Property Name="Participating_Students" Type="int" />
   </EntityType>
   <EntityType Name="Donation">
     <Key>
@@ -109,6 +113,8 @@
     <Property Name="Donation_Type" Type="varchar" MaxLength="255" />
     <Property Name="Donation_Amount" Type="real" />
     <Property Name="Donation_Category" Type="varchar" MaxLength="255" />
+    <Property Name="Active_Donation" Type="bit" />
+    <Property Name="Donation_Date" Type="date" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -119,6 +125,18 @@
     <Property Name="SSN" Type="int" />
     <Property Name="Job_Description" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="Event_Feedback">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_ID" Type="int" />
+    <Property Name="Id" Type="nvarchar" MaxLength="128" />
+    <Property Name="Event_Marketing" Type="varchar" MaxLength="255" />
+    <Property Name="Event_Registration_Type" Type="bit" />
+    <Property Name="Event_Rating" Type="int" />
+    <Property Name="Student_Comment" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="Event_Registration">
     <Key>
       <PropertyRef Name="Event_Registration_ID" />
@@ -126,7 +144,6 @@
     <Property Name="Event_Registration_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id" Type="nvarchar" MaxLength="128" />
     <Property Name="Event_ID" Type="int" />
-    <Property Name="Event_Date" Type="date" />
     <Property Name="Transaction_ID" Type="varchar" MaxLength="255" />
     <Property Name="P_Name" Type="varchar" MaxLength="255" />
     <Property Name="P_Phone" Type="varchar" MaxLength="255" />
@@ -149,29 +166,6 @@
     <Property Name="Event_Location" Type="varchar" MaxLength="255" />
     <Property Name="Event_Notes" Type="varchar" MaxLength="255" />
   </EntityType>
-  <EntityType Name="Feedback">
-    <Key>
-      <PropertyRef Name="Feedback_ID" />
-    </Key>
-    <Property Name="Feedback_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Course_ID" Type="int" />
-    <Property Name="Id" Type="nvarchar" MaxLength="128" />
-    <Property Name="Teacher_ID" Type="int" />
-    <Property Name="Course_Marketing" Type="varchar" MaxLength="255" />
-    <Property Name="Course_Registration_Type" Type="bit" />
-    <Property Name="Course_Rating" Type="int" />
-    <Property Name="Student_Comment" Type="int" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Teacher">
     <Key>
       <PropertyRef Name="Teacher_ID" />
@@ -182,12 +176,12 @@
   </EntityType>
   <Association Name="fk_CourseFeedback">
     <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Courses">
         <PropertyRef Name="Course_ID" />
       </Principal>
-      <Dependent Role="Feedback">
+      <Dependent Role="Course_Feedback">
         <PropertyRef Name="Course_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -260,6 +254,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_EventFeedback">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+    <End Role="Event_Feedback" Type="Self.Event_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Event_ID" />
+      </Principal>
+      <Dependent Role="Event_Feedback">
+        <PropertyRef Name="Event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_EventIDRegistration">
     <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
     <End Role="Event_Registration" Type="Self.Event_Registration" Multiplicity="*" />
@@ -286,12 +292,12 @@
   </Association>
   <Association Name="fk_TeacherFeedback">
     <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Teacher">
         <PropertyRef Name="Teacher_ID" />
       </Principal>
-      <Dependent Role="Feedback">
+      <Dependent Role="Course_Feedback">
         <PropertyRef Name="Teacher_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -346,12 +352,24 @@
   </Association>
   <Association Name="fk_UserFeedback">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <End Role="Course_Feedback" Type="Self.Course_Feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Feedback">
+      <Dependent Role="Course_Feedback">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserID">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Event_Feedback" Type="Self.Event_Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event_Feedback">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -369,24 +387,23 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LOLADBModelStoreContainer">
-    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course_Feedback" EntityType="Self.Course_Feedback" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course_Registration" EntityType="Self.Course_Registration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Donation" EntityType="Self.Donation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event_Feedback" EntityType="Self.Event_Feedback" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event_Registration" EntityType="Self.Event_Registration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_CourseFeedback" Association="Self.fk_CourseFeedback">
       <End Role="Courses" EntitySet="Courses" />
-      <End Role="Feedback" EntitySet="Feedback" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
     </AssociationSet>
     <AssociationSet Name="fk_CourseRegistration" Association="Self.fk_CourseRegistration">
       <End Role="Courses" EntitySet="Courses" />
@@ -408,6 +425,10 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="fk_EventFeedback" Association="Self.fk_EventFeedback">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Event_Feedback" EntitySet="Event_Feedback" />
+    </AssociationSet>
     <AssociationSet Name="fk_EventIDRegistration" Association="Self.fk_EventIDRegistration">
       <End Role="Events" EntitySet="Events" />
       <End Role="Event_Registration" EntitySet="Event_Registration" />
@@ -418,7 +439,7 @@
     </AssociationSet>
     <AssociationSet Name="fk_TeacherFeedback" Association="Self.fk_TeacherFeedback">
       <End Role="Teacher" EntitySet="Teacher" />
-      <End Role="Feedback" EntitySet="Feedback" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
     </AssociationSet>
     <AssociationSet Name="fk_UserCourseRegistration" Association="Self.fk_UserCourseRegistration">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -438,7 +459,11 @@
     </AssociationSet>
     <AssociationSet Name="fk_UserFeedback" Association="Self.fk_UserFeedback">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Feedback" EntitySet="Feedback" />
+      <End Role="Course_Feedback" EntitySet="Course_Feedback" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserID" Association="Self.fk_UserID">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Event_Feedback" EntitySet="Event_Feedback" />
     </AssociationSet>
     <AssociationSet Name="fk_UserTeacher" Association="Self.fk_UserTeacher">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

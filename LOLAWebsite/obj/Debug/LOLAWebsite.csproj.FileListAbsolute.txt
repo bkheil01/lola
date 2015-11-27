@@ -58,3 +58,6 @@ C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.dll
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.pdb
 C:\Users\Tyler\documents\visual studio 2013\Projects\LOLAWebsite\LOLAWebsite\obj\Debug\LOLAWebsite.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Documents\Visual Studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\SendGrid.dll
+C:\Users\Tyler\Documents\Visual Studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Net.Http.Formatting.dll
+C:\Users\Tyler\Documents\Visual Studio 2013\Projects\LOLAWebsite\LOLAWebsite\bin\System.Net.Http.Formatting.xml

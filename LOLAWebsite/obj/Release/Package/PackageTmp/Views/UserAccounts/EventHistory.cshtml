@@ -33,23 +33,28 @@
         TODO : Section for upcomming events
         GET : ~/UserAccounts/_UpcomingEventsPartial.cshtml
     -->
-    <div class="col-sm-3">
+    <div class="col-sm-4">
        <h2>Events</h2>
         <p>This page details your involvement in LOLA events.</p>
         <p>The first section lists any upcoming events you signed up for.</p>
         <p>The second section lists all the past events you signed up for.</p>
     </div>
 
-    <!--
+    <div class="col-md-8">
+        <!--
         
-        TODO : Section for past events
+            GET : ~/UserAccounts/_UpcomingEventsPartial.cshtml
 
-        GET : ~/UserAccounts/_EventHistoryPartial.cshtml
-    
-    -->
-    <div class="col-md-9">
-        @Html.Partial("_UpcomingEventsPartial")
-        @Html.Partial("_EventHistoryPartial")
+        -->
+        <div style="clear:both;">@Html.Partial("_UpcomingEventsPartial")</div>
+        <br />
+        
+        <!--
+            
+            GET : ~/UserAccounts/_EventHistoryPartial.cshtml
+
+         -->
+        <div style="clear:both;">@Html.Partial("_EventHistoryPartial")</div>
     </div>
 
 

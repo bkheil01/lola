@@ -69,8 +69,16 @@
                         <h2 class="title">@Html.DisplayFor(modelItem => thisEvent.Event_Type)</h2>
                         <p class="desc">@Html.DisplayFor(modelItem => thisEvent.Event_Desc)</p>
                         <ul>
-                            <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Event details", "Details", new { id = thisEvent.Event_ID })</li>
+                            <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Event details", "Details", "Events", new { id = item.Event_ID }, null)</li>
                         </ul>
+                        @{
+
+                                <ul>
+                                    <li class="darkerGrey" style="width:100%;">
+                                        @Html.ActionLink("Click Here to Give Feedback!", "EventFeedback", "UserAccounts", new { id = thisEvent.Event_ID }, null)
+                                    </li>
+                                </ul>
+                        }
                     </div>
                 </li>
             } // end if

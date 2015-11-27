@@ -55,6 +55,7 @@ namespace LOLAWebsite.Controllers
                         P_UnderAge = p.UnderAge
                     };
                     db.Course_Registration.Add(courseReg);
+                    @course.Participating_Students++;
                     db.SaveChanges();
                 }
             }          
@@ -104,6 +105,7 @@ namespace LOLAWebsite.Controllers
         public ActionResult FreeRegistration(CourseRegistrationModel model)
         {
             var courseReg = new Course_Registration();
+            Course @course = db.Courses.Find((int)TempData["courseid"]);
 
             foreach (var p in model.Participant)
             {
@@ -119,6 +121,7 @@ namespace LOLAWebsite.Controllers
                         P_UnderAge = p.UnderAge
                     };
                     db.Course_Registration.Add(courseReg);
+                    @course.Participating_Students++;
                     db.SaveChanges();
                 }
             }

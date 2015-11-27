@@ -11,17 +11,32 @@ namespace LOLAWebsite.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Course_Registration
     {
         public int Registration_ID { get; set; }
+
+        [Display(Name = "Transaction Number")]
         public string Transaction_ID { get; set; }
+
+        [Display(Name = "Course")]
         public Nullable<int> Course_ID { get; set; }
+
+        [Display(Name = "User")]
         public string Id { get; set; }
+
+        [Display(Name = "Participant Name")]
         public string P_Name { get; set; }
+
+        [Display(Name = "Participant Phone")]
         public string P_Phone { get; set; }
+
+        [Display(Name = "Participant Under 18")]
         public Nullable<bool> P_UnderAge { get; set; }
-    
+
+        public List<Participant> Participant { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Course Cours { get; set; }
     }

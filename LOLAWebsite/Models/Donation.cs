@@ -11,16 +11,33 @@ namespace LOLAWebsite.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Donation
     {
         public int Donation_ID { get; set; }
+
+        [Display(Name = "Transaction")]
         public string Transaction_ID { get; set; }
+
+        [Display(Name = "User")]
         public string Id { get; set; }
+
+        [Display(Name = "Donation Type")]
         public string Donation_Type { get; set; }
+
+        [Display(Name = "Amount")]
         public Nullable<float> Donation_Amount { get; set; }
+
+        [Display(Name = "Category")]
         public string Donation_Category { get; set; }
-    
+
+        [Display(Name = "Active Reoccuring Donation")]
+        public Nullable<bool> Active_Donation { get; set; }
+
+        [Display(Name = "Donation Date")]
+        public Nullable<System.DateTime> Donation_Date { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

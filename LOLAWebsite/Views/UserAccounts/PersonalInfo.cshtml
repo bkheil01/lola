@@ -1,5 +1,4 @@
-﻿
-@using LOLAWebsite.Models;
+﻿@using LOLAWebsite.Models;
 @using LOLAWebsite.Controllers (CourseController)
 @using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework;
@@ -7,7 +6,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Personal Information";
-    
+
     var currentUserID = User.Identity.GetUserId();
     var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
@@ -33,7 +32,6 @@
     <!-- /.container -->
 </div>
 <!-- /.intro-header -->
-
 <!-- Accounts navigation bar -->
 @Html.Partial("_AccountsNavBarPartial")
 <!-- /accounts navigation bar -->
@@ -61,7 +59,7 @@
                             @Html.TextBoxFor(m => currentUser.Email, new { @class = "form-control" })
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         @Html.LabelFor(m => currentUser.FirstName, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
@@ -120,7 +118,6 @@
         </div> <!-- end right block -->
     </div> <!-- end row -->
 </div> <!-- end content container -->
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

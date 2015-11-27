@@ -4,21 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="acd1007d30a54f2e9d93f7e503bdd7c5" Name="Diagram1">
-        <EntityTypeShape EntityType="LOLADBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.AspNetUser" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Course_Registration" Width="1.5" PointX="9.75" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Course" Width="1.5" PointX="7.5" PointY="29.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Donation" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Employee" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Event_Registration" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Event" Width="1.5" PointX="6" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Feedback" Width="1.5" PointX="12.75" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LOLADBModel.Teacher" Width="1.5" PointX="5.25" PointY="30.75" IsExpanded="true" />
+      <Diagram DiagramId="89f5e7f20dde48689a18a45061a6e0b4" Name="Diagram1">
+        <EntityTypeShape EntityType="LOLADBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.AspNetUser" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Course_Feedback" Width="1.5" PointX="9.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Course_Registration" Width="1.5" PointX="12.75" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Course" Width="1.5" PointX="7.5" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Donation" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Employee" Width="1.5" PointX="5.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event_Feedback" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event_Registration" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Event" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOLADBModel.Teacher" Width="1.5" PointX="5.25" PointY="36.375" IsExpanded="true" />
         <AssociationConnector Association="LOLADBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_UserCourseRegistration" ManuallyRouted="false" />
@@ -26,12 +25,14 @@
         <AssociationConnector Association="LOLADBModel.fk_UserEmployee" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_UserEventRegistration" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_UserFeedback" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_UserID" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_UserTeacher" ManuallyRouted="false" />
-        <AssociationConnector Association="LOLADBModel.fk_CourseRegistration" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_CourseFeedback" ManuallyRouted="false" />
-        <AssociationConnector Association="LOLADBModel.fk_TeacherCourses" ManuallyRouted="false" />
-        <AssociationConnector Association="LOLADBModel.fk_EventIDRegistration" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.fk_TeacherFeedback" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_CourseRegistration" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_TeacherCourses" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_EventFeedback" ManuallyRouted="false" />
+        <AssociationConnector Association="LOLADBModel.fk_EventIDRegistration" ManuallyRouted="false" />
         <AssociationConnector Association="LOLADBModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

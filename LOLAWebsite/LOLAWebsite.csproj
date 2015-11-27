@@ -40,15 +40,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid">
+      <HintPath>..\packages\Sendgrid.6.3.0\lib\SendGrid.dll</HintPath>
     </Reference>
     <Reference Include="SendGrid.SmtpApi">
       <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
     </Reference>
-    <Reference Include="SendGridMail">
-      <HintPath>..\packages\Sendgrid.6.1.0\lib\SendGridMail.dll</HintPath>
+    <Reference Include="SendGridMail, Version=6.3.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sendgrid.6.3.0\lib\SendGridMail.dll</HintPath>
     </Reference>
     <Reference Include="Stripe.net">
       <HintPath>..\packages\Stripe.net.4.2.1\lib\net40\Stripe.net.dll</HintPath>
@@ -56,6 +60,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -202,11 +210,10 @@
     <Compile Include="Models\Course.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Participant.cs" />
-    <Compile Include="Models\Course_Registration.cs">
+    <Compile Include="Models\Course_Feedback.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
+    <Compile Include="Models\Course_Registration.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Donation.cs">
@@ -218,24 +225,20 @@
     <Compile Include="Models\Event.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EventRegistrationModel.cs" />
+    <Compile Include="Models\Event_Feedback.cs">
+      <DependentUpon>LOLA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Event_Registration.cs">
-      <SubType>Code</SubType>
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feedback.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>LOLA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LOLA.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LOLA.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOLA.cs">
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOLA.Designer.cs">
@@ -243,11 +246,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LOLA.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Participant.cs" />
+    <Compile Include="Models\EventRegistrationModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\NewDonationModel.cs" />
     <Compile Include="Models\CourseRegistrationModel.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>LOLA.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>LOLA.tt</DependentUpon>
     </Compile>
@@ -292,8 +295,10 @@
     <Content Include="img\Board\Lynn.jpg" />
     <Content Include="img\Board\Mary.jpg" />
     <Content Include="img\Board\Sandra.jpg" />
+    <Content Include="img\Board\Stephanie.jpg" />
     <Content Include="img\Board\Susan.jpg" />
     <Content Include="img\Board\Wendy.jpg" />
+    <Content Include="img\Donate_Now.jpg" />
     <Content Include="img\forest_stock.jpg" />
     <Content Include="img\Headers\100 Days Finale.jpg" />
     <Content Include="img\Headers\100 Days of Art - photos.jpg" />
@@ -363,6 +368,8 @@
     <Content Include="Content\css\themes\light\font\nano_icon_font3.eot" />
     <Content Include="Content\css\themes\light\font\nano_icon_font3.ttf" />
     <Content Include="Content\css\themes\light\font\nano_icon_font3.woff" />
+    <Content Include="docs\ArtImpression_Registration.pdf" />
+    <Content Include="docs\ArtImpression_Requirements.pdf" />
     <EntityDeploy Include="Models\LOLA.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LOLA.Designer.cs</LastGenOutput>
@@ -380,8 +387,6 @@
       <DependentUpon>LOLA.edmx</DependentUpon>
       <LastGenOutput>LOLA.cs</LastGenOutput>
     </Content>
-    <Content Include="docs\ArtImpression_Registration.pdf" />
-    <Content Include="docs\ArtImpression_Requirements.pdf" />
     <None Include="Properties\PublishProfiles\PublishTylerDesktop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

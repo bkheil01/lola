@@ -29,10 +29,10 @@
 
     var courseList = db.Courses.ToList();
     var courseRegList = db.Course_Registration.ToList();
-    int i=0;
+    int i = 0;
 
-    if (courseRegList.Count > 0) 
-    { 
+    if (courseRegList.Count > 0)
+    {
         foreach (var item in courseRegList)
         {
             var course = db.Courses.Single(c => c.Course_ID == item.Course_ID);
@@ -40,7 +40,7 @@
             DateTime startDate = course.Course_Start_Date ?? DateTime.Now;
             TimeSpan ts = endDate - startDate;
             int dateCompare = DateTime.Compare(endDate, todayDate);
-            
+
             // if date is later than today and the user id matches the currentUser
             // display the class
             if (dateCompare >= 0 && item.Id == currentUser.Id)
@@ -48,32 +48,43 @@
                 i++;
                 DateTime sd = course.Course_Start_Date ?? DateTime.Now;
                 DateTime ed = course.Course_End_Date ?? DateTime.Now;
-                <div class="[ col-xs-12 col-sm-offset-1 col-sm-8 ]">
-                    <ul class="event-list"><li id="courseContainer" class="@sd.ToString("MMM")">
-                        <time>
-                            <span class="day">@sd.Day.ToString()</span>
-                            <span class="month">@sd.ToString("MMM")</span>
-                             @if (ts.Days == 0)
-                             {
-                                 <span class="time">@Html.DisplayFor(modelItem => course.Course_Time_Start) - @Html.DisplayFor(modeItem => course.Course_Time_End)</span>
-                             } // end if
-                            else
-                            {
-                                 <span class="year">Through @ed.ToString("MMM dd")</span>
-                                 <br />
-                                 <span class="time">@Html.DisplayFor(modelItem => course.Course_Time_Start) - @Html.DisplayFor(modeItem => course.Course_Time_End)</span>
-                            } <!-- end else -->
-                                </time>
-                                <div class="info">
+                <div class="[ col-xs-12 col-sm-offset-1 col-md-12 ]">
+                    <ul class="event-list">
+                        <li id="courseContainer" class="@sd.ToString("MMM")">
+
+                            <time>
+                                <span class="day">@sd.Day.ToString()</span>
+                                <span class="month">@sd.ToString("MMM")</span>
+                                @if (ts.Days == 0)
+                                {
+                                    <span class="time">@Html.DisplayFor(modelItem => course.Course_Time_Start) - @Html.DisplayFor(modeItem => course.Course_Time_End)</span>
+                                } // end if
+                                else
+                                {
+                                    <span class="year">Through @ed.ToString("MMM dd")</span>
+                                    <br />
+                                    <span class="time">@Html.DisplayFor(modelItem => course.Course_Time_Start) - @Html.DisplayFor(modeItem => course.Course_Time_End)</span>
+                                } <!-- end else -->
+                            </time>
+
+                            <div class="info">
+                                <a href="@Url.Action("Details", "Courses", new { id = item.Course_ID })">
                                     <h2 class="title">@Html.DisplayFor(modelItem => course.Course_Type)</h2>
                                     <p class="desc">@Html.DisplayFor(modelItem => course.Course_Desc)</p>
-                                    <ul>
-                                        <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Course details", "Details", new { id = item.Course_ID })</li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                </a>@{
+                                /*<ul>
+                                    <li class="darkerGrey" style="width:100%;">@Html.ActionLink("Click here for Course details", "Details", "Courses", new { id = item.Course_ID }, null)</li>
+                                </ul>*/
+                                <ul>
+                                    <li class="darkerGrey" style="width:100%;">
+                                        @Html.ActionLink("Click Here to Give Feedback!", "CourseFeedback", "UserAccounts", new { id = item.Course_ID })
+                                    </li>
+                                </ul>}
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
             } // end if dateCompare
 
         } // end foreach
@@ -81,9 +92,9 @@
         if (i == 0)
         {
             <p>You are not registered for any classes!</p>
-            <p>@Html.ActionLink("Sign up for one today!", "Index", "Courses", new {@id = ""},new { @class = "btn btn-default" })</p>
+            <p>@Html.ActionLink("Sign up for one today!", "Index", "Courses", new { @id = "" }, new { @class = "btn btn-default" })</p>
         } // end if
-        
+
     } // end if
 
     else

@@ -17,6 +17,7 @@
     var currentUserID = User.Identity.GetUserId();
     var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
     var currentUser = userManager.FindById(User.Identity.GetUserId());
+    int i = 0;
 
     // GET : donations
     LOLADBEntities db = new LOLADBEntities();
@@ -24,22 +25,33 @@
     var donations = db.Donations.ToList();
     if (donations.Count > 0)
     {
+
         foreach (var item in donations)
         {
-            int i=0;
-            if (item.Donation_Type == "One Time" && item.Id==currentUserID)
+            if (item.Donation_Type == "One Time" && item.Id == currentUserID)
             {
                 i++;
-                <p>@item.Donation_Amount.ToString() to @item.Donation_Category on [ date function forthcoming ].</p>
-            }
-            if (i == 0)
-            {
-                <p>You have not made any donations.</p>
-            }
-        }
-    }
+                <ul>
+                    <li>
+                        <div class="info">
+                            <span>$@item.Donation_Amount.ToString()</span>
+                            <span>to</span>
+                            <span>@item.Donation_Category</span>
+                        </div>
+                    </li>
+                </ul>
+            } // end if
+
+        } // end for each
+
+        if (i == 0)
+        {
+            <p>You have not made any donations.</p>
+        } // end if
+    } // end if
+
     else
     {
         <p>There are no donations in the database.</p>
-    }
+    } // end else
 }

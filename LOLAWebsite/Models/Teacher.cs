@@ -16,8 +16,8 @@ namespace LOLAWebsite.Models
     {
         public Teacher()
         {
+            this.Course_Feedback = new HashSet<Course_Feedback>();
             this.Courses = new HashSet<Course>();
-            this.Feedbacks = new HashSet<Feedback>();
         }
     
         public int Teacher_ID { get; set; }
@@ -25,7 +25,7 @@ namespace LOLAWebsite.Models
         public Nullable<int> SSN { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ICollection<Course_Feedback> Course_Feedback { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }

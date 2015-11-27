@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Owin;
 
 namespace LOLAWebsite.Controllers
 {
@@ -28,9 +33,10 @@ namespace LOLAWebsite.Controllers
 
         // POST : /UserAccounts/PersonalInfo
         [HttpPost]
-        public ActionResult PersonalInfo(string message)
+        [ValidateAntiForgeryToken]
+        public ActionResult PersonalInfo(LOLAWebsite.Models.ApplicationUser model)
         {
-            ViewBag.Message = "Personal information changed.";
+            ViewBag.Message = "Changes Made.";
             return View();
         }
 
@@ -54,24 +60,64 @@ namespace LOLAWebsite.Controllers
             ViewBag.Message = "These are the donations you've made.";
             return View();
         }
-        
-        /* Future planning for Family administration when it is 
-         * worked out in the database.
-         * 
-        // GET : /UserAccounts/FamilyInfo
-        public ActionResult FamilyInfo()
+
+        // GET : /UserAccounts/EventFeedback
+        public ActionResult EventFeedback(int? eventId)
         {
-            ViewBag.Message = "Edit your family information.";
-            return View();
+            TempData["eventid"] = eventId;
+            return View(new Event_Feedback());
         }
-        
-        // POST : /UserAccounts/FamilyInfo
+
         [HttpPost]
-        public ActionResult FamilyInfo()
+        [ValidateAntiForgeryToken]
+        public ActionResult EventFeedback(LOLAWebsite.Models.Event_Feedback model)
         {
-            ViewBag.Message = "You have edited your family information.";
-            return View();
+            Event @event = db.Events.Find((int)TempData["eventid"]);
+            if (model.Id != null)
+            {
+                var thisFeedback = new Event_Feedback()
+                {
+                    Event_ID = @event.Event_ID,
+                    Event_Marketing = model.Event_Marketing,
+                    Event_Rating = model.Event_Rating,
+                    Event_Registration_Type = model.Event_Registration_Type,
+                    Student_Comment = model.Student_Comment,
+                    Id = User.Identity.GetUserId(),
+                };
+                db.Event_Feedback.Add(thisFeedback);
+                db.SaveChanges();
+            }
+            return View("Changes Saved");
         }
-         */
+
+        // GET : /UserAccounts/ClassFeedback
+        public ActionResult CourseFeedback(int? courseId)
+        {
+            TempData["courseid"] = courseId;
+            return View(new Course_Feedback());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CourseFeedback(LOLAWebsite.Models.Course_Feedback model)
+        {
+            Course @course = db.Courses.Find((int)TempData["courseid"]);
+            if (model.Id != null)
+            {
+                var thisFeedback = new Course_Feedback()
+                {
+                    Course_ID = @course.Course_ID,
+                    Course_Marketing = model.Course_Marketing,
+                    Course_Rating = model.Course_Rating,
+                    Course_Registration_Type = model.Course_Registration_Type,
+                    Student_Comment = model.Student_Comment,
+                    Id = User.Identity.GetUserId(),
+                };
+                db.Course_Feedback.Add(thisFeedback);
+                db.SaveChanges();
+            }
+            return View("Changes Saved");
+        }
+        
     }
 }
