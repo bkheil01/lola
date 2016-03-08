@@ -3,7 +3,7 @@ This project was made for the University of Louisville's CIS 420 course. It was 
 <br />
 <br />
 <b>Contributors:</b><br />
-    Tyler Lutz - Developer<br />
+    Tyler Lutz - Developer / Project Manager<br />
     Michael Moser - Developer / Project Manager<br />
     Daniel McGrath - Database Engineer<br />
     Brett Heil - Database Engineer / Developer<br />
